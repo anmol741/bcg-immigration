@@ -27,7 +27,15 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="antialiased" suppressHydrationWarning={true}>{children}</body>
+      <body className="antialiased" suppressHydrationWarning={true}>
+        {children}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script
+          src="https://myappzchat.com/production/master/widget/embed-widget.umd.js"
+          data-widget-id="b003c446-7e95-4bd0-a797-f241f903863f"
+          async
+        />
+      </body>
     </html>
   )
 }
