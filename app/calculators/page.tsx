@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
 const PROVINCES = [
@@ -15,7 +15,7 @@ const PROVINCES = [
   { id: "aip", emoji: "🌊", label: "Atlantic AIP", file: "atlantic-aip-calculator.html" },
 ]
 
-export default function Calculators() {
+function CalculatorsInner() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [active, setActive] = useState("bc")
@@ -149,5 +149,31 @@ export default function Calculators() {
         title={`${current.label} Points Calculator 2026`}
       />
     </div>
+  )
+}
+
+export default function Calculators() {
+  return (
+    <Suspense
+      fallback={
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+            background: "#0D1F35",
+            color: "#C8993A",
+            fontSize: "18px",
+            fontWeight: 700,
+            fontFamily: "Inter, sans-serif",
+          }}
+        >
+          Loading PNP Calculators...
+        </div>
+      }
+    >
+      <CalculatorsInner />
+    </Suspense>
   )
 }
