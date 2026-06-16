@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BC PNP Points Calculator 2026 | BCG Immigration</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0D1F35;
+  --navy2: #162d4f;
+  --gold: #C8993A;
+  --gold2: #f0c96a;
+  --goldbg: #FDF6E8;
+  --teal: #0E7C74;
+  --tealbg: #E2F4F2;
+  --slate: #506070;
+  --mist: #F0F4F8;
+  --line: #DDE5EE;
+  --white: #FFFFFF;
+  --green: #166534;
+  --greenbg: #F0FDF4;
+  --red: #991b1b;
+  --redbg: #FEF2F2;
+  --amber: #92400e;
+  --amberbg: #FFFBEB;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--mist);
+  color: var(--navy);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--navy);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hbrand { display: flex; align-items: center; gap: 10px; }
+.hlogo {
+  width: 36px; height: 36px;
+  background: var(--gold);
+  border-radius: 8px;
+  font-weight: 800; font-size: 13px;
+  color: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+}
+.hname { font-size: 16px; font-weight: 700; color: #fff; }
+.hname span { color: var(--gold); }
+.hrcic { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.15); padding: 3px 10px; border-radius: 20px; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 100%);
+  padding: 28px 24px;
+  text-align: center;
+  border-bottom: 3px solid var(--gold);
+}
+.hero h1 { font-size: clamp(20px,4vw,30px); font-weight: 800; color: #fff; margin-bottom: 8px; letter-spacing: -.02em; }
+.hero h1 span { color: var(--gold); }
+.hero p { color: rgba(255,255,255,.6); font-size: 13px; max-width: 560px; margin: 0 auto 16px; }
+.hero-tags { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.htag { font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); border: 1px solid rgba(255,255,255,.1); }
+.htag.gold { background: rgba(200,153,58,.2); color: var(--gold2); border-color: rgba(200,153,58,.3); }
+
+/* ── LAYOUT ── */
+.main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  display: grid;
+  grid-template-columns: 1fr 290px;
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 720px) {
+  .main { grid-template-columns: 1fr; }
+  .sidebar { order: -1; }
+}
+
+/* ── SECTION CARD ── */
+.sec {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 12px rgba(13,27,42,.07);
+}
+.sec-head {
+  background: var(--navy);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-icon { font-size: 17px; }
+.sec-title { font-size: 13px; font-weight: 700; color: #fff; flex: 1; }
+.sec-max { font-size: 11px; font-weight: 700; color: var(--gold2); background: rgba(200,153,58,.2); border: 1px solid rgba(200,153,58,.3); padding: 2px 9px; border-radius: 12px; }
+
+/* ── QUESTION BLOCK ── */
+.qblock { padding: 14px 18px 12px; border-bottom: 1px solid var(--line); }
+.qblock:last-child { border-bottom: none; }
+.qlabel { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.qhint { font-size: 11px; color: var(--slate); margin-bottom: 10px; line-height: 1.5; }
+
+/* ── OPTION BUTTONS ── */
+.opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.o {
+  padding: 8px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: all .15s;
+  user-select: none;
+}
+.o:hover { border-color: var(--gold); background: var(--goldbg); }
+.o.on { border-color: var(--gold); background: var(--goldbg); box-shadow: 0 0 0 1.5px var(--gold); }
+.o .pts { font-size: 11px; font-weight: 800; color: var(--teal); background: var(--tealbg); padding: 1px 7px; border-radius: 10px; flex-shrink: 0; }
+.o.on .pts { background: var(--gold); color: var(--navy); }
+
+/* ── CHECKBOX ROWS ── */
+.cb {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 6px;
+  transition: all .15s;
+  user-select: none;
+}
+.cb:last-child { margin-bottom: 0; }
+.cb:hover { border-color: var(--teal); background: var(--tealbg); }
+.cb.on { border-color: var(--teal); background: var(--tealbg); }
+.cb-box {
+  width: 20px; height: 20px; flex-shrink: 0;
+  border-radius: 5px;
+  border: 2px solid var(--line);
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800;
+  margin-top: 1px;
+  transition: all .15s;
+}
+.cb.on .cb-box { background: var(--teal); border-color: var(--teal); color: #fff; }
+.cb-body { flex: 1; }
+.cb-text { font-size: 12px; font-weight: 600; color: var(--navy); }
+.cb-sub { font-size: 11px; color: var(--slate); margin-top: 1px; }
+.cb-pts { font-size: 12px; font-weight: 800; color: var(--slate); background: var(--mist); padding: 2px 8px; border-radius: 10px; flex-shrink: 0; margin-top: 1px; }
+.cb.on .cb-pts { background: var(--teal); color: #fff; }
+
+/* ── CLB TABLE ── */
+.clb-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.clb-table th { background: #f1f5f9; color: var(--slate); font-weight: 700; text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); font-size: 11px; }
+.clb-table td { padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.clb-table tr:last-child td { border-bottom: none; }
+.clb-table tr { cursor: pointer; transition: background .12s; }
+.clb-table tr:hover td { background: var(--goldbg); }
+.clb-table tr.on td { background: var(--goldbg); }
+.clb-table tr.on td:first-child { border-left: 3px solid var(--gold); }
+.clb-lvl { font-weight: 800; color: var(--navy); font-size: 13px; }
+.clb-eq  { color: var(--slate); font-size: 11px; }
+.clb-p   { font-weight: 800; color: var(--teal); text-align: right; }
+.clb-table tr.on .clb-p { color: var(--gold); }
+
+/* ── WAGE SLIDER ── */
+.wage-hero { text-align: center; padding: 8px 0 14px; }
+.wage-num { font-size: 42px; font-weight: 800; color: var(--navy); letter-spacing: -.03em; }
+.wage-yr { font-size: 12px; color: var(--slate); margin-top: 2px; }
+.wage-yr b { color: var(--teal); }
+
+input[type=range].wslider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  background: linear-gradient(to right, var(--gold) 0%, var(--gold) var(--wpct,0%), var(--line) var(--wpct,0%));
+}
+input[type=range].wslider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  cursor: pointer;
+}
+input[type=range].wslider::-moz-range-thumb {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  cursor: pointer;
+  border: none;
+}
+.wlabels { display: flex; justify-content: space-between; font-size: 10px; color: var(--slate); margin-top: 4px; }
+.wage-pts-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  background: var(--goldbg);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.wage-pts-badge span:first-child { font-size: 12px; font-weight: 600; color: var(--navy); }
+.wage-pts-badge span:last-child  { font-size: 18px; font-weight: 800; color: var(--gold); }
+
+/* ── WAGE BANDS TABLE ── */
+.bands { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 10px; }
+.bands th { background: #f1f5f9; padding: 5px 8px; text-align: left; font-size: 10px; font-weight: 700; color: var(--slate); border-bottom: 1px solid var(--line); }
+.bands td { padding: 5px 8px; border-bottom: 1px solid var(--line); color: var(--navy); }
+.bands tr:last-child td { border-bottom: none; }
+.bands .bp { font-weight: 800; color: var(--teal); text-align: right; }
+.bands tr.cur td { background: var(--goldbg); }
+.bands tr.cur .bp { color: var(--gold); }
+
+/* ── SIDEBAR ── */
+.score-card {
+  background: var(--navy);
+  border-radius: 14px;
+  padding: 22px 18px;
+  text-align: center;
+  margin-bottom: 14px;
+  box-shadow: 0 6px 28px rgba(13,27,42,.25);
+}
+.sc-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: rgba(255,255,255,.4); margin-bottom: 4px; }
+.sc-num {
+  font-size: 76px; font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: -.04em;
+  transition: all .3s;
+}
+.sc-of { font-size: 12px; color: rgba(255,255,255,.3); margin-bottom: 14px; }
+.sc-bar-bg { background: rgba(255,255,255,.1); border-radius: 4px; height: 8px; overflow: hidden; margin-bottom: 14px; }
+.sc-bar { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold2)); border-radius: 4px; width: 0%; transition: width .45s; }
+.sc-verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; }
+.sv-empty  { background: rgba(255,255,255,.07); color: rgba(255,255,255,.4); border: 1px solid rgba(255,255,255,.1); }
+.sv-red    { background: rgba(153,27,27,.35); color: #fca5a5; border: 1px solid rgba(153,27,27,.5); }
+.sv-amber  { background: rgba(200,153,58,.25); color: var(--gold2); border: 1px solid rgba(200,153,58,.4); }
+.sv-teal   { background: rgba(14,124,116,.3); color: #5eead4; border: 1px solid rgba(14,124,116,.4); }
+.sv-green  { background: rgba(22,101,52,.35); color: #4ade80; border: 1px solid rgba(22,101,52,.5); }
+
+.bkcard {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 10px rgba(13,27,42,.06);
+}
+.bkcard-head { background: #f1f5f9; padding: 9px 14px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--slate); border-bottom: 1px solid var(--line); }
+.bkrow { display: flex; justify-content: space-between; align-items: center; padding: 9px 14px; border-bottom: 1px dashed var(--line); font-size: 12px; }
+.bkrow:last-child { border-bottom: none; }
+.bkrow-name { color: var(--slate); }
+.bkrow-val  { font-weight: 800; color: var(--navy); font-size: 13px; }
+.bktotal { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: var(--navy); }
+.bktotal-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.5); }
+.bktotal-val { font-size: 20px; font-weight: 800; color: var(--gold); }
+
+.draws {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 10px rgba(13,27,42,.06);
+}
+.draws-head { background: #f1f5f9; padding: 9px 14px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--slate); border-bottom: 1px solid var(--line); }
+.draw-row { padding: 9px 14px; border-bottom: 1px solid var(--line); }
+.draw-row:last-child { border-bottom: none; }
+.draw-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.draw-name { font-size: 12px; font-weight: 700; color: var(--navy); }
+.draw-range { font-size: 11px; font-weight: 700; color: var(--teal); background: var(--tealbg); padding: 1px 7px; border-radius: 10px; }
+.draw-bar-bg { background: var(--mist); border-radius: 3px; height: 4px; overflow: hidden; position: relative; }
+.draw-bar-fill { height: 100%; border-radius: 3px; }
+.draw-your { position: absolute; top: -3px; width: 3px; height: 10px; background: var(--gold); border-radius: 2px; transition: left .5s; display: none; }
+.draw-sub { font-size: 11px; color: var(--slate); margin-top: 3px; }
+
+.ctabox {
+  background: linear-gradient(135deg, var(--gold) 0%, #8a5c10 100%);
+  border-radius: 12px; padding: 16px; text-align: center; margin-bottom: 14px;
+}
+.ctabox p { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 11px; line-height: 1.5; }
+.ctabtn { display: block; text-decoration: none; padding: 9px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; margin-bottom: 6px; transition: all .15s; }
+.ctabtn:last-child { margin-bottom: 0; }
+.ctabtn.dark { background: var(--navy); color: #fff; }
+.ctabtn.dark:hover { background: #1a3050; }
+.ctabtn.lite { background: rgba(13,27,42,.12); color: var(--navy); border: 1px solid rgba(13,27,42,.2); }
+.ctabtn.lite:hover { background: rgba(13,27,42,.22); }
+
+.disc { font-size: 11px; color: var(--slate); line-height: 1.6; background: var(--white); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.disc strong { display: block; color: var(--amber); font-size: 12px; margin-bottom: 3px; }
+
+footer { background: var(--navy); text-align: center; padding: 18px; font-size: 11px; color: rgba(255,255,255,.4); }
+footer a { color: var(--gold); text-decoration: none; }
+</style>
+</head>
+<body>
+<!-- TOP DISCLAIMER BANNER -->
+<div style="background:#FFF8E1;border-bottom:3px solid #F59E0B;padding:12px 24px;display:flex;align-items:flex-start;gap:12px;">
+  <div style="font-size:22px;flex-shrink:0;line-height:1.2;">⚠️</div>
+  <div style="font-size:12px;color:#78350F;line-height:1.7;">
+    <strong style="font-size:13px;color:#92400E;display:block;margin-bottom:2px;">Important Disclaimer — Estimation Only · Not Legal Advice</strong>
+    This calculator provides a <strong>general score estimate only</strong>. AI-powered tools can make errors — point grids, thresholds, and program rules change without notice. 
+    <strong>Do not make any immigration decisions based on this tool alone.</strong> 
+    Always consult a <strong>Regulated Canadian Immigration Consultant (RCIC)</strong> or licensed immigration lawyer before taking any action. 
+    This is <strong>not legal advice</strong> and does not create a consultant-client relationship.
+  </div>
+</div>
+<!-- END DISCLAIMER BANNER -->
+<!-- IRCC 2026 UPDATE STRIP -->
+<div style="background:#EFF6FF;border-bottom:1px solid #BFDBFE;padding:9px 24px;display:flex;align-items:flex-start;gap:10px;">
+  <div style="font-size:14px;flex-shrink:0;">🇨🇦</div>
+  <div style="font-size:11px;color:#1E3A8A;line-height:1.6;">
+    <strong style="color:#1D4ED8;">2026 IRCC / PNP Update (current as of June 12, 2026):</strong>
+    Canada set <strong>91,500 total PNP nominations</strong> for 2026 (+66% vs 2025). 2026 BC PNP allocation: <strong>5,254 nominations</strong> (Look West strategy). Per SOR/2026-63 (Mar 30, 2026), BC now has sole authority over intent-to-reside &amp; economic establishment — IRCC can no longer override a valid nomination. Enhanced PNP processing ~7 months.
+  </div>
+</div>
+<!-- END IRCC UPDATE STRIP -->
+
+<!-- HEADER -->
+<div class="header">
+  <div class="hbrand">
+    <div class="hlogo">BCG</div>
+    <div class="hname">BCG <span>Immigration</span> Consultancy</div>
+  </div>
+  
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>BC PNP Points Calculator <span>2026</span></h1>
+  <p>Estimate your Skills Immigration Registration System (SIRS) score instantly. Click your answers below — your score updates live on the right.</p>
+  <div class="hero-tags">
+    <span class="htag gold">⚡ Live Score Updates</span>
+    <span class="htag">Max 200 Points</span>
+    <span class="htag">Official SIRS Grid</span>
+    <span class="htag">Free · No Signup</span>
+  </div>
+  <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:10px;">Updated: June 12, 2026 &nbsp;|&nbsp; Based on official BC PNP SIRS grid (Look West strategy, Apr 23, 2026) &nbsp;|&nbsp; Latest draw: June 2, 2026 (Construction min. 101 · Care stream min. 89)</div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+<div class="form-col">
+
+<div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+  <a href="bcpnp-calculator.html" style="text-decoration:none;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;background:var(--navy);color:#fff;border:1px solid var(--navy);">🍁 BC PNP</a>
+  <a href="alberta-pnp-calculator.html" style="text-decoration:none;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1px solid var(--line);color:var(--slate);background:var(--white);">🏔 Alberta AAIP</a>
+  <a href="saskatchewan-pnp-calculator.html" style="text-decoration:none;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1px solid var(--line);color:var(--slate);background:var(--white);">🌾 Saskatchewan SINP</a>
+  <a href="manitoba-pnp-calculator.html" style="text-decoration:none;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1px solid var(--line);color:var(--slate);background:var(--white);">🦬 Manitoba MPNP</a>
+</div>
+
+<!-- ══ 1. WORK EXPERIENCE ══ -->
+<div class="sec">
+  <div class="sec-head">
+    <span class="sec-icon">💼</span>
+    <span class="sec-title">Work Experience</span>
+    <span class="sec-max">Max 40 pts</span>
+  </div>
+
+  <div class="qblock">
+    <div class="qlabel">Years of directly related work experience <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">Count only experience directly related to your BC job offer occupation (NOC TEER 0–3). Convert part-time to full-time equivalent.</div>
+    <div class="opts" id="grp-workExp">
+      <div class="o" data-g="workExp" data-v="20" onclick="pick(this)">5+ years <span class="pts">+20</span></div>
+      <div class="o" data-g="workExp" data-v="16" onclick="pick(this)">4–5 years <span class="pts">+16</span></div>
+      <div class="o" data-g="workExp" data-v="12" onclick="pick(this)">3–4 years <span class="pts">+12</span></div>
+      <div class="o" data-g="workExp" data-v="8"  onclick="pick(this)">2–3 years <span class="pts">+8</span></div>
+      <div class="o" data-g="workExp" data-v="4"  onclick="pick(this)">1–2 years <span class="pts">+4</span></div>
+      <div class="o" data-g="workExp" data-v="1"  onclick="pick(this)">&lt;1 year <span class="pts">+1</span></div>
+    </div>
+  </div>
+
+  <div class="qblock">
+    <div class="qlabel">Experience bonuses</div>
+    <div class="qhint">Both can apply at once for up to +20 bonus points added on top of the base above.</div>
+    <div class="cb" data-k="canadaExp" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body">
+        <div class="cb-text">1+ year of Canadian work experience in this occupation</div>
+        <div class="cb-sub">Any province counts — not only BC</div>
+      </div>
+      <div class="cb-pts">+10 pts</div>
+    </div>
+    <div class="cb" data-k="bcExp" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body">
+        <div class="cb-text">Currently working full-time in BC for the nominating employer</div>
+        <div class="cb-sub">Same occupation as the job offer</div>
+      </div>
+      <div class="cb-pts">+10 pts</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 2. EDUCATION ══ -->
+<div class="sec">
+  <div class="sec-head">
+    <span class="sec-icon">🎓</span>
+    <span class="sec-title">Education</span>
+    <span class="sec-max">Max 40 pts</span>
+  </div>
+
+  <div class="qblock">
+    <div class="qlabel">Highest completed credential <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">Foreign degrees should have an ECA (WES, IQAS, etc.) from an IRCC-approved body. Choose your highest <em>completed</em> degree.</div>
+    <div class="opts" id="grp-edu">
+      <div class="o" data-g="edu" data-v="27" onclick="pick(this)">PhD / Doctorate <span class="pts">+27</span></div>
+      <div class="o" data-g="edu" data-v="22" onclick="pick(this)">Master's Degree <span class="pts">+22</span></div>
+      <div class="o" data-g="edu" data-v="15" onclick="pick(this)">Post-Grad Diploma <span class="pts">+15</span></div>
+      <div class="o" data-g="edu" data-v="15" onclick="pick(this)">Bachelor's Degree <span class="pts">+15</span></div>
+      <div class="o" data-g="edu" data-v="5"  onclick="pick(this)">Associate / Diploma <span class="pts">+5</span></div>
+      <div class="o" data-g="edu" data-v="0"  onclick="pick(this)">High School <span class="pts">+0</span></div>
+    </div>
+  </div>
+
+  <div class="qblock">
+    <div class="qlabel">Education bonuses</div>
+    <div class="qhint">Bonus for Canadian education — BC study is worth more. Select all that apply.</div>
+    <div class="cb" data-k="eduBC" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body">
+        <div class="cb-text">Post-secondary credential completed at a BC institution</div>
+        <div class="cb-sub">Must be from a recognized college or university in BC</div>
+      </div>
+      <div class="cb-pts">+8 pts</div>
+    </div>
+    <div class="cb" data-k="eduCanada" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body">
+        <div class="cb-text">Post-secondary credential completed in Canada (outside BC)</div>
+        <div class="cb-sub">Any recognized Canadian institution outside British Columbia</div>
+      </div>
+      <div class="cb-pts">+6 pts</div>
+    </div>
+    <div class="cb" data-k="designation" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body">
+        <div class="cb-text">Eligible professional designation in BC</div>
+        <div class="cb-sub">Licence issued by a BC regulatory body (e.g. P.Eng, RN, CPA, Red Seal)</div>
+      </div>
+      <div class="cb-pts">+5 pts</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 3. LANGUAGE ══ -->
+<div class="sec">
+  <div class="sec-head">
+    <span class="sec-icon">🗣️</span>
+    <span class="sec-title">Language Proficiency (CLB)</span>
+    <span class="sec-max">Max 40 pts</span>
+  </div>
+
+  <div class="qblock">
+    <div class="qlabel">First official language — English or French <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">
+      <strong>IELTS General → CLB:</strong> &nbsp;8.5–9.0 = CLB 10+ &nbsp;|&nbsp; 8.0 = CLB 9 &nbsp;|&nbsp; 7.5 = CLB 8 &nbsp;|&nbsp; 7.0 = CLB 7 &nbsp;|&nbsp; 6.5 = CLB 6 &nbsp;|&nbsp; 6.0 = CLB 5<br>
+      <strong>CELPIP:</strong> &nbsp;10 = CLB 10 &nbsp;|&nbsp; 9 = CLB 9 &nbsp;|&nbsp; 8 = CLB 8 &nbsp;|&nbsp; 7 = CLB 7 &nbsp;|&nbsp; 6 = CLB 6 &nbsp;|&nbsp; 5 = CLB 5
+    </div>
+    <table class="clb-table">
+      <thead><tr><th>CLB Level</th><th>IELTS equiv.</th><th>CELPIP equiv.</th><th style="text-align:right">Points</th></tr></thead>
+      <tbody id="tbl-lang1">
+        <tr data-g="lang1" data-v="30" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 10+</span></td><td class="clb-eq">All bands 8.5–9.0</td><td class="clb-eq">10</td><td class="clb-p">+30 pts</td></tr>
+        <tr data-g="lang1" data-v="25" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 9</span></td><td class="clb-eq">All bands 8.0</td><td class="clb-eq">9</td><td class="clb-p">+25 pts</td></tr>
+        <tr data-g="lang1" data-v="20" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 8</span></td><td class="clb-eq">All bands 7.5</td><td class="clb-eq">8</td><td class="clb-p">+20 pts</td></tr>
+        <tr data-g="lang1" data-v="15" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 7</span></td><td class="clb-eq">All bands 7.0</td><td class="clb-eq">7</td><td class="clb-p">+15 pts</td></tr>
+        <tr data-g="lang1" data-v="10" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 6</span></td><td class="clb-eq">All bands 6.5</td><td class="clb-eq">6</td><td class="clb-p">+10 pts</td></tr>
+        <tr data-g="lang1" data-v="5"  onclick="pickRow(this)"><td><span class="clb-lvl">CLB 5</span></td><td class="clb-eq">All bands 6.0</td><td class="clb-eq">5</td><td class="clb-p">+5 pts</td></tr>
+        <tr data-g="lang1" data-v="0"  onclick="pickRow(this)"><td><span class="clb-lvl">CLB 4 or below</span></td><td class="clb-eq">5.0 or below</td><td class="clb-eq">4 or below</td><td class="clb-p">+0 pts</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="qblock">
+    <div class="qlabel">Second official language bonus (optional)</div>
+    <div class="qhint">If you tested in both English and French with CLB 5+, BC PNP awards bonus points on top of your first language score. Combined max = 40 pts.</div>
+    <div class="opts" id="grp-lang2">
+      <div class="o on" data-g="lang2" data-v="0"  onclick="pick(this)">None / Not tested <span class="pts">+0</span></div>
+      <div class="o" data-g="lang2" data-v="2"  onclick="pick(this)">CLB 5 <span class="pts">+2</span></div>
+      <div class="o" data-g="lang2" data-v="4"  onclick="pick(this)">CLB 6 <span class="pts">+4</span></div>
+      <div class="o" data-g="lang2" data-v="6"  onclick="pick(this)">CLB 7 <span class="pts">+6</span></div>
+      <div class="o" data-g="lang2" data-v="8"  onclick="pick(this)">CLB 8 <span class="pts">+8</span></div>
+      <div class="o" data-g="lang2" data-v="10" onclick="pick(this)">CLB 9+ <span class="pts">+10</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 4. WAGE ══ -->
+<div class="sec">
+  <div class="sec-head">
+    <span class="sec-icon">💰</span>
+    <span class="sec-title">Hourly Wage Offered (CAD/hr)</span>
+    <span class="sec-max">Max 55 pts</span>
+  </div>
+  <div class="qblock">
+    <div class="qlabel">Your BC job offer hourly wage <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">This is the <strong>single most important factor</strong> in SIRS — worth up to 55 points. Drag the slider to set your wage. Annual = hourly × 40 hrs × 52 weeks.</div>
+
+    <div class="wage-hero">
+      <div class="wage-num" id="wDisp">$0.00 / hr</div>
+      <div class="wage-yr">Annual equivalent: <b id="wYear">$0</b></div>
+    </div>
+    <input class="wslider" id="wSlider" type="range" min="0" max="80" step="0.5" value="0" oninput="setWage(this.value)">
+    <div class="wlabels"><span>$0</span><span>$20</span><span>$40</span><span>$60</span><span>$80+</span></div>
+    <div class="wage-pts-badge">
+      <span>Points for this wage:</span>
+      <span id="wPts">0 pts</span>
+    </div>
+
+    <table class="bands" id="wageBands" style="margin-top:12px;">
+      <thead><tr><th>Wage Range</th><th>Annual (approx.)</th><th style="text-align:right">Points</th></tr></thead>
+      <tbody>
+        <tr data-min="70" data-max="999"><td>$70.00+ / hr</td><td>$145,600+</td><td class="bp">55 pts</td></tr>
+        <tr data-min="60" data-max="70"><td>$60.00 – $69.99</td><td>$124,800 – $145,600</td><td class="bp">50 pts</td></tr>
+        <tr data-min="50" data-max="60"><td>$50.00 – $59.99</td><td>$104,000 – $124,800</td><td class="bp">40 pts</td></tr>
+        <tr data-min="45" data-max="50"><td>$45.00 – $49.99</td><td>$93,600 – $104,000</td><td class="bp">35 pts</td></tr>
+        <tr data-min="40" data-max="45"><td>$40.00 – $44.99</td><td>$83,200 – $93,600</td><td class="bp">30 pts</td></tr>
+        <tr data-min="35" data-max="40"><td>$35.00 – $39.99</td><td>$72,800 – $83,200</td><td class="bp">25 pts</td></tr>
+        <tr data-min="30" data-max="35"><td>$30.00 – $34.99</td><td>$62,400 – $72,800</td><td class="bp">20 pts</td></tr>
+        <tr data-min="25" data-max="30"><td>$25.00 – $29.99</td><td>$52,000 – $62,400</td><td class="bp">15 pts</td></tr>
+        <tr data-min="20" data-max="25"><td>$20.00 – $24.99</td><td>$41,600 – $52,000</td><td class="bp">10 pts</td></tr>
+        <tr data-min="16" data-max="20"><td>$16.00 – $19.99</td><td>$33,280 – $41,600</td><td class="bp">5 pts</td></tr>
+        <tr data-min="0"  data-max="16"><td>Under $16.00</td><td>Under $33,280</td><td class="bp">0 pts</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ 5. LOCATION ══ -->
+<div class="sec">
+  <div class="sec-head">
+    <span class="sec-icon">📍</span>
+    <span class="sec-title">Job Location — Area Within BC</span>
+    <span class="sec-max">Max 25 pts</span>
+  </div>
+
+  <div class="qblock">
+    <div class="qlabel">Where is your BC job offer located? <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">BC awards more points for jobs outside Metro Vancouver to encourage settlement in regional communities.</div>
+    <div class="opts" id="grp-area" style="flex-direction:column;">
+      <div class="o" data-g="area" data-v="0" onclick="pick(this)" style="align-items:flex-start;">
+        <div>
+          <div style="font-weight:700;font-size:13px;">Area 1 — Metro Vancouver <span class="pts">+0</span></div>
+          <div style="font-size:11px;color:var(--slate);margin-top:2px;">Vancouver, Burnaby, Richmond, Surrey, Coquitlam, North Vancouver, West Vancouver, Delta, New Westminster, Port Moody, Pitt Meadows, Maple Ridge, Langley City</div>
+        </div>
+      </div>
+      <div class="o" data-g="area" data-v="5" onclick="pick(this)" style="align-items:flex-start;">
+        <div>
+          <div style="font-weight:700;font-size:13px;">Area 2 — Near-Metro communities <span class="pts">+5</span></div>
+          <div style="font-size:11px;color:var(--slate);margin-top:2px;">Langley Township, Abbotsford, Mission, Chilliwack, Squamish, Whistler, Bowen Island</div>
+        </div>
+      </div>
+      <div class="o" data-g="area" data-v="15" onclick="pick(this)" style="align-items:flex-start;">
+        <div>
+          <div style="font-weight:700;font-size:13px;">Area 3 — Regional BC (all other districts) <span class="pts">+15</span></div>
+          <div style="font-size:11px;color:var(--slate);margin-top:2px;">Victoria, Kelowna, Kamloops, Prince George, Nanaimo, Cranbrook, Terrace, Fort St. John, Prince Rupert, Comox, Courtenay — and all remaining BC communities</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qblock">
+    <div class="qlabel">Location experience bonuses</div>
+    <div class="qhint">Additional bonus points for prior regional BC connections. Both can apply simultaneously.</div>
+    <div class="cb" data-k="workedRegional" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body">
+        <div class="cb-text">Worked outside Area 1 (Metro Vancouver) for 1+ year</div>
+        <div class="cb-sub">Full-time BC work experience in Area 2 or Area 3</div>
+      </div>
+      <div class="cb-pts">+10 pts</div>
+    </div>
+    <div class="cb" data-k="studiedRegional" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body">
+        <div class="cb-text">Graduated from a BC institution outside Area 1</div>
+        <div class="cb-sub">Post-secondary degree or diploma from Area 2 or Area 3</div>
+      </div>
+      <div class="cb-pts">+10 pts</div>
+    </div>
+  </div>
+</div>
+
+<div style="font-size:11px;color:var(--slate);line-height:1.6;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;">
+  ⚠️ <strong style="color:var(--amber)">Disclaimer — Estimation Only.</strong>
+  This calculator uses the publicly available BC PNP SIRS scoring grid (updated May 2026). Actual scores are determined by the Province of British Columbia. Cutoffs vary by draw. This is not legal or immigration advice. Consult  for a professional assessment. &nbsp;<a href="https://www.welcomebc.ca/Immigrate-to-B-C/Skills-Immigration" target="_blank" style="color:var(--teal);font-weight:600;">Official WelcomeBC ↗</a>
+</div>
+
+</div><!-- /form-col -->
+
+<!-- ══ SIDEBAR ══ -->
+<div class="sidebar">
+
+  <div class="score-card">
+    <div class="sc-lbl">Your SIRS Score</div>
+    <div class="sc-num" id="totalScore">0</div>
+    <div class="sc-of">out of 200 points</div>
+    <div class="sc-bar-bg"><div class="sc-bar" id="scoreBar"></div></div>
+    <div class="sc-verdict sv-empty" id="verdict">Select your answers →</div>
+  </div>
+
+  <div class="bkcard">
+    <div class="bkcard-head">Score Breakdown</div>
+    <div class="bkrow"><span class="bkrow-name">💼 Work Experience</span><span class="bkrow-val" id="bk1">— / 40</span></div>
+    <div class="bkrow"><span class="bkrow-name">🎓 Education</span><span class="bkrow-val" id="bk2">— / 40</span></div>
+    <div class="bkrow"><span class="bkrow-name">🗣️ Language</span><span class="bkrow-val" id="bk3">— / 40</span></div>
+    <div class="bkrow"><span class="bkrow-name">💰 Hourly Wage</span><span class="bkrow-val" id="bk4">— / 55</span></div>
+    <div class="bkrow"><span class="bkrow-name">📍 Location</span><span class="bkrow-val" id="bk5">— / 25</span></div>
+    <div class="bktotal"><span class="bktotal-lbl">Total Score</span><span class="bktotal-val" id="bkTot">0 / 200</span></div>
+  </div>
+
+  <div class="draws">
+    <div class="draws-head">2026 Draw Benchmarks</div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">General Skilled Worker</span><span class="draw-range">60–90</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:var(--teal);width:45%"></div><div class="draw-your" id="dy1"></div></div>
+      <div class="draw-sub">Most common bi-weekly draws</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Healthcare Targeted</span><span class="draw-range">95–115</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:var(--gold);width:57%"></div><div class="draw-your" id="dy2"></div></div>
+      <div class="draw-sub">Nurses, allied health, pharmacists</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">ECE / Childcare</span><span class="draw-range">85–100</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#7c3aed;width:50%"></div><div class="draw-your" id="dy3"></div></div>
+      <div class="draw-sub">Priority stream, dedicated draws</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Tech Stream</span><span class="draw-range">115–130</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#1d4ed8;width:65%"></div><div class="draw-your" id="dy4"></div></div>
+      <div class="draw-sub">ICT — most competitive stream</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Regional / Area 3</span><span class="draw-range">50–80</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#92400e;width:40%"></div><div class="draw-your" id="dy5"></div></div>
+      <div class="draw-sub">Lower thresholds for rural BC</div>
+    </div>
+  </div>
+
+    <div class="ctabox">
+    <p>Book a free consultation with BCG Immigration Consultancy Ltd.</p>
+    <iframe src="https://admin.goeasyai.ca/widget/form/6a2c642b7470d" style="width:100%;height:600px;border:none;border-radius:3px" id="inline-6a2c642b7470d" data-form-name="BCG Immigration Book a consultation" data-layout-iframe-id="inline-6a2c642b7470d" data-form-id="6a2c642b7470d" data-height="600" title="BCG Immigration Book a consultation"></iframe>
+    <p style="margin-top:8px;font-size:11px;color:var(--navy);font-weight:600;">BCG Immigration Consultancy Ltd.</p>
+  </div><div class="disc">
+    <strong>⚠️ Estimation Only — Not Legal Advice</strong>
+    Based on the official BC PNP SIRS grid (May 2026). Scores are estimates — final scores are set by the Province of BC. Consult  for a professional review.
+  </div>
+</div>
+</div><!-- /main -->
+
+<footer>
+  BCG Immigration Consultancy Ltd. &nbsp;|&nbsp;|&nbsp; Surrey, BC Canada<br>
+  <a href="https://www.bcgimmigration.com" target="_blank">www.bcgimmigration.com</a> &nbsp;|&nbsp;
+  <a href="https://www.welcomebc.ca/Immigrate-to-B-C/Skills-Immigration" target="_blank">Official BC PNP</a> &nbsp;|&nbsp;
+  <a href="https://my-url.in/booking-link" target="_blank">Book a Consultation</a>
+</footer>
+
+<script>
+// ─── STATE ───────────────────────────────────────────
+var S = {
+  workExp: null,
+  canadaExp: false,
+  bcExp: false,
+  edu: null,
+  eduBC: false,
+  eduCanada: false,
+  designation: false,
+  lang1: null,
+  lang2: 0,
+  wage: 0,
+  area: null,
+  workedRegional: false,
+  studiedRegional: false
+};
+
+// ─── OPTION PICKER (button groups) ───────────────────
+function pick(el) {
+  var g = el.getAttribute('data-g');
+  var v = parseFloat(el.getAttribute('data-v'));
+  // deselect all in group
+  document.querySelectorAll('[data-g="' + g + '"]').forEach(function(e) { e.classList.remove('on'); });
+  el.classList.add('on');
+  // save to state
+  if (g === 'workExp') S.workExp = v;
+  else if (g === 'edu')    S.edu    = v;
+  else if (g === 'lang2')  S.lang2  = v;
+  else if (g === 'area')   S.area   = v;
+  calc();
+}
+
+// ─── TABLE ROW PICKER (CLB table) ────────────────────
+function pickRow(el) {
+  var g = el.getAttribute('data-g');
+  var v = parseFloat(el.getAttribute('data-v'));
+  document.querySelectorAll('[data-g="' + g + '"]').forEach(function(e) { e.classList.remove('on'); });
+  el.classList.add('on');
+  if (g === 'lang1') S.lang1 = v;
+  calc();
+}
+
+// ─── CHECKBOX TOGGLE ─────────────────────────────────
+function tog(el) {
+  var k = el.getAttribute('data-k');
+  S[k] = !S[k];
+  el.classList.toggle('on', S[k]);
+  el.querySelector('.cb-box').textContent = S[k] ? '✓' : '';
+  calc();
+}
+
+// ─── WAGE SLIDER ─────────────────────────────────────
+function setWage(val) {
+  val = parseFloat(val);
+  S.wage = val;
+  document.getElementById('wDisp').textContent = '$' + val.toFixed(2) + ' / hr';
+  document.getElementById('wYear').textContent = '$' + Math.round(val * 40 * 52).toLocaleString();
+  // slider gradient
+  var pct = (val / 80) * 100;
+  document.getElementById('wSlider').style.setProperty('--wpct', pct + '%');
+  // pts label
+  var p = wagePts(val);
+  document.getElementById('wPts').textContent = p + ' pts';
+  // highlight active band row
+  document.querySelectorAll('#wageBands tbody tr').forEach(function(row) {
+    var mn = parseFloat(row.getAttribute('data-min'));
+    var mx = parseFloat(row.getAttribute('data-max'));
+    row.classList.toggle('cur', val >= mn && val < mx);
+  });
+  calc();
+}
+
+function wagePts(w) {
+  if (w >= 70) return 55;
+  if (w >= 60) return 50;
+  if (w >= 50) return 40;
+  if (w >= 45) return 35;
+  if (w >= 40) return 30;
+  if (w >= 35) return 25;
+  if (w >= 30) return 20;
+  if (w >= 25) return 15;
+  if (w >= 20) return 10;
+  if (w >= 16) return 5;
+  return 0;
+}
+
+// ─── CALCULATE & UPDATE ──────────────────────────────
+function calc() {
+  // Work
+  var workBase  = S.workExp !== null ? S.workExp : 0;
+  var workBonus = (S.canadaExp ? 10 : 0) + (S.bcExp ? 10 : 0);
+  var work      = Math.min(workBase + workBonus, 40);
+
+  // Education
+  var eduBase   = S.edu !== null ? S.edu : 0;
+  var eduBonus  = (S.eduBC ? 8 : 0) + (S.eduCanada ? 6 : 0) + (S.designation ? 5 : 0);
+  var edu       = Math.min(eduBase + eduBonus, 40);
+
+  // Language
+  var lang = Math.min((S.lang1 !== null ? S.lang1 : 0) + S.lang2, 40);
+
+  // Wage
+  var wage = wagePts(S.wage);
+
+  // Location
+  var areaBase = S.area !== null ? S.area : 0;
+  var locBonus = (S.workedRegional ? 10 : 0) + (S.studiedRegional ? 10 : 0);
+  var loc      = Math.min(areaBase + locBonus, 25);
+
+  var total = work + edu + lang + wage + loc;
+
+  // ── Update score display ──
+  document.getElementById('totalScore').textContent = total;
+  document.getElementById('scoreBar').style.width = Math.min((total / 200) * 100, 100) + '%';
+  document.getElementById('bkTot').textContent = total + ' / 200';
+
+  // ── Breakdown ──
+  document.getElementById('bk1').textContent = (S.workExp !== null ? work : '—') + ' / 40';
+  document.getElementById('bk2').textContent = (S.edu     !== null ? edu  : '—') + ' / 40';
+  document.getElementById('bk3').textContent = (S.lang1   !== null ? lang : '—') + ' / 40';
+  document.getElementById('bk4').textContent = (S.wage    > 0      ? wage : '—') + ' / 55';
+  document.getElementById('bk5').textContent = (S.area    !== null ? loc  : '—') + ' / 35';
+
+  // ── Verdict ──
+  var vbox = document.getElementById('verdict');
+  var anyFilled = S.workExp !== null || S.edu !== null || S.lang1 !== null || S.wage > 0 || S.area !== null;
+  vbox.className = 'sc-verdict';
+  if (!anyFilled) {
+    vbox.classList.add('sv-empty'); vbox.textContent = 'Select your answers →';
+  } else if (total >= 115) {
+    vbox.classList.add('sv-green'); vbox.textContent = '🟢 Highly Competitive!';
+  } else if (total >= 90) {
+    vbox.classList.add('sv-teal');  vbox.textContent = '🔵 Strong Candidate';
+  } else if (total >= 60) {
+    vbox.classList.add('sv-amber'); vbox.textContent = '🟡 Competitive Range';
+  } else if (total > 0) {
+    vbox.classList.add('sv-red');   vbox.textContent = '🔴 Build Your Profile';
+  } else {
+    vbox.classList.add('sv-empty'); vbox.textContent = 'Select your answers →';
+  }
+}
+
+// Init second language "None" as default selected
+document.querySelector('[data-g="lang2"][data-v="0"]').classList.add('on');
+</script>
+</body>
+</html>

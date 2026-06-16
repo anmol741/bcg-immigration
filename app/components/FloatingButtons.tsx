@@ -36,7 +36,7 @@ export default function FloatingButtons() {
             style={{ animation: "pulse-ring 2s ease-out infinite 0.4s" }}
           />
           <motion.a
-            href={CTA}
+            href="https://wa.me/16042031200?text=Hi%20BCG%20Immigration!%20I%20need%20help%20with%20my%20immigration%20query."
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp Chat"

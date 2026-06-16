@@ -19,6 +19,7 @@ const navLinks = [
   { label: "About Us", href: "/about" },
   { label: "Services", href: "/services", dropdown: true },
   { label: "Blog", href: "/blog" },
+  { label: "PNP Calculators", href: "/calculators" },
   { label: "Contact Us", href: "/contact" },
 ]
 

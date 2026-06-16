@@ -22,7 +22,7 @@ export default function TopBar() {
         <div className="flex items-center gap-3 text-gray-300 min-w-0">
           <a
             ref={phoneRef}
-            href="tel:6042031200"
+            href="tel:+16042031200"
             className={`flex items-center gap-1.5 hover:text-[#c9a84c] transition-colors shrink-0 ${shaking ? "phone-shake" : ""}`}
           >
             <svg className="w-3.5 h-3.5 text-[#c9a84c]" fill="currentColor" viewBox="0 0 24 24">

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Scotia NSNP Calculator 2026 | BCG Immigration</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0D1F35;--gold:#C8993A;--gold2:#f0c96a;--goldbg:#FDF6E8;--teal:#0E7C74;--tealbg:#E2F4F2;--slate:#506070;--mist:#F0F4F8;--line:#DDE5EE;--white:#FFFFFF;--amber:#92400e;--ns:#006994;--nsbg:#E3F2FD;--nsdark:#004d70}
+body{font-family:'Inter',sans-serif;background:var(--mist);color:var(--navy);font-size:14px;line-height:1.5}
+.header{background:var(--navy);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.hbrand{display:flex;align-items:center;gap:10px}
+.hlogo{width:36px;height:36px;background:var(--gold);border-radius:8px;font-weight:800;font-size:13px;color:var(--navy);display:flex;align-items:center;justify-content:center}
+.hname{font-size:16px;font-weight:700;color:#fff}.hname span{color:var(--gold)}
+.hero{background:linear-gradient(160deg,#001f35 0%,#005580 100%);padding:28px 24px;text-align:center;border-bottom:3px solid var(--ns)}
+.hero h1{font-size:clamp(20px,4vw,30px);font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.02em}
+.hero h1 span{color:#90CAF9}
+.hero p{color:rgba(255,255,255,.6);font-size:13px;max-width:560px;margin:0 auto 16px}
+.hero-tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.htag{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1)}
+.htag.ns{background:rgba(0,105,148,.3);color:#90CAF9;border-color:rgba(0,105,148,.4)}
+.updated{font-size:11px;color:rgba(255,255,255,.4);margin-top:10px}
+.main{max-width:980px;margin:0 auto;padding:24px 16px 40px;display:grid;grid-template-columns:1fr 290px;gap:20px;align-items:start}
+@media(max-width:720px){.main{grid-template-columns:1fr}.sidebar{order:-1}}
+.sec{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 12px rgba(13,27,42,.07)}
+.sec-head{background:var(--navy);padding:12px 18px;display:flex;align-items:center;gap:10px}
+.sec-icon{font-size:17px}.sec-title{font-size:13px;font-weight:700;color:#fff;flex:1}
+.sec-max{font-size:11px;font-weight:700;color:#90CAF9;background:rgba(0,105,148,.3);border:1px solid rgba(0,105,148,.4);padding:2px 9px;border-radius:12px}
+.qblock{padding:14px 18px 12px;border-bottom:1px solid var(--line)}.qblock:last-child{border-bottom:none}
+.qlabel{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.qhint{font-size:11px;color:var(--slate);margin-bottom:10px;line-height:1.5}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.o{padding:8px 14px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;color:var(--navy);background:var(--white);display:flex;align-items:center;gap:7px;transition:all .15s;user-select:none}
+.o:hover{border-color:var(--ns);background:var(--nsbg)}
+.o.on{border-color:var(--ns);background:var(--nsbg);box-shadow:0 0 0 1.5px var(--ns)}
+.o .pts{font-size:11px;font-weight:800;color:var(--teal);background:var(--tealbg);padding:1px 7px;border-radius:10px;flex-shrink:0}
+.o.on .pts{background:var(--ns);color:#fff}
+.cb{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;margin-bottom:6px;transition:all .15s;user-select:none}
+.cb:last-child{margin-bottom:0}.cb:hover{border-color:var(--ns);background:var(--nsbg)}.cb.on{border-color:var(--ns);background:var(--nsbg)}
+.cb-box{width:20px;height:20px;flex-shrink:0;border-radius:5px;border:2px solid var(--line);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;margin-top:1px;transition:all .15s}
+.cb.on .cb-box{background:var(--ns);border-color:var(--ns);color:#fff}
+.cb-body{flex:1}.cb-text{font-size:12px;font-weight:600;color:var(--navy)}.cb-sub{font-size:11px;color:var(--slate);margin-top:1px}
+.cb-pts{font-size:12px;font-weight:800;color:var(--slate);background:var(--mist);padding:2px 8px;border-radius:10px;flex-shrink:0;margin-top:1px}
+.cb.on .cb-pts{background:var(--ns);color:#fff}
+.clb-table{width:100%;border-collapse:collapse;font-size:12px}
+.clb-table th{background:#f1f5f9;color:var(--slate);font-weight:700;text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);font-size:11px}
+.clb-table td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+.clb-table tr:last-child td{border-bottom:none}
+.clb-table tr{cursor:pointer;transition:background .12s}
+.clb-table tr:hover td{background:var(--nsbg)}
+.clb-table tr.on td{background:var(--nsbg)}
+.clb-table tr.on td:first-child{border-left:3px solid var(--ns)}
+.clb-lvl{font-weight:800;color:var(--navy);font-size:13px}.clb-eq{color:var(--slate);font-size:11px}
+.clb-p{font-weight:800;color:var(--teal);text-align:right}
+.clb-table tr.on .clb-p{color:var(--ns)}
+.score-card{background:var(--navy);border-radius:14px;padding:22px 18px;text-align:center;margin-bottom:14px;box-shadow:0 6px 28px rgba(13,27,42,.25)}
+.sc-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);margin-bottom:4px}
+.sc-num{font-size:76px;font-weight:800;color:#90CAF9;line-height:1;letter-spacing:-.04em;transition:all .3s}
+.sc-of{font-size:12px;color:rgba(255,255,255,.3);margin-bottom:14px}
+.sc-bar-bg{background:rgba(255,255,255,.1);border-radius:4px;height:8px;overflow:hidden;margin-bottom:14px}
+.sc-bar{height:100%;background:linear-gradient(90deg,var(--ns),#90CAF9);border-radius:4px;width:0%;transition:width .45s}
+.sc-verdict{display:inline-block;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px}
+.sv-empty{background:rgba(255,255,255,.07);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1)}
+.sv-red{background:rgba(153,27,27,.35);color:#fca5a5;border:1px solid rgba(153,27,27,.5)}
+.sv-amber{background:rgba(200,153,58,.25);color:#fcd34d;border:1px solid rgba(200,153,58,.4)}
+.sv-ns{background:rgba(0,105,148,.3);color:#90CAF9;border:1px solid rgba(0,105,148,.5)}
+.sv-green{background:rgba(22,101,52,.35);color:#4ade80;border:1px solid rgba(22,101,52,.5)}
+.bkcard{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 2px 10px rgba(13,27,42,.06)}
+.bkcard-head{background:#f1f5f9;padding:9px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);border-bottom:1px solid var(--line)}
+.bkrow{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px dashed var(--line);font-size:12px}
+.bkrow:last-child{border-bottom:none}
+.bkrow-name{color:var(--slate)}.bkrow-val{font-weight:800;color:var(--navy);font-size:13px}
+.bktotal{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--navy)}
+.bktotal-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5)}
+.bktotal-val{font-size:20px;font-weight:800;color:#90CAF9}
+.draws{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:14px}
+.draws-head{background:#f1f5f9;padding:9px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);border-bottom:1px solid var(--line)}
+.draw-row{padding:9px 14px;border-bottom:1px solid var(--line)}.draw-row:last-child{border-bottom:none}
+.draw-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.draw-name{font-size:12px;font-weight:700;color:var(--navy)}
+.draw-range{font-size:11px;font-weight:700;color:var(--ns);background:var(--nsbg);padding:1px 7px;border-radius:10px}
+.draw-bar-bg{background:var(--mist);border-radius:3px;height:4px;overflow:hidden}
+.draw-bar-fill{height:100%;border-radius:3px}.draw-sub{font-size:11px;color:var(--slate);margin-top:3px}
+.ctabox{background:linear-gradient(135deg,var(--gold) 0%,#8a5c10 100%);border-radius:12px;padding:16px;text-align:center;margin-bottom:14px}
+.ctabox p{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:11px;line-height:1.5}
+.ctabtn{display:block;text-decoration:none;padding:9px 14px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:6px;transition:all .15s}
+.ctabtn:last-child{margin-bottom:0}
+.ctabtn.dark{background:var(--navy);color:#fff}.ctabtn.dark:hover{background:#1a3050}
+.disc{font-size:11px;color:var(--slate);line-height:1.6;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.disc strong{display:block;color:var(--amber);font-size:12px;margin-bottom:3px}
+.pnav{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.pnav a{text-decoration:none;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1px solid var(--line);color:var(--slate);background:var(--white);transition:all .15s}
+.pnav a:hover{border-color:var(--navy);color:var(--navy)}
+.pnav a.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+footer{background:var(--navy);text-align:center;padding:18px;font-size:11px;color:rgba(255,255,255,.4)}
+footer a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="header"><div class="hbrand"><div class="hlogo">BCG</div><div class="hname">BCG <span>Immigration</span> Consultancy</div></div></div>
+<div style="background:#FFF8E1;border-bottom:3px solid #F59E0B;padding:12px 24px;display:flex;align-items:flex-start;gap:12px;"><div style="font-size:22px;flex-shrink:0;">⚠️</div><div style="font-size:12px;color:#78350F;line-height:1.7;"><strong style="font-size:13px;color:#92400E;display:block;margin-bottom:2px;">Important Disclaimer — Estimation Only · Not Legal Advice</strong>This calculator provides a <strong>general score estimate only</strong>. AI tools can make errors — always consult a <strong>Regulated Canadian Immigration Consultant (RCIC)</strong> before taking any action. This is <strong>not legal advice</strong>.</div></div>
+<div style="background:#EFF6FF;border-bottom:1px solid #BFDBFE;padding:9px 24px;display:flex;align-items:flex-start;gap:10px;"><div style="font-size:14px;flex-shrink:0;">🇨🇦</div><div style="font-size:11px;color:#1E3A8A;line-height:1.6;"><strong style="color:#1D4ED8;">2026 IRCC / NSNP Update (current as of June 12, 2026):</strong> Canada set <strong>91,500 total PNP nominations</strong> for 2026 (+66% vs 2025). Nova Scotia allocation: ~<strong>2,750 nominations</strong>. NSNP consolidated 10 streams into <strong>4 streams</strong> on February 18, 2026. <strong>No provincial fee</strong> (Nova Scotia charges $0 for NSNP). Processing: 3–6 months (provincial), ~7 months enhanced EE.</div></div>
+<div class="hero">
+  <h1>Nova Scotia NSNP <span>Points Calculator 2026</span></h1>
+  <p>Estimate your Nova Scotia Nominee Program (NSNP) Skilled Worker stream score. NS uses a 100-point grid — minimum 67 points required. Score updates live as you click.</p>
+  <div class="hero-tags">
+    <span class="htag ns">⚡ Live Score</span>
+    <span class="htag">Max 100 Points · Min 67</span>
+    <span class="htag">$0 Provincial Fee</span>
+    <span class="htag">4 Streams (Feb 2026)</span>
+  </div>
+  <div class="updated">Updated: June 12, 2026 &nbsp;|&nbsp; Official NSNP Skilled Worker Assessment Grid &nbsp;|&nbsp; Streams consolidated Feb 18, 2026</div>
+</div>
+
+<div class="main">
+<div class="form-col">
+<div class="pnav">
+  <a href="bcpnp-calculator.html">🍁 BC PNP</a>
+  <a href="alberta-pnp-calculator.html">🏔 Alberta</a>
+  <a href="saskatchewan-pnp-calculator.html">🌾 Saskatchewan</a>
+  <a href="manitoba-pnp-calculator.html">🦬 Manitoba</a>
+  <a href="ontario-pnp-calculator.html">🏙 Ontario</a>
+  <a href="novascotia-pnp-calculator.html" class="active">⚓ Nova Scotia</a>
+  <a href="newbrunswick-pnp-calculator.html">🌲 New Brunswick</a>
+  <a href="yukon-pnp-calculator.html">🏔 Yukon</a>
+  <a href="atlantic-aip-calculator.html">🌊 Atlantic AIP</a>
+</div>
+
+<!-- AGE -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🎂</span><span class="sec-title">Age</span><span class="sec-max">Max 12 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Your age at time of application <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">NSNP awards maximum points for ages 21–49. You must be at least 21 and no older than 55 to be eligible.</div>
+    <div class="opts" id="grp-age">
+      <div class="o" data-g="age" data-v="12" onclick="pick(this)">21–35 years <span class="pts">+12</span></div>
+      <div class="o" data-g="age" data-v="10" onclick="pick(this)">36–45 years <span class="pts">+10</span></div>
+      <div class="o" data-g="age" data-v="6"  onclick="pick(this)">46–49 years <span class="pts">+6</span></div>
+      <div class="o" data-g="age" data-v="2"  onclick="pick(this)">50–55 years <span class="pts">+2</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🎓</span><span class="sec-title">Education</span><span class="sec-max">Max 20 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Highest completed credential <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">Foreign degrees require an ECA from a recognized body (WES, IQAS). Canadian credentials accepted as-is. A Nova Scotia institution gives bonus points.</div>
+    <div class="opts" id="grp-edu">
+      <div class="o" data-g="edu" data-v="20" onclick="pick(this)">Master's or Doctorate <span class="pts">+20</span></div>
+      <div class="o" data-g="edu" data-v="16" onclick="pick(this)">Bachelor's Degree (4+ years) <span class="pts">+16</span></div>
+      <div class="o" data-g="edu" data-v="14" onclick="pick(this)">Bachelor's Degree (3 years) <span class="pts">+14</span></div>
+      <div class="o" data-g="edu" data-v="12" onclick="pick(this)">Post-secondary Diploma (2+ years) <span class="pts">+12</span></div>
+      <div class="o" data-g="edu" data-v="8"  onclick="pick(this)">Post-secondary Certificate (1 year) <span class="pts">+8</span></div>
+      <div class="o" data-g="edu" data-v="4"  onclick="pick(this)">High School <span class="pts">+4</span></div>
+    </div>
+  </div>
+  <div class="qblock">
+    <div class="qlabel">Did you study in Nova Scotia?</div>
+    <div class="qhint">Completing a 2+ year post-secondary credential at a Nova Scotia institution earns bonus points and significantly strengthens your NSNP EOI.</div>
+    <div class="cb" data-k="nsStudy" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body"><div class="cb-text">Completed 2+ year credential at a Nova Scotia institution</div><div class="cb-sub">NSCC, Dalhousie, SMU, Cape Breton University, Acadia, etc.</div></div>
+      <div class="cb-pts">+5 pts</div>
+    </div>
+  </div>
+</div>
+
+<!-- WORK EXPERIENCE -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">💼</span><span class="sec-title">Work Experience</span><span class="sec-max">Max 21 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Years of skilled work experience in your occupation <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">Count only paid, skilled work (NOC TEER 0–3) directly related to your job offer. Both Canadian and international experience count. Must be within the last 10 years.</div>
+    <div class="opts" id="grp-work">
+      <div class="o" data-g="work" data-v="15" onclick="pick(this)">5+ years <span class="pts">+15</span></div>
+      <div class="o" data-g="work" data-v="12" onclick="pick(this)">4 years <span class="pts">+12</span></div>
+      <div class="o" data-g="work" data-v="9"  onclick="pick(this)">3 years <span class="pts">+9</span></div>
+      <div class="o" data-g="work" data-v="6"  onclick="pick(this)">2 years <span class="pts">+6</span></div>
+      <div class="o" data-g="work" data-v="3"  onclick="pick(this)">1 year <span class="pts">+3</span></div>
+      <div class="o" data-g="work" data-v="0"  onclick="pick(this)">Less than 1 year <span class="pts">+0</span></div>
+    </div>
+  </div>
+  <div class="qblock">
+    <div class="qlabel">Nova Scotia work experience bonus</div>
+    <div class="qhint">1+ year of skilled work experience directly in Nova Scotia earns an additional bonus.</div>
+    <div class="cb" data-k="nsWork" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body"><div class="cb-text">1+ year of skilled work experience in Nova Scotia</div><div class="cb-sub">Full-time or equivalent part-time, in an eligible occupation in NS</div></div>
+      <div class="cb-pts">+6 pts</div>
+    </div>
+  </div>
+</div>
+
+<!-- LANGUAGE -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🗣️</span><span class="sec-title">Language Proficiency (CLB)</span><span class="sec-max">Max 24 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">First official language CLB level <span style="color:var(--gold)">*</span></div>
+    <div class="qhint"><strong>IELTS GT:</strong> 8.5+ = CLB 10 | 8.0 = CLB 9 | 7.5 = CLB 8 | 7.0 = CLB 7 | 6.5 = CLB 6 | 6.0 = CLB 5 | 5.0 = CLB 4<br>Minimum CLB 5 for TEER 2–3 occupations; CLB 7 for TEER 0–1.</div>
+    <table class="clb-table">
+      <thead><tr><th>CLB Level</th><th>IELTS equiv.</th><th style="text-align:right">Points</th></tr></thead>
+      <tbody id="tbl-lang1">
+        <tr data-g="lang1" data-v="24" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 10+</span></td><td class="clb-eq">8.5–9.0</td><td class="clb-p">+24 pts</td></tr>
+        <tr data-g="lang1" data-v="20" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 9</span></td><td class="clb-eq">8.0</td><td class="clb-p">+20 pts</td></tr>
+        <tr data-g="lang1" data-v="16" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 8</span></td><td class="clb-eq">7.5</td><td class="clb-p">+16 pts</td></tr>
+        <tr data-g="lang1" data-v="12" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 7</span></td><td class="clb-eq">7.0</td><td class="clb-p">+12 pts</td></tr>
+        <tr data-g="lang1" data-v="8"  onclick="pickRow(this)"><td><span class="clb-lvl">CLB 6</span></td><td class="clb-eq">6.5</td><td class="clb-p">+8 pts</td></tr>
+        <tr data-g="lang1" data-v="4"  onclick="pickRow(this)"><td><span class="clb-lvl">CLB 5</span></td><td class="clb-eq">6.0</td><td class="clb-p">+4 pts</td></tr>
+        <tr data-g="lang1" data-v="0"  onclick="pickRow(this)"><td><span class="clb-lvl">CLB 4 or below</span></td><td class="clb-eq">Below 6.0</td><td class="clb-p">+0 pts</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- JOB OFFER -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">📄</span><span class="sec-title">Nova Scotia Job Offer</span><span class="sec-max">Max 15 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Do you have a valid Nova Scotia job offer?</div>
+    <div class="qhint">Job offer must be permanent, full-time, from an eligible Nova Scotia employer. TEER 0–3 occupations qualify for Skilled Worker stream. Higher-skilled offers earn more points.</div>
+    <div class="opts" id="grp-job">
+      <div class="o on" data-g="job" data-v="0"  onclick="pick(this)">No NS job offer <span class="pts">+0</span></div>
+      <div class="o" data-g="job" data-v="10" onclick="pick(this)">Valid NS job offer — TEER 2 or 3 <span class="pts">+10</span></div>
+      <div class="o" data-g="job" data-v="15" onclick="pick(this)">Valid NS job offer — TEER 0 or 1 <span class="pts">+15</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADAPTABILITY -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🏘️</span><span class="sec-title">Adaptability — NS Connections</span><span class="sec-max">Max 8 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Nova Scotia ties — select all that apply</div>
+    <div class="qhint">Adaptability points reward candidates who have genuine connections to Nova Scotia beyond just a job offer. Multiple factors can apply simultaneously.</div>
+    <div class="cb" data-k="nsFamily" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body"><div class="cb-text">Spouse or close family member (citizen/PR) living in Nova Scotia</div><div class="cb-sub">Parent, sibling, or adult child who is a Canadian citizen or permanent resident in NS</div></div>
+      <div class="cb-pts">+5 pts</div>
+    </div>
+    <div class="cb" data-k="nsPrevious" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body"><div class="cb-text">Previously lived in Nova Scotia (study or work)</div><div class="cb-sub">Any prior legal temporary or permanent residence in Nova Scotia</div></div>
+      <div class="cb-pts">+3 pts</div>
+    </div>
+  </div>
+</div>
+
+<div style="font-size:11px;color:var(--slate);line-height:1.6;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;">
+  ⚠️ <strong style="color:var(--amber)">Disclaimer.</strong> Based on the NSNP Skilled Worker Assessment Grid. Min. 67/100 to qualify. NSNP now uses 4 consolidated streams (as of Feb 18, 2026). The <strong>Labour Market Priorities / Express Entry stream</strong> does NOT use this points grid — NS proactively selects candidates directly from the Express Entry pool. <strong>No provincial fee.</strong> <a href="https://liveinnovascotia.com" target="_blank" style="color:var(--ns);font-weight:600;">Official NSNP ↗</a>
+</div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="score-card">
+    <div class="sc-lbl">Your NSNP Score</div>
+    <div class="sc-num" id="totalScore">0</div>
+    <div class="sc-of">out of 100 points</div>
+    <div class="sc-bar-bg"><div class="sc-bar" id="scoreBar"></div></div>
+    <div class="sc-verdict sv-empty" id="verdict">Select your answers →</div>
+  </div>
+  <div class="bkcard">
+    <div class="bkcard-head">Score Breakdown</div>
+    <div class="bkrow"><span class="bkrow-name">🎂 Age</span><span class="bkrow-val" id="bk1">— / 12</span></div>
+    <div class="bkrow"><span class="bkrow-name">🎓 Education</span><span class="bkrow-val" id="bk2">— / 20</span></div>
+    <div class="bkrow"><span class="bkrow-name">💼 Work Experience</span><span class="bkrow-val" id="bk3">— / 21</span></div>
+    <div class="bkrow"><span class="bkrow-name">🗣️ Language</span><span class="bkrow-val" id="bk4">— / 24</span></div>
+    <div class="bkrow"><span class="bkrow-name">📄 NS Job Offer</span><span class="bkrow-val" id="bk5">0 / 15</span></div>
+    <div class="bkrow"><span class="bkrow-name">🏘️ Adaptability</span><span class="bkrow-val" id="bk6">0 / 8</span></div>
+    <div class="bktotal"><span class="bktotal-lbl">Total Score</span><span class="bktotal-val" id="bkTot">0 / 100</span></div>
+  </div>
+  <div class="draws">
+    <div class="draws-head">2026 NSNP Key Facts</div>
+    <div class="draw-row"><div class="draw-top"><span class="draw-name">Minimum score (Skilled Worker)</span><span class="draw-range">67 / 100</span></div><div class="draw-bar-bg"><div class="draw-bar-fill" style="background:var(--ns);width:67%"></div></div><div class="draw-sub">Must meet 67 pts to submit application</div></div>
+    <div class="draw-row"><div class="draw-top"><span class="draw-name">Labour Market Priorities</span><span class="draw-range">EE-linked</span></div><div class="draw-bar-bg"><div class="draw-bar-fill" style="background:var(--gold);width:80%"></div></div><div class="draw-sub">NS selects from Express Entry pool — no separate application</div></div>
+    <div class="draw-row"><div class="draw-top"><span class="draw-name">NS: Express Entry stream</span><span class="draw-range">CLB 5–7 min</span></div><div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#1565C0;width:72%"></div></div><div class="draw-sub">CLB 7 for TEER 0–1 | CLB 5 for TEER 2–3</div></div>
+    <div class="draw-row"><div class="draw-top"><span class="draw-name">2026 Priority sectors</span><span class="draw-range">Healthcare, Trades</span></div><div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#166534;width:85%"></div></div><div class="draw-sub">Healthcare, construction, and workers already in NS</div></div>
+    <div class="draw-row"><div class="draw-top"><span class="draw-name">Provincial fee</span><span class="draw-range">$0 CAD</span></div><div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#5D4037;width:10%"></div></div><div class="draw-sub">Nova Scotia charges no provincial NSNP application fee</div></div>
+  </div>
+  <div class="ctabox">
+    <p>Need RCIC guidance on Nova Scotia NSNP pathways?</p>
+    <iframe src="https://admin.goeasyai.ca/widget/form/6a2c642b7470d" style="width:100%;height:600px;border:none;border-radius:3px" title="BCG Immigration Book a consultation"></iframe>
+    <p style="margin-top:8px;font-size:11px;">BCG Immigration Consultancy Ltd.</p>
+  </div>
+  <div class="disc"><strong>⚠️ Estimation Only</strong>NSNP Skilled Worker grid (4-stream structure, Feb 18, 2026). Min. 67/100. Consult an RCIC for a professional assessment.</div>
+</div>
+</div>
+<footer>BCG Immigration Consultancy Ltd. &nbsp;|&nbsp; Surrey, BC Canada<br><a href="https://www.bcgimmigration.com" target="_blank">www.bcgimmigration.com</a> &nbsp;|&nbsp; <a href="https://liveinnovascotia.com" target="_blank">Official NSNP</a> &nbsp;|&nbsp; <a href="https://my-url.in/booking-link" target="_blank">Book a Consultation</a></footer>
+<script>
+var S={age:null,edu:null,nsStudy:false,work:null,nsWork:false,lang1:null,job:0,nsFamily:false,nsPrevious:false};
+function pick(el){var g=el.getAttribute('data-g'),v=parseFloat(el.getAttribute('data-v'));document.querySelectorAll('[data-g="'+g+'"]').forEach(function(e){e.classList.remove('on')});el.classList.add('on');if(g==='age')S.age=v;else if(g==='edu')S.edu=v;else if(g==='work')S.work=v;else if(g==='job')S.job=v;calc()}
+function pickRow(el){var g=el.getAttribute('data-g'),v=parseFloat(el.getAttribute('data-v'));document.querySelectorAll('[data-g="'+g+'"]').forEach(function(e){e.classList.remove('on')});el.classList.add('on');if(g==='lang1')S.lang1=v;calc()}
+function tog(el){var k=el.getAttribute('data-k');S[k]=!S[k];el.classList.toggle('on',S[k]);el.querySelector('.cb-box').textContent=S[k]?'✓':'';calc()}
+function calc(){
+  var age=S.age!==null?S.age:0;
+  var edu=(S.edu!==null?S.edu:0)+(S.nsStudy?5:0);
+  var eduDisp=S.edu!==null?edu:0;
+  var work=(S.work!==null?S.work:0)+(S.nsWork?6:0);
+  var workDisp=S.work!==null?work:0;
+  var lang=S.lang1!==null?S.lang1:0;
+  var job=S.job;
+  var adapt=(S.nsFamily?5:0)+(S.nsPrevious?3:0);
+  var total=Math.min(age+Math.min(edu,25)+Math.min(work,21)+lang+job+adapt,100);
+  document.getElementById('totalScore').textContent=total;
+  document.getElementById('scoreBar').style.width=Math.min((total/100)*100,100)+'%';
+  document.getElementById('bkTot').textContent=total+' / 100';
+  document.getElementById('bk1').textContent=(S.age!==null?age:'—')+' / 12';
+  document.getElementById('bk2').textContent=(S.edu!==null?Math.min(edu,25):'—')+' / 20';
+  document.getElementById('bk3').textContent=(S.work!==null?Math.min(work,21):'—')+' / 21';
+  document.getElementById('bk4').textContent=(S.lang1!==null?lang:'—')+' / 24';
+  document.getElementById('bk5').textContent=job+' / 15';
+  document.getElementById('bk6').textContent=adapt+' / 8';
+  var any=S.age!==null||S.edu!==null||S.work!==null||S.lang1!==null;
+  var vbox=document.getElementById('verdict');vbox.className='sc-verdict';
+  if(!any){vbox.classList.add('sv-empty');vbox.textContent='Select your answers →';}
+  else if(total>=85){vbox.classList.add('sv-green');vbox.textContent='🟢 Highly Competitive!';}
+  else if(total>=75){vbox.classList.add('sv-ns');vbox.textContent='🔵 Strong Profile';}
+  else if(total>=67){vbox.classList.add('sv-amber');vbox.textContent='🟡 Meets Min (67+)';}
+  else if(total>0){vbox.classList.add('sv-red');vbox.textContent='🔴 Below 67 — Not Eligible Yet';}
+  else{vbox.classList.add('sv-empty');vbox.textContent='Select your answers →';}
+}
+</script>
+</body>
+</html>

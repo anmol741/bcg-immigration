@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yukon YNP Calculator 2026 | BCG Immigration</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0D1F35;--gold:#C8993A;--goldbg:#FDF6E8;--teal:#0E7C74;--tealbg:#E2F4F2;--slate:#506070;--mist:#F0F4F8;--line:#DDE5EE;--white:#fff;--amber:#92400e;--yk:#37474F;--ykbg:#ECEFF1;--ykgold:#FF8F00}
+body{font-family:'Inter',sans-serif;background:var(--mist);color:var(--navy);font-size:14px;line-height:1.5}
+.header{background:var(--navy);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.hbrand{display:flex;align-items:center;gap:10px}
+.hlogo{width:36px;height:36px;background:var(--gold);border-radius:8px;font-weight:800;font-size:13px;color:var(--navy);display:flex;align-items:center;justify-content:center}
+.hname{font-size:16px;font-weight:700;color:#fff}.hname span{color:var(--gold)}
+.hero{background:linear-gradient(160deg,#0a0a14 0%,#2a2a3a 100%);padding:28px 24px;text-align:center;border-bottom:3px solid var(--ykgold)}
+.hero h1{font-size:clamp(20px,4vw,30px);font-weight:800;color:#fff;margin-bottom:8px}
+.hero h1 span{color:#FFD54F}
+.hero p{color:rgba(255,255,255,.6);font-size:13px;max-width:560px;margin:0 auto 16px}
+.hero-tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.htag{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1)}
+.htag.yk{background:rgba(255,143,0,.2);color:#FFD54F;border-color:rgba(255,143,0,.3)}
+.updated{font-size:11px;color:rgba(255,255,255,.4);margin-top:10px}
+.wrap{max-width:900px;margin:0 auto;padding:24px 16px 40px}
+.sec{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 12px rgba(13,27,42,.07)}
+.sec-head{background:var(--navy);padding:12px 18px;display:flex;align-items:center;gap:10px}
+.sec-icon{font-size:17px}.sec-title{font-size:13px;font-weight:700;color:#fff;flex:1}
+.sec-note{font-size:11px;color:#FFD54F;padding:2px 9px;border-radius:12px;background:rgba(255,143,0,.2);border:1px solid rgba(255,143,0,.3)}
+.qblock{padding:14px 18px 12px;border-bottom:1px solid var(--line)}.qblock:last-child{border-bottom:none}
+.qlabel{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.qhint{font-size:11px;color:var(--slate);margin-bottom:10px;line-height:1.5}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.o{padding:8px 14px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;color:var(--navy);background:var(--white);display:flex;align-items:center;gap:7px;transition:all .15s;user-select:none}
+.o:hover{border-color:var(--ykgold);background:var(--ykbg)}.o.on{border-color:var(--ykgold);background:var(--ykbg);box-shadow:0 0 0 1.5px var(--ykgold)}
+.o .pts{font-size:11px;font-weight:800;color:var(--teal);background:var(--tealbg);padding:1px 7px;border-radius:10px;flex-shrink:0}
+.o.on .pts{background:var(--ykgold);color:#fff}
+.cb{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;margin-bottom:6px;transition:all .15s;user-select:none}
+.cb:last-child{margin-bottom:0}.cb:hover{border-color:var(--ykgold);background:var(--ykbg)}.cb.on{border-color:var(--ykgold);background:var(--ykbg)}
+.cb-box{width:20px;height:20px;flex-shrink:0;border-radius:5px;border:2px solid var(--line);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;margin-top:1px;transition:all .15s}
+.cb.on .cb-box{background:var(--ykgold);border-color:var(--ykgold);color:#fff}
+.cb-body{flex:1}.cb-text{font-size:12px;font-weight:600;color:var(--navy)}.cb-sub{font-size:11px;color:var(--slate);margin-top:1px}
+.cb-pts{font-size:12px;font-weight:800;color:var(--slate);background:var(--mist);padding:2px 8px;border-radius:10px;flex-shrink:0;margin-top:1px}
+.cb.on .cb-pts{background:var(--ykgold);color:#fff}
+.result-card{background:var(--navy);border-radius:14px;padding:22px;text-align:center;margin-top:20px}
+.rc-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:8px}
+.rc-verdict{font-size:20px;font-weight:800;padding:12px 24px;border-radius:12px;display:inline-block;margin-bottom:12px}
+.rv-green{background:rgba(22,101,52,.4);color:#4ade80;border:1px solid rgba(22,101,52,.6)}
+.rv-amber{background:rgba(200,153,58,.3);color:#fcd34d;border:1px solid rgba(200,153,58,.5)}
+.rv-red{background:rgba(153,27,27,.35);color:#fca5a5;border:1px solid rgba(153,27,27,.5)}
+.rv-empty{background:rgba(255,255,255,.07);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1)}
+.rc-notes{font-size:12px;color:rgba(255,255,255,.6);line-height:1.7;margin-top:8px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+@media(max-width:520px){.info-grid{grid-template-columns:1fr}}
+.info-item{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px}
+.info-item-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:4px}
+.info-item-val{font-size:13px;font-weight:700;color:#FFD54F}
+.cta{background:linear-gradient(135deg,var(--gold) 0%,#8a5c10 100%);border-radius:12px;padding:18px;text-align:center;margin-top:16px}
+.cta p{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:11px}
+.pnav{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.pnav a{text-decoration:none;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1px solid var(--line);color:var(--slate);background:var(--white);transition:all .15s}
+.pnav a:hover{border-color:var(--navy);color:var(--navy)}.pnav a.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+footer{background:var(--navy);text-align:center;padding:18px;font-size:11px;color:rgba(255,255,255,.4)}
+footer a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="header"><div class="hbrand"><div class="hlogo">BCG</div><div class="hname">BCG <span>Immigration</span> Consultancy</div></div></div>
+<div style="background:#FFF8E1;border-bottom:3px solid #F59E0B;padding:12px 24px;display:flex;align-items:flex-start;gap:12px;"><div style="font-size:22px;flex-shrink:0;">⚠️</div><div style="font-size:12px;color:#78350F;line-height:1.7;"><strong style="font-size:13px;color:#92400E;display:block;margin-bottom:2px;">Important Disclaimer — Not a Points Calculator · Not Legal Advice</strong>The Yukon Nominee Program is <strong>employer-driven</strong> — it does not use a public-facing points grid. This page is an <strong>eligibility checklist</strong>, not a score calculator. Always consult an RCIC before taking action.</div></div>
+<div style="background:#EFF6FF;border-bottom:1px solid #BFDBFE;padding:9px 24px;display:flex;align-items:flex-start;gap:10px;"><div style="font-size:14px;flex-shrink:0;">🇨🇦</div><div style="font-size:11px;color:#1E3A8A;line-height:1.6;"><strong style="color:#1D4ED8;">2026 YNP Update (June 12, 2026):</strong> Yukon allocation: ~<strong>500 nominations</strong>. YNP uses EOI system with <strong>2026 Priority-Based invitations</strong> — only employers aligned with 2026 Yukon priorities will be invited to apply. Yukon processes applications within <strong>8–10 weeks</strong>. No provincial fee.</div></div>
+<div class="hero">
+  <h1>Yukon YNP <span>Eligibility Checker 2026</span></h1>
+  <p>The Yukon Nominee Program (YNP) is <strong>employer-driven</strong> — only employers apply, not candidates directly. This tool checks your eligibility across Yukon's 3 worker streams.</p>
+  <div class="hero-tags">
+    <span class="htag yk">🏔 Employer-Driven Only</span>
+    <span class="htag">~500 nominations/yr</span>
+    <span class="htag">3 streams</span>
+    <span class="htag">8–10 week processing</span>
+  </div>
+  <div class="updated">Updated: June 12, 2026 &nbsp;|&nbsp; Yukon.ca YNP 2026 Priorities</div>
+</div>
+
+<div class="wrap">
+<div class="pnav">
+  <a href="bcpnp-calculator.html">🍁 BC</a>
+  <a href="alberta-pnp-calculator.html">🏔 Alberta</a>
+  <a href="saskatchewan-pnp-calculator.html">🌾 SK</a>
+  <a href="manitoba-pnp-calculator.html">🦬 MB</a>
+  <a href="ontario-pnp-calculator.html">🏙 ON</a>
+  <a href="novascotia-pnp-calculator.html">⚓ NS</a>
+  <a href="newbrunswick-pnp-calculator.html">🌲 NB</a>
+  <a href="yukon-pnp-calculator.html" class="active">🏔 Yukon</a>
+  <a href="atlantic-aip-calculator.html">🌊 AIP</a>
+</div>
+
+<!-- JOB OFFER -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">📄</span><span class="sec-title">Yukon Job Offer</span><span class="sec-note">Required for all streams</span></div>
+  <div class="qblock">
+    <div class="qlabel">Do you have a valid full-time permanent job offer from a Yukon employer? <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">A permanent (indeterminate), full-time (30+ hrs/wk), year-round job offer from an eligible Yukon employer is <strong>mandatory</strong> for all YNP streams. Only the employer submits applications — candidates cannot apply directly.</div>
+    <div class="opts" id="grp-jobOffer">
+      <div class="o on" data-g="jobOffer" data-v="0" onclick="pick(this)">No Yukon job offer <span class="pts">No</span></div>
+      <div class="o" data-g="jobOffer" data-v="1" onclick="pick(this)">Yes — permanent full-time Yukon job offer <span class="pts">Yes ✓</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- OCCUPATION TEER -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🔧</span><span class="sec-title">Occupation Level (NOC TEER)</span><span class="sec-note">Determines stream</span></div>
+  <div class="qblock">
+    <div class="qlabel">What is the TEER level of your Yukon job offer? <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">
+      <strong>TEER 0–3 → Skilled Worker Stream</strong> (management, professional, technical, trades — requires 12 months related experience)<br>
+      <strong>TEER 4–5 → Critical Impact Worker Stream</strong> (entry-level, semi-skilled — requires only 6 months experience)<br>
+      <strong>TEER 0–3 with Express Entry profile → Yukon Express Entry Stream</strong>
+    </div>
+    <div class="opts" id="grp-teer">
+      <div class="o" data-g="teer" data-v="1" onclick="pick(this)">TEER 0 — Management / Executive <span class="pts">Skilled Worker</span></div>
+      <div class="o" data-g="teer" data-v="1" onclick="pick(this)">TEER 1 — University-level professional <span class="pts">Skilled Worker</span></div>
+      <div class="o" data-g="teer" data-v="1" onclick="pick(this)">TEER 2 — College/tech diploma <span class="pts">Skilled Worker</span></div>
+      <div class="o" data-g="teer" data-v="1" onclick="pick(this)">TEER 3 — Apprenticeship / trades <span class="pts">Skilled Worker</span></div>
+      <div class="o" data-g="teer" data-v="2" onclick="pick(this)">TEER 4 — HS diploma + on-job training <span class="pts">Critical Impact</span></div>
+      <div class="o" data-g="teer" data-v="2" onclick="pick(this)">TEER 5 — Short-term training <span class="pts">Critical Impact</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- WORK EXPERIENCE -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">💼</span><span class="sec-title">Work Experience</span><span class="sec-note">Minimum required</span></div>
+  <div class="qblock">
+    <div class="qlabel">Work experience in the same or related occupation <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">Skilled Worker stream: minimum <strong>12 months</strong> directly related experience. Critical Impact Worker: minimum <strong>6 months</strong>. Experience must be verifiable with reference letters or pay stubs.</div>
+    <div class="opts" id="grp-exp">
+      <div class="o" data-g="exp" data-v="0" onclick="pick(this)">Less than 6 months <span class="pts">Ineligible</span></div>
+      <div class="o" data-g="exp" data-v="1" onclick="pick(this)">6–11 months (Critical Impact only) <span class="pts">CIW only</span></div>
+      <div class="o" data-g="exp" data-v="2" onclick="pick(this)">12 months or more <span class="pts">All streams</span></div>
+      <div class="o" data-g="exp" data-v="2" onclick="pick(this)">2+ years <span class="pts">All streams</span></div>
+      <div class="o" data-g="exp" data-v="2" onclick="pick(this)">5+ years <span class="pts">All streams</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- LANGUAGE -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🗣️</span><span class="sec-title">Language Proficiency</span><span class="sec-note">Minimum CLB</span></div>
+  <div class="qblock">
+    <div class="qlabel">Your CLB level <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">Skilled Worker: minimum <strong>CLB 4</strong>. Express Entry stream: must meet federal EE language minimums (CLB 7 for FSW/CEC). Critical Impact Worker: <strong>CLB 4</strong> minimum.</div>
+    <div class="opts" id="grp-clb">
+      <div class="o" data-g="clb" data-v="0" onclick="pick(this)">CLB 3 or below <span class="pts">Ineligible</span></div>
+      <div class="o" data-g="clb" data-v="1" onclick="pick(this)">CLB 4 <span class="pts">CIW / SW</span></div>
+      <div class="o" data-g="clb" data-v="2" onclick="pick(this)">CLB 5 – 6 <span class="pts">CIW / SW</span></div>
+      <div class="o" data-g="clb" data-v="3" onclick="pick(this)">CLB 7 – 8 <span class="pts">All + EE</span></div>
+      <div class="o" data-g="clb" data-v="3" onclick="pick(this)">CLB 9+ <span class="pts">All + EE</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPRESS ENTRY -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🇨🇦</span><span class="sec-title">Express Entry Profile (Optional)</span><span class="sec-note">Faster pathway</span></div>
+  <div class="qblock">
+    <div class="qlabel">Do you have an active federal Express Entry profile?</div>
+    <div class="qhint">If yes, your Yukon employer can sponsor you through the <strong>Yukon Express Entry Stream</strong> — faster processing (~7 months federal PR vs. ~12 months base). You receive +600 CRS upon nomination.</div>
+    <div class="cb" data-k="eeProfile" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body"><div class="cb-text">Yes — I have an active Express Entry profile (FSW, CEC, or FST)</div><div class="cb-sub">Enables Yukon Express Entry stream — faster federal processing</div></div>
+      <div class="cb-pts">+600 CRS</div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🎓</span><span class="sec-title">Education</span><span class="sec-note">Minimum required</span></div>
+  <div class="qblock">
+    <div class="qlabel">Highest completed credential</div>
+    <div class="qhint">Skilled Worker stream: minimum post-secondary diploma or degree relevant to the occupation, OR trades certification/apprenticeship. Critical Impact: minimum <strong>high school diploma</strong>.</div>
+    <div class="opts" id="grp-edu">
+      <div class="o" data-g="edu" data-v="0" onclick="pick(this)">No diploma / incomplete high school <span class="pts">⚠️ Check</span></div>
+      <div class="o" data-g="edu" data-v="1" onclick="pick(this)">High School completed <span class="pts">CIW only</span></div>
+      <div class="o" data-g="edu" data-v="2" onclick="pick(this)">Trades / Apprenticeship / Diploma <span class="pts">SW + CIW</span></div>
+      <div class="o" data-g="edu" data-v="2" onclick="pick(this)">Bachelor's Degree or higher <span class="pts">All streams</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="result-card" class="result-card">
+  <div class="rc-label">Your YNP Eligibility Assessment</div>
+  <div class="rc-verdict rv-empty" id="verdictBox">Fill in your answers above to see which Yukon stream fits you</div>
+  <div class="rc-notes" id="resultNotes">The Yukon Nominee Program is employer-driven. Your Yukon employer must submit the application on your behalf.</div>
+  <div class="info-grid">
+    <div class="info-item"><div class="info-item-label">Your Stream</div><div class="info-item-val" id="streamLabel">—</div></div>
+    <div class="info-item"><div class="info-item-label">Processing Time</div><div class="info-item-val">8–10 weeks (YNP) + ~12 months IRCC (base) or ~7 months (EE)</div></div>
+    <div class="info-item"><div class="info-item-label">Provincial Fee</div><div class="info-item-val">$0 CAD</div></div>
+    <div class="info-item"><div class="info-item-label">Who Applies?</div><div class="info-item-val">Your Yukon employer — not you</div></div>
+  </div>
+</div>
+
+<div class="cta" style="background:linear-gradient(135deg,var(--gold) 0%,#8a5c10 100%);border-radius:12px;padding:18px;text-align:center;margin-top:16px;">
+  <p style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:11px;">Need help connecting with Yukon employers or understanding YNP eligibility?</p>
+  <iframe src="https://admin.goeasyai.ca/widget/form/6a2c642b7470d" style="width:100%;height:600px;border:none;border-radius:3px" title="BCG Immigration Book a consultation"></iframe>
+  <p style="margin-top:8px;font-size:11px;color:var(--navy);font-weight:600;">BCG Immigration Consultancy Ltd.</p>
+</div>
+
+<div style="font-size:11px;color:var(--slate);line-height:1.6;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:14px;">
+  ⚠️ <strong style="color:var(--amber)">Disclaimer.</strong> YNP is employer-driven with no public points grid — this is an eligibility checklist only. <strong>2026: YNP only invites employers who align with Yukon's current priorities</strong>. Yukon's small population (~36,000) means low competition but also limited allocations (~500/yr). <a href="https://yukon.ca/en/doing-business/yukon-nominee-program" target="_blank" style="color:var(--ykgold);font-weight:600;">Official YNP ↗</a>
+</div>
+</div>
+
+<footer>BCG Immigration Consultancy Ltd. &nbsp;|&nbsp; Surrey, BC Canada<br><a href="https://www.bcgimmigration.com" target="_blank">www.bcgimmigration.com</a> &nbsp;|&nbsp; <a href="https://yukon.ca/en/doing-business/yukon-nominee-program" target="_blank">Official YNP</a> &nbsp;|&nbsp; <a href="https://my-url.in/booking-link" target="_blank">Book a Consultation</a></footer>
+<script>
+var S={jobOffer:0,teer:null,exp:null,clb:null,eeProfile:false,edu:null};
+function pick(el){var g=el.getAttribute('data-g'),v=parseFloat(el.getAttribute('data-v'));document.querySelectorAll('[data-g="'+g+'"]').forEach(function(e){e.classList.remove('on')});el.classList.add('on');if(g==='jobOffer')S.jobOffer=v;else if(g==='teer')S.teer=v;else if(g==='exp')S.exp=v;else if(g==='clb')S.clb=v;else if(g==='edu')S.edu=v;assess()}
+function tog(el){var k=el.getAttribute('data-k');S[k]=!S[k];el.classList.toggle('on',S[k]);el.querySelector('.cb-box').textContent=S[k]?'✓':'';assess()}
+function assess(){
+  var vbox=document.getElementById('verdictBox');
+  var notes=document.getElementById('resultNotes');
+  var stream=document.getElementById('streamLabel');
+  vbox.className='rc-verdict';
+  if(!S.jobOffer){
+    vbox.classList.add('rv-red');vbox.textContent='❌ No Yukon Job Offer — Cannot Apply';
+    notes.textContent='A permanent, full-time Yukon job offer is mandatory for all YNP streams. Only Yukon employers submit applications — you cannot apply directly.';
+    stream.textContent='No stream available';return;
+  }
+  if(S.exp===0||S.clb===0){
+    vbox.classList.add('rv-red');vbox.textContent='❌ Below Minimum Requirements';
+    notes.textContent='You do not meet the minimum experience (6 months) or language (CLB 4) requirements for any Yukon stream. Work on improving these first.';
+    stream.textContent='Ineligible';return;
+  }
+  var any=S.teer!==null&&S.exp!==null&&S.clb!==null&&S.edu!==null;
+  if(!any){vbox.classList.add('rv-empty');vbox.textContent='Complete all fields above';notes.textContent='Select your TEER level, experience, language, and education to see your YNP stream assessment.';stream.textContent='—';return;}
+  if(S.teer===1&&S.exp>=2&&S.clb>=3&&S.edu>=2&&S.eeProfile){
+    vbox.classList.add('rv-green');vbox.textContent='✅ Eligible — Yukon Express Entry Stream';
+    notes.textContent='Best option: your employer can apply via the Yukon Express Entry Stream. You get +600 CRS upon nomination, virtually guaranteeing a federal ITA. Processing: 8–10 wks (Yukon) + ~7 months (IRCC).';
+    stream.textContent='Yukon Express Entry Stream';
+  } else if(S.teer===1&&S.exp>=2&&S.clb>=1&&S.edu>=2){
+    vbox.classList.add('rv-green');vbox.textContent='✅ Eligible — Skilled Worker Stream';
+    notes.textContent='Your employer can apply to the Skilled Worker stream. Processing: 8–10 weeks (Yukon) + ~12–14 months (IRCC base PNP). Consider activating an EE profile for the faster Express Entry stream.';
+    stream.textContent='Yukon Skilled Worker Stream';
+  } else if(S.teer===2&&S.exp>=1&&S.clb>=1&&S.edu>=1){
+    vbox.classList.add('rv-amber');vbox.textContent='🟡 Eligible — Critical Impact Worker Stream';
+    notes.textContent='Your employer can apply to the Critical Impact Worker (CIW) stream for TEER 4–5 positions. Processing: 8–10 weeks (Yukon) + ~12–14 months (IRCC). No Express Entry stream available for TEER 4–5.';
+    stream.textContent='Critical Impact Worker Stream';
+  } else {
+    vbox.classList.add('rv-red');vbox.textContent='⚠️ Check Your Eligibility Carefully';
+    notes.textContent='Based on your selections, you may not fully meet minimum requirements. Experience or language scores may need to improve. Consult an RCIC to review your specific situation.';
+    stream.textContent='Review needed';
+  }
+}
+</script>
+</body>
+</html>

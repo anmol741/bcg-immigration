@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saskatchewan SINP Points Calculator 2026 | BCG Immigration</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0D1F35;--navy2:#162d4f;--gold:#C8993A;--gold2:#f0c96a;--goldbg:#FDF6E8;--teal:#0E7C74;--tealbg:#E2F4F2;--slate:#506070;--mist:#F0F4F8;--line:#DDE5EE;--white:#FFFFFF;--red:#991b1b;--amber:#92400e;--sk:#5D4037;--skbg:#EFEBE9;--skdark:#3E2723}
+body{font-family:'Inter',sans-serif;background:var(--mist);color:var(--navy);font-size:14px;line-height:1.5}
+.header{background:var(--navy);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.hbrand{display:flex;align-items:center;gap:10px}
+.hlogo{width:36px;height:36px;background:var(--gold);border-radius:8px;font-weight:800;font-size:13px;color:var(--navy);display:flex;align-items:center;justify-content:center}
+.hname{font-size:16px;font-weight:700;color:#fff}.hname span{color:var(--gold)}
+.hrcic{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:20px}
+.hero{background:linear-gradient(160deg,#1a0a00 0%,#4e2800 100%);padding:28px 24px;text-align:center;border-bottom:3px solid #8D6E63}
+.hero h1{font-size:clamp(20px,4vw,30px);font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.02em}
+.hero h1 span{color:#FFCC80}
+.hero p{color:rgba(255,255,255,.6);font-size:13px;max-width:560px;margin:0 auto 16px}
+.hero-tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.htag{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1)}
+.htag.sk{background:rgba(93,64,55,.4);color:#FFCC80;border-color:rgba(93,64,55,.5)}
+.updated{font-size:11px;color:rgba(255,255,255,.4);margin-top:10px}
+.main{max-width:980px;margin:0 auto;padding:24px 16px 40px;display:grid;grid-template-columns:1fr 290px;gap:20px;align-items:start}
+@media(max-width:720px){.main{grid-template-columns:1fr}.sidebar{order:-1}}
+.sec{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 12px rgba(13,27,42,.07)}
+.sec-head{background:var(--navy);padding:12px 18px;display:flex;align-items:center;gap:10px}
+.sec-icon{font-size:17px}.sec-title{font-size:13px;font-weight:700;color:#fff;flex:1}
+.sec-max{font-size:11px;font-weight:700;color:#FFCC80;background:rgba(93,64,55,.4);border:1px solid rgba(93,64,55,.5);padding:2px 9px;border-radius:12px}
+.qblock{padding:14px 18px 12px;border-bottom:1px solid var(--line)}.qblock:last-child{border-bottom:none}
+.qlabel{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.qhint{font-size:11px;color:var(--slate);margin-bottom:10px;line-height:1.5}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.o{padding:8px 14px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;color:var(--navy);background:var(--white);display:flex;align-items:center;gap:7px;transition:all .15s;user-select:none}
+.o:hover{border-color:#5D4037;background:var(--skbg)}
+.o.on{border-color:#5D4037;background:var(--skbg);box-shadow:0 0 0 1.5px #5D4037}
+.o .pts{font-size:11px;font-weight:800;color:var(--teal);background:var(--tealbg);padding:1px 7px;border-radius:10px;flex-shrink:0}
+.o.on .pts{background:#5D4037;color:#fff}
+.cb{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;margin-bottom:6px;transition:all .15s;user-select:none}
+.cb:last-child{margin-bottom:0}.cb:hover{border-color:#5D4037;background:var(--skbg)}.cb.on{border-color:#5D4037;background:var(--skbg)}
+.cb-box{width:20px;height:20px;flex-shrink:0;border-radius:5px;border:2px solid var(--line);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;margin-top:1px;transition:all .15s}
+.cb.on .cb-box{background:#5D4037;border-color:#5D4037;color:#fff}
+.cb-body{flex:1}.cb-text{font-size:12px;font-weight:600;color:var(--navy)}.cb-sub{font-size:11px;color:var(--slate);margin-top:1px}
+.cb-pts{font-size:12px;font-weight:800;color:var(--slate);background:var(--mist);padding:2px 8px;border-radius:10px;flex-shrink:0;margin-top:1px}
+.cb.on .cb-pts{background:#5D4037;color:#fff}
+.clb-table{width:100%;border-collapse:collapse;font-size:12px}
+.clb-table th{background:#f1f5f9;color:var(--slate);font-weight:700;text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);font-size:11px}
+.clb-table td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+.clb-table tr:last-child td{border-bottom:none}
+.clb-table tr{cursor:pointer;transition:background .12s}
+.clb-table tr:hover td{background:var(--skbg)}
+.clb-table tr.on td{background:var(--skbg)}
+.clb-table tr.on td:first-child{border-left:3px solid #5D4037}
+.clb-lvl{font-weight:800;color:var(--navy);font-size:13px}.clb-eq{color:var(--slate);font-size:11px}
+.clb-p{font-weight:800;color:var(--teal);text-align:right}
+.clb-table tr.on .clb-p{color:#5D4037}
+.score-card{background:var(--navy);border-radius:14px;padding:22px 18px;text-align:center;margin-bottom:14px;box-shadow:0 6px 28px rgba(13,27,42,.25)}
+.sc-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);margin-bottom:4px}
+.sc-num{font-size:76px;font-weight:800;color:#FFCC80;line-height:1;letter-spacing:-.04em;transition:all .3s}
+.sc-of{font-size:12px;color:rgba(255,255,255,.3);margin-bottom:14px}
+.sc-bar-bg{background:rgba(255,255,255,.1);border-radius:4px;height:8px;overflow:hidden;margin-bottom:14px}
+.sc-bar{height:100%;background:linear-gradient(90deg,#5D4037,#FFCC80);border-radius:4px;width:0%;transition:width .45s}
+.sc-verdict{display:inline-block;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px}
+.sv-empty{background:rgba(255,255,255,.07);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1)}
+.sv-red{background:rgba(153,27,27,.35);color:#fca5a5;border:1px solid rgba(153,27,27,.5)}
+.sv-amber{background:rgba(200,153,58,.25);color:#fcd34d;border:1px solid rgba(200,153,58,.4)}
+.sv-sk{background:rgba(93,64,55,.35);color:#FFCC80;border:1px solid rgba(93,64,55,.5)}
+.sv-green{background:rgba(22,101,52,.35);color:#4ade80;border:1px solid rgba(22,101,52,.5)}
+.bkcard{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 2px 10px rgba(13,27,42,.06)}
+.bkcard-head{background:#f1f5f9;padding:9px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);border-bottom:1px solid var(--line)}
+.bkrow{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px dashed var(--line);font-size:12px}
+.bkrow:last-child{border-bottom:none}
+.bkrow-name{color:var(--slate)}.bkrow-val{font-weight:800;color:var(--navy);font-size:13px}
+.bktotal{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--navy)}
+.bktotal-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5)}
+.bktotal-val{font-size:20px;font-weight:800;color:#FFCC80}
+.draws{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 2px 10px rgba(13,27,42,.06)}
+.draws-head{background:#f1f5f9;padding:9px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);border-bottom:1px solid var(--line)}
+.draw-row{padding:9px 14px;border-bottom:1px solid var(--line)}.draw-row:last-child{border-bottom:none}
+.draw-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.draw-name{font-size:12px;font-weight:700;color:var(--navy)}
+.draw-range{font-size:11px;font-weight:700;color:#5D4037;background:var(--skbg);padding:1px 7px;border-radius:10px}
+.draw-bar-bg{background:var(--mist);border-radius:3px;height:4px;overflow:hidden}
+.draw-bar-fill{height:100%;border-radius:3px}.draw-sub{font-size:11px;color:var(--slate);margin-top:3px}
+.ctabox{background:linear-gradient(135deg,var(--gold) 0%,#8a5c10 100%);border-radius:12px;padding:16px;text-align:center;margin-bottom:14px}
+.ctabox p{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:11px;line-height:1.5}
+.ctabtn{display:block;text-decoration:none;padding:9px 14px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:6px;transition:all .15s}
+.ctabtn:last-child{margin-bottom:0}
+.ctabtn.dark{background:var(--navy);color:#fff}.ctabtn.dark:hover{background:#1a3050}
+.ctabtn.lite{background:rgba(13,27,42,.12);color:var(--navy);border:1px solid rgba(13,27,42,.2)}.ctabtn.lite:hover{background:rgba(13,27,42,.22)}
+.disc{font-size:11px;color:var(--slate);line-height:1.6;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.disc strong{display:block;color:var(--amber);font-size:12px;margin-bottom:3px}
+.pnav{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.pnav a{text-decoration:none;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1px solid var(--line);color:var(--slate);background:var(--white);transition:all .15s}
+.pnav a:hover{border-color:var(--navy);color:var(--navy)}
+.pnav a.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+footer{background:var(--navy);text-align:center;padding:18px;font-size:11px;color:rgba(255,255,255,.4)}
+footer a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<!-- TOP DISCLAIMER BANNER -->
+<div style="background:#FFF8E1;border-bottom:3px solid #F59E0B;padding:12px 24px;display:flex;align-items:flex-start;gap:12px;">
+  <div style="font-size:22px;flex-shrink:0;line-height:1.2;">⚠️</div>
+  <div style="font-size:12px;color:#78350F;line-height:1.7;">
+    <strong style="font-size:13px;color:#92400E;display:block;margin-bottom:2px;">Important Disclaimer — Estimation Only · Not Legal Advice</strong>
+    This calculator provides a <strong>general score estimate only</strong>. AI-powered tools can make errors — point grids, thresholds, and program rules change without notice. 
+    <strong>Do not make any immigration decisions based on this tool alone.</strong> 
+    Always consult a <strong>Regulated Canadian Immigration Consultant (RCIC)</strong> or licensed immigration lawyer before taking any action. 
+    This is <strong>not legal advice</strong> and does not create a consultant-client relationship.
+  </div>
+</div>
+<!-- END DISCLAIMER BANNER -->
+<!-- IRCC 2026 UPDATE STRIP -->
+<div style="background:#EFF6FF;border-bottom:1px solid #BFDBFE;padding:9px 24px;display:flex;align-items:flex-start;gap:10px;">
+  <div style="font-size:14px;flex-shrink:0;">🇨🇦</div>
+  <div style="font-size:11px;color:#1E3A8A;line-height:1.6;">
+    <strong style="color:#1D4ED8;">2026 IRCC / PNP Update (current as of June 12, 2026):</strong>
+    Canada set <strong>91,500 total PNP nominations</strong> for 2026 (+66% vs 2025). 2026 SINP allocation: <strong>4,761 nominations</strong>. Saskatchewan moved to 6 fixed intake windows in 2026. Per SOR/2026-63 (Mar 30, 2026), SK now has sole authority over intent-to-reside &amp; economic establishment. Fee CAD $350.
+  </div>
+</div>
+<!-- END IRCC UPDATE STRIP -->
+<div class="header">
+  <div class="hbrand"><div class="hlogo">BCG</div><div class="hname">BCG <span>Immigration</span> Consultancy</div></div>
+  
+</div>
+<div class="hero">
+  <h1>Saskatchewan SINP <span>Points Calculator 2026</span></h1>
+  <p>Estimate your Saskatchewan Immigrant Nominee Program (SINP) EOI score — International Skilled Worker stream. Max 110 points. Score updates live.</p>
+  <div class="hero-tags">
+    <span class="htag sk">⚡ Live Score</span>
+    <span class="htag">Max 110 Points</span>
+    <span class="htag">Min. 60 to qualify</span>
+    <span class="htag">Fixed intake windows 2026</span>
+  </div>
+  <div class="updated">Updated: June 12, 2026 &nbsp;|&nbsp; Based on official SINP Assessment Grid (ISW stream) &nbsp;|&nbsp; Note: Saskatchewan moved to 6 fixed intake windows in 2026 (no rolling draws)</div>
+</div>
+
+<div class="main">
+<div class="form-col">
+
+<div class="pnav">
+  <a href="bcpnp-calculator.html">🍁 BC PNP</a>
+  <a href="alberta-pnp-calculator.html">🏔 Alberta AAIP</a>
+  <a href="saskatchewan-pnp-calculator.html" class="active">🌾 Saskatchewan SINP</a>
+  <a href="manitoba-pnp-calculator.html">🦬 Manitoba MPNP</a>
+</div>
+
+<!-- EDUCATION -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🎓</span><span class="sec-title">Education &amp; Training</span><span class="sec-max">Max 23 pts · Factor I</span></div>
+  <div class="qblock">
+    <div class="qlabel">Highest completed credential <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">Must have completed a minimum of one year of post-secondary education or training. Foreign credentials require an ECA from an IRCC-approved body (WES, IQAS, etc.).</div>
+    <div class="opts" id="grp-edu">
+      <div class="o" data-g="edu" data-v="23" onclick="pick(this)">Master's or Doctorate <span class="pts">+23</span></div>
+      <div class="o" data-g="edu" data-v="20" onclick="pick(this)">Bachelor's Degree (3+ years) <span class="pts">+20</span></div>
+      <div class="o" data-g="edu" data-v="18" onclick="pick(this)">Trade Certification (Journeyperson) <span class="pts">+18</span></div>
+      <div class="o" data-g="edu" data-v="15" onclick="pick(this)">Diploma (2 years) <span class="pts">+15</span></div>
+      <div class="o" data-g="edu" data-v="12" onclick="pick(this)">Certificate (1 year) <span class="pts">+12</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- WORK EXPERIENCE — TWO WINDOWS -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">💼</span><span class="sec-title">Skilled Work Experience</span><span class="sec-max">Max 15 pts · Factor I</span></div>
+  <div class="qblock">
+    <div class="qlabel">Experience in the 5 years prior to application <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">Count only skilled work experience (NOC TEER 0, 1, 2, or 3). SINP scores two separate time windows — recent experience (last 5 years) is weighted more.</div>
+    <div class="opts" id="grp-wk5">
+      <div class="o" data-g="wk5" data-v="0"  onclick="pick(this)">&lt;1 year <span class="pts">+0</span></div>
+      <div class="o" data-g="wk5" data-v="5"  onclick="pick(this)">1 year <span class="pts">+5</span></div>
+      <div class="o" data-g="wk5" data-v="7"  onclick="pick(this)">2 years <span class="pts">+7</span></div>
+      <div class="o" data-g="wk5" data-v="9"  onclick="pick(this)">3 years <span class="pts">+9</span></div>
+      <div class="o" data-g="wk5" data-v="11" onclick="pick(this)">4 years <span class="pts">+11</span></div>
+      <div class="o" data-g="wk5" data-v="13" onclick="pick(this)">5 years <span class="pts">+13</span></div>
+    </div>
+  </div>
+  <div class="qblock">
+    <div class="qlabel">Experience in the 6–10 years prior to application</div>
+    <div class="qhint">SINP also credits older work experience in this second window. Combined max for both windows is 15 points.</div>
+    <div class="opts" id="grp-wk10">
+      <div class="o on" data-g="wk10" data-v="0" onclick="pick(this)">None <span class="pts">+0</span></div>
+      <div class="o" data-g="wk10" data-v="1" onclick="pick(this)">1 year <span class="pts">+1</span></div>
+      <div class="o" data-g="wk10" data-v="2" onclick="pick(this)">2 years <span class="pts">+2</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- LANGUAGE -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🗣️</span><span class="sec-title">Language Proficiency (CLB)</span><span class="sec-max">Max 20 pts · Factor I</span></div>
+  <div class="qblock">
+    <div class="qlabel">First official language (English or French) <span style="color:var(--gold)">*</span></div>
+    <div class="qhint"><strong>IELTS GT → CLB:</strong> 8.5+ = CLB 10 | 8.0 = CLB 9 | 7.5 = CLB 8 | 7.0 = CLB 7 | 6.5 = CLB 6 | 6.0 = CLB 5 | 5.0 = CLB 4</div>
+    <table class="clb-table">
+      <thead><tr><th>CLB Level</th><th>IELTS equiv.</th><th style="text-align:right">Points</th></tr></thead>
+      <tbody id="tbl-lang1">
+        <tr data-g="lang1" data-v="20" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 9+</span></td><td class="clb-eq">8.5–9.0</td><td class="clb-p">+20 pts</td></tr>
+        <tr data-g="lang1" data-v="18" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 8</span></td><td class="clb-eq">7.5</td><td class="clb-p">+18 pts</td></tr>
+        <tr data-g="lang1" data-v="16" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 7</span></td><td class="clb-eq">7.0</td><td class="clb-p">+16 pts</td></tr>
+        <tr data-g="lang1" data-v="14" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 6</span></td><td class="clb-eq">6.5</td><td class="clb-p">+14 pts</td></tr>
+        <tr data-g="lang1" data-v="10" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 5</span></td><td class="clb-eq">6.0</td><td class="clb-p">+10 pts</td></tr>
+        <tr data-g="lang1" data-v="6"  onclick="pickRow(this)"><td><span class="clb-lvl">CLB 4</span></td><td class="clb-eq">5.0</td><td class="clb-p">+6 pts</td></tr>
+        <tr data-g="lang1" data-v="0"  onclick="pickRow(this)"><td><span class="clb-lvl">CLB 3 or below</span></td><td class="clb-eq">Below 5.0</td><td class="clb-p">+0 pts</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- AGE -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🎂</span><span class="sec-title">Age</span><span class="sec-max">Max 12 pts · Factor I</span></div>
+  <div class="qblock">
+    <div class="qlabel">Your age at time of application <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">SINP awards maximum points for ages 21–35. Points decline after 35 and reach zero at 51+.</div>
+    <div class="opts" id="grp-age">
+      <div class="o" data-g="age" data-v="12" onclick="pick(this)">21–35 years <span class="pts">+12</span></div>
+      <div class="o" data-g="age" data-v="10" onclick="pick(this)">18–20 years <span class="pts">+10</span></div>
+      <div class="o" data-g="age" data-v="8"  onclick="pick(this)">36–40 years <span class="pts">+8</span></div>
+      <div class="o" data-g="age" data-v="6"  onclick="pick(this)">41–45 years <span class="pts">+6</span></div>
+      <div class="o" data-g="age" data-v="4"  onclick="pick(this)">46–50 years <span class="pts">+4</span></div>
+      <div class="o" data-g="age" data-v="0"  onclick="pick(this)">51+ years <span class="pts">+0</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FACTOR II: SK CONNECTION -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🏘️</span><span class="sec-title">Connection to Saskatchewan</span><span class="sec-max">Max 30 pts · Factor II</span></div>
+  <div class="qblock">
+    <div class="qlabel">Saskatchewan job offer</div>
+    <div class="qhint">A valid Saskatchewan job offer earns maximum Factor II points under the <strong>Employment Offer sub-category</strong>. Under Occupations In-Demand or Express Entry streams, this does not apply.</div>
+    <div class="opts" id="grp-jobOffer">
+      <div class="o on" data-g="jobOffer" data-v="0"  onclick="pick(this)">No Saskatchewan job offer <span class="pts">+0</span></div>
+      <div class="o" data-g="jobOffer" data-v="30" onclick="pick(this)">Valid Saskatchewan job offer (Employment Offer stream) <span class="pts">+30</span></div>
+    </div>
+  </div>
+  <div class="qblock">
+    <div class="qlabel">Family member in Saskatchewan</div>
+    <div class="qhint">Points for an immediate family member (spouse, parent, adult child, sibling) who is a Canadian citizen or permanent resident living in Saskatchewan.</div>
+    <div class="opts" id="grp-skFamily">
+      <div class="o on" data-g="skFamily" data-v="0"  onclick="pick(this)">No family in SK <span class="pts">+0</span></div>
+      <div class="o" data-g="skFamily" data-v="20" onclick="pick(this)">Immediate family in SK (citizen/PR) <span class="pts">+20</span></div>
+    </div>
+  </div>
+  <div class="qblock">
+    <div class="qlabel">Past work or study in Saskatchewan</div>
+    <div class="qhint">Prior skilled work experience or post-secondary study completed in Saskatchewan earns connection points under Factor II.</div>
+    <div class="opts" id="grp-skPast">
+      <div class="o on" data-g="skPast" data-v="0"  onclick="pick(this)">None <span class="pts">+0</span></div>
+      <div class="o" data-g="skPast" data-v="10" onclick="pick(this)">Past work experience in SK <span class="pts">+10</span></div>
+      <div class="o" data-g="skPast" data-v="15" onclick="pick(this)">Past post-secondary study in SK <span class="pts">+15</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="font-size:11px;color:var(--slate);line-height:1.6;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;">
+  ⚠️ <strong style="color:var(--amber)">Disclaimer — Estimation Only.</strong>
+  Based on the official SINP International Skilled Worker Assessment Grid. Minimum score of 60/110 required. In 2026, Saskatchewan moved to <strong>6 fixed intake windows per year</strong> (no rolling biweekly draws). Applications fee: CAD $350. Your occupation must be on the Saskatchewan In-Demand Occupations List. &nbsp;<a href="https://www.saskatchewan.ca/residents/moving-to-saskatchewan/immigrate-to-saskatchewan/sinp" target="_blank" style="color:#5D4037;font-weight:600;">Official SINP Website ↗</a>
+</div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="score-card">
+    <div class="sc-lbl">Your SINP Score</div>
+    <div class="sc-num" id="totalScore">0</div>
+    <div class="sc-of">out of 110 points</div>
+    <div class="sc-bar-bg"><div class="sc-bar" id="scoreBar"></div></div>
+    <div class="sc-verdict sv-empty" id="verdict">Select your answers →</div>
+  </div>
+  <div class="bkcard">
+    <div class="bkcard-head">Score Breakdown</div>
+    <div class="bkcard-head" style="background:var(--skbg);color:#5D4037;font-size:10px;padding:5px 14px;border:none">— FACTOR I: Labour Market Success (max 80) —</div>
+    <div class="bkrow"><span class="bkrow-name">🎓 Education</span><span class="bkrow-val" id="bk1">— / 23</span></div>
+    <div class="bkrow"><span class="bkrow-name">💼 Work Experience</span><span class="bkrow-val" id="bk2">— / 15</span></div>
+    <div class="bkrow"><span class="bkrow-name">🗣️ Language</span><span class="bkrow-val" id="bk3">— / 20</span></div>
+    <div class="bkrow"><span class="bkrow-name">🎂 Age</span><span class="bkrow-val" id="bk4">— / 12</span></div>
+    <div class="bkcard-head" style="background:var(--skbg);color:#5D4037;font-size:10px;padding:5px 14px;border:none">— FACTOR II: SK Connection (max 30) —</div>
+    <div class="bkrow"><span class="bkrow-name">📄 Job Offer / Family / Past SK</span><span class="bkrow-val" id="bk5">— / 30</span></div>
+    <div class="bktotal"><span class="bktotal-lbl">Total Score</span><span class="bktotal-val" id="bkTot">0 / 110</span></div>
+  </div>
+  <div class="draws">
+    <div class="draws-head">2026 SINP — Fixed Intake Windows</div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Minimum score to apply</span><span class="draw-range">60 / 110</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#5D4037;width:55%"></div></div>
+      <div class="draw-sub">Minimum 60 pts required across both factors</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Express Entry stream</span><span class="draw-range">60+ pts + EE profile</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:var(--gold);width:60%"></div></div>
+      <div class="draw-sub">Min. 60 SINP pts + valid Express Entry profile number</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Occupations In-Demand</span><span class="draw-range">60–75 pts</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#166534;width:68%"></div></div>
+      <div class="draw-sub">Occupation must be on SK In-Demand list</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Employment Offer sub-category</span><span class="draw-range">60+ pts + job offer</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#1565C0;width:60%"></div></div>
+      <div class="draw-sub">Valid SK job offer earns +30 Factor II pts</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">2026 Intake windows</span><span class="draw-range">6 per year</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#92400e;width:50%"></div></div>
+      <div class="draw-sub">Fixed dates — no rolling biweekly draws in 2026</div>
+    </div>
+  </div>
+    <div class="ctabox">
+    <p>Need an RCIC review of your Saskatchewan SINP pathway?</p>
+    <iframe src="https://admin.goeasyai.ca/widget/form/6a2c642b7470d" style="width:100%;height:600px;border:none;border-radius:3px" id="inline-6a2c642b7470d" data-form-name="BCG Immigration Book a consultation" data-layout-iframe-id="inline-6a2c642b7470d" data-form-id="6a2c642b7470d" data-height="600" title="BCG Immigration Book a consultation"></iframe>
+    <p style="margin-top:8px;font-size:11px;color:var(--navy);font-weight:600;">BCG Immigration Consultancy Ltd.</p>
+  </div><div class="disc">
+    <strong>⚠️ Estimation Only — Not Legal Advice</strong>
+    Based on official SINP ISW Assessment Grid. Min. 60/110 required. Fixed intake windows in 2026. Consult  for a professional assessment.
+  </div>
+</div>
+</div>
+
+<footer>
+  BCG Immigration Consultancy Ltd. &nbsp;|&nbsp;|&nbsp; Surrey, BC Canada<br>
+  <a href="https://www.bcgimmigration.com" target="_blank">www.bcgimmigration.com</a> &nbsp;|&nbsp;
+  <a href="https://www.saskatchewan.ca/residents/moving-to-saskatchewan/immigrate-to-saskatchewan/sinp" target="_blank">Official SINP</a> &nbsp;|&nbsp;
+  <a href="https://my-url.in/booking-link" target="_blank">Book a Consultation</a>
+</footer>
+
+<script>
+var S={edu:null,wk5:null,wk10:0,lang1:null,age:null,jobOffer:0,skFamily:0,skPast:0};
+function pick(el){var g=el.getAttribute('data-g'),v=parseFloat(el.getAttribute('data-v'));document.querySelectorAll('[data-g="'+g+'"]').forEach(function(e){e.classList.remove('on')});el.classList.add('on');if(g==='edu')S.edu=v;else if(g==='wk5')S.wk5=v;else if(g==='wk10')S.wk10=v;else if(g==='age')S.age=v;else if(g==='jobOffer')S.jobOffer=v;else if(g==='skFamily')S.skFamily=v;else if(g==='skPast')S.skPast=v;calc()}
+function pickRow(el){var g=el.getAttribute('data-g'),v=parseFloat(el.getAttribute('data-v'));document.querySelectorAll('[data-g="'+g+'"]').forEach(function(e){e.classList.remove('on')});el.classList.add('on');if(g==='lang1')S.lang1=v;calc()}
+function calc(){
+  var edu=S.edu!==null?S.edu:0;
+  var wk5=S.wk5!==null?S.wk5:0;
+  var wkTotal=Math.min(wk5+S.wk10,15);
+  var lang=S.lang1!==null?S.lang1:0;
+  var age=S.age!==null?S.age:0;
+  var f1=edu+wkTotal+lang+age;
+  var f2=Math.min(S.jobOffer+S.skFamily+S.skPast,30);
+  var total=Math.min(f1+f2,110);
+  document.getElementById('totalScore').textContent=total;
+  document.getElementById('scoreBar').style.width=Math.min((total/110)*100,100)+'%';
+  document.getElementById('bkTot').textContent=total+' / 110';
+  document.getElementById('bk1').textContent=(S.edu!==null?edu:'—')+' / 23';
+  document.getElementById('bk2').textContent=(S.wk5!==null?wkTotal:'—')+' / 15';
+  document.getElementById('bk3').textContent=(S.lang1!==null?lang:'—')+' / 20';
+  document.getElementById('bk4').textContent=(S.age!==null?age:'—')+' / 12';
+  document.getElementById('bk5').textContent=f2+' / 30';
+  var anyFilled=S.edu!==null||S.lang1!==null||S.wk5!==null||S.age!==null;
+  var vbox=document.getElementById('verdict');
+  vbox.className='sc-verdict';
+  if(!anyFilled){vbox.classList.add('sv-empty');vbox.textContent='Select your answers →';}
+  else if(total>=85){vbox.classList.add('sv-green');vbox.textContent='🟢 Highly Competitive!';}
+  else if(total>=70){vbox.classList.add('sv-sk');vbox.textContent='🟤 Strong Profile';}
+  else if(total>=60){vbox.classList.add('sv-amber');vbox.textContent='🟡 Meets Minimum (60+)';}
+  else if(total>0){vbox.classList.add('sv-red');vbox.textContent='🔴 Below 60 — Not Eligible Yet';}
+  else{vbox.classList.add('sv-empty');vbox.textContent='Select your answers →';}
+}
+</script>
+</body>
+</html>

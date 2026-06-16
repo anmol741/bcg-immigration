@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manitoba MPNP Points Calculator 2026 | BCG Immigration</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0D1F35;--navy2:#162d4f;--gold:#C8993A;--gold2:#f0c96a;--goldbg:#FDF6E8;--teal:#0E7C74;--tealbg:#E2F4F2;--slate:#506070;--mist:#F0F4F8;--line:#DDE5EE;--white:#FFFFFF;--red:#991b1b;--amber:#92400e;--mb:#1B5E20;--mbbg:#E8F5E9;--mblock:#2E7D32}
+body{font-family:'Inter',sans-serif;background:var(--mist);color:var(--navy);font-size:14px;line-height:1.5}
+.header{background:var(--navy);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.hbrand{display:flex;align-items:center;gap:10px}
+.hlogo{width:36px;height:36px;background:var(--gold);border-radius:8px;font-weight:800;font-size:13px;color:var(--navy);display:flex;align-items:center;justify-content:center}
+.hname{font-size:16px;font-weight:700;color:#fff}.hname span{color:var(--gold)}
+.hrcic{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:20px}
+.hero{background:linear-gradient(160deg,#071a0b 0%,#1a4a1f 100%);padding:28px 24px;text-align:center;border-bottom:3px solid #2E7D32}
+.hero h1{font-size:clamp(20px,4vw,30px);font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.02em}
+.hero h1 span{color:#A5D6A7}
+.hero p{color:rgba(255,255,255,.6);font-size:13px;max-width:560px;margin:0 auto 16px}
+.hero-tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.htag{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1)}
+.htag.mb{background:rgba(27,94,32,.4);color:#A5D6A7;border-color:rgba(27,94,32,.5)}
+.updated{font-size:11px;color:rgba(255,255,255,.4);margin-top:10px}
+.main{max-width:980px;margin:0 auto;padding:24px 16px 40px;display:grid;grid-template-columns:1fr 290px;gap:20px;align-items:start}
+@media(max-width:720px){.main{grid-template-columns:1fr}.sidebar{order:-1}}
+.sec{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 12px rgba(13,27,42,.07)}
+.sec-head{background:var(--navy);padding:12px 18px;display:flex;align-items:center;gap:10px}
+.sec-icon{font-size:17px}.sec-title{font-size:13px;font-weight:700;color:#fff;flex:1}
+.sec-max{font-size:11px;font-weight:700;color:#A5D6A7;background:rgba(27,94,32,.4);border:1px solid rgba(27,94,32,.5);padding:2px 9px;border-radius:12px}
+.qblock{padding:14px 18px 12px;border-bottom:1px solid var(--line)}.qblock:last-child{border-bottom:none}
+.qlabel{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.qhint{font-size:11px;color:var(--slate);margin-bottom:10px;line-height:1.5}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.o{padding:8px 14px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;color:var(--navy);background:var(--white);display:flex;align-items:center;gap:7px;transition:all .15s;user-select:none}
+.o:hover{border-color:#2E7D32;background:var(--mbbg)}
+.o.on{border-color:#2E7D32;background:var(--mbbg);box-shadow:0 0 0 1.5px #2E7D32}
+.o .pts{font-size:11px;font-weight:800;color:var(--teal);background:var(--tealbg);padding:1px 7px;border-radius:10px;flex-shrink:0}
+.o.on .pts{background:#2E7D32;color:#fff}
+.cb{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;margin-bottom:6px;transition:all .15s;user-select:none}
+.cb:last-child{margin-bottom:0}.cb:hover{border-color:#2E7D32;background:var(--mbbg)}.cb.on{border-color:#2E7D32;background:var(--mbbg)}
+.cb-box{width:20px;height:20px;flex-shrink:0;border-radius:5px;border:2px solid var(--line);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;margin-top:1px;transition:all .15s}
+.cb.on .cb-box{background:#2E7D32;border-color:#2E7D32;color:#fff}
+.cb-body{flex:1}.cb-text{font-size:12px;font-weight:600;color:var(--navy)}.cb-sub{font-size:11px;color:var(--slate);margin-top:1px}
+.cb-pts{font-size:12px;font-weight:800;color:var(--slate);background:var(--mist);padding:2px 8px;border-radius:10px;flex-shrink:0;margin-top:1px}
+.cb.on .cb-pts{background:#2E7D32;color:#fff}
+.clb-table{width:100%;border-collapse:collapse;font-size:12px}
+.clb-table th{background:#f1f5f9;color:var(--slate);font-weight:700;text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);font-size:11px}
+.clb-table td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+.clb-table tr:last-child td{border-bottom:none}
+.clb-table tr{cursor:pointer;transition:background .12s}
+.clb-table tr:hover td{background:var(--mbbg)}
+.clb-table tr.on td{background:var(--mbbg)}
+.clb-table tr.on td:first-child{border-left:3px solid #2E7D32}
+.clb-lvl{font-weight:800;color:var(--navy);font-size:13px}.clb-eq{color:var(--slate);font-size:11px}
+.clb-p{font-weight:800;color:var(--teal);text-align:right}
+.clb-table tr.on .clb-p{color:#2E7D32}
+.score-card{background:var(--navy);border-radius:14px;padding:22px 18px;text-align:center;margin-bottom:14px;box-shadow:0 6px 28px rgba(13,27,42,.25)}
+.sc-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);margin-bottom:4px}
+.sc-num{font-size:76px;font-weight:800;color:#A5D6A7;line-height:1;letter-spacing:-.04em;transition:all .3s}
+.sc-of{font-size:12px;color:rgba(255,255,255,.3);margin-bottom:14px}
+.sc-bar-bg{background:rgba(255,255,255,.1);border-radius:4px;height:8px;overflow:hidden;margin-bottom:14px}
+.sc-bar{height:100%;background:linear-gradient(90deg,#1B5E20,#A5D6A7);border-radius:4px;width:0%;transition:width .45s}
+.sc-verdict{display:inline-block;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px}
+.sv-empty{background:rgba(255,255,255,.07);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1)}
+.sv-red{background:rgba(153,27,27,.35);color:#fca5a5;border:1px solid rgba(153,27,27,.5)}
+.sv-amber{background:rgba(200,153,58,.25);color:#fcd34d;border:1px solid rgba(200,153,58,.4)}
+.sv-mb{background:rgba(27,94,32,.35);color:#A5D6A7;border:1px solid rgba(27,94,32,.5)}
+.sv-green{background:rgba(22,101,52,.5);color:#4ade80;border:1px solid rgba(22,101,52,.6)}
+.bkcard{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 2px 10px rgba(13,27,42,.06)}
+.bkcard-head{background:#f1f5f9;padding:9px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);border-bottom:1px solid var(--line)}
+.bkrow{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px dashed var(--line);font-size:12px}
+.bkrow:last-child{border-bottom:none}
+.bkrow-name{color:var(--slate)}.bkrow-val{font-weight:800;color:var(--navy);font-size:13px}
+.bktotal{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--navy)}
+.bktotal-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5)}
+.bktotal-val{font-size:20px;font-weight:800;color:#A5D6A7}
+.draws{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 2px 10px rgba(13,27,42,.06)}
+.draws-head{background:#f1f5f9;padding:9px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);border-bottom:1px solid var(--line)}
+.draw-row{padding:9px 14px;border-bottom:1px solid var(--line)}.draw-row:last-child{border-bottom:none}
+.draw-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.draw-name{font-size:12px;font-weight:700;color:var(--navy)}
+.draw-range{font-size:11px;font-weight:700;color:#2E7D32;background:var(--mbbg);padding:1px 7px;border-radius:10px}
+.draw-bar-bg{background:var(--mist);border-radius:3px;height:4px;overflow:hidden}
+.draw-bar-fill{height:100%;border-radius:3px}.draw-sub{font-size:11px;color:var(--slate);margin-top:3px}
+.ctabox{background:linear-gradient(135deg,var(--gold) 0%,#8a5c10 100%);border-radius:12px;padding:16px;text-align:center;margin-bottom:14px}
+.ctabox p{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:11px;line-height:1.5}
+.ctabtn{display:block;text-decoration:none;padding:9px 14px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:6px;transition:all .15s}
+.ctabtn:last-child{margin-bottom:0}
+.ctabtn.dark{background:var(--navy);color:#fff}.ctabtn.dark:hover{background:#1a3050}
+.ctabtn.lite{background:rgba(13,27,42,.12);color:var(--navy);border:1px solid rgba(13,27,42,.2)}.ctabtn.lite:hover{background:rgba(13,27,42,.22)}
+.disc{font-size:11px;color:var(--slate);line-height:1.6;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.disc strong{display:block;color:var(--amber);font-size:12px;margin-bottom:3px}
+.pnav{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.pnav a{text-decoration:none;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1px solid var(--line);color:var(--slate);background:var(--white);transition:all .15s}
+.pnav a:hover{border-color:var(--navy);color:var(--navy)}
+.pnav a.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+footer{background:var(--navy);text-align:center;padding:18px;font-size:11px;color:rgba(255,255,255,.4)}
+footer a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<!-- TOP DISCLAIMER BANNER -->
+<div style="background:#FFF8E1;border-bottom:3px solid #F59E0B;padding:12px 24px;display:flex;align-items:flex-start;gap:12px;">
+  <div style="font-size:22px;flex-shrink:0;line-height:1.2;">⚠️</div>
+  <div style="font-size:12px;color:#78350F;line-height:1.7;">
+    <strong style="font-size:13px;color:#92400E;display:block;margin-bottom:2px;">Important Disclaimer — Estimation Only · Not Legal Advice</strong>
+    This calculator provides a <strong>general score estimate only</strong>. AI-powered tools can make errors — point grids, thresholds, and program rules change without notice. 
+    <strong>Do not make any immigration decisions based on this tool alone.</strong> 
+    Always consult a <strong>Regulated Canadian Immigration Consultant (RCIC)</strong> or licensed immigration lawyer before taking any action. 
+    This is <strong>not legal advice</strong> and does not create a consultant-client relationship.
+  </div>
+</div>
+<!-- END DISCLAIMER BANNER -->
+<!-- IRCC 2026 UPDATE STRIP -->
+<div style="background:#EFF6FF;border-bottom:1px solid #BFDBFE;padding:9px 24px;display:flex;align-items:flex-start;gap:10px;">
+  <div style="font-size:14px;flex-shrink:0;">🇨🇦</div>
+  <div style="font-size:11px;color:#1E3A8A;line-height:1.6;">
+    <strong style="color:#1D4ED8;">2026 IRCC / PNP Update (current as of June 12, 2026):</strong>
+    Canada set <strong>91,500 total PNP nominations</strong> for 2026 (+66% vs 2025). 2026 MPNP allocation: <strong>6,239 nominations</strong> (2nd largest after Ontario). Per SOR/2026-63 (Mar 30, 2026), Manitoba now has sole authority over intent-to-reside &amp; economic establishment. MPNP now uses web-form inquiries only.
+  </div>
+</div>
+<!-- END IRCC UPDATE STRIP -->
+<div class="header">
+  <div class="hbrand"><div class="hlogo">BCG</div><div class="hname">BCG <span>Immigration</span> Consultancy</div></div>
+  
+</div>
+<div class="hero">
+  <h1>Manitoba MPNP <span>Points Calculator 2026</span></h1>
+  <p>Estimate your Manitoba Provincial Nominee Program (MPNP) EOI score — Skilled Worker streams. Score updates live as you click your answers.</p>
+  <div class="hero-tags">
+    <span class="htag mb">⚡ Live Score</span>
+    <span class="htag">Max 100 pts (self-assessment)</span>
+    <span class="htag">Min. 60 to qualify</span>
+    <span class="htag">Latest draw: May 7, 2026</span>
+  </div>
+  <div class="updated">Updated: June 12, 2026 &nbsp;|&nbsp; Based on official MPNP Skilled Worker Overseas self-assessment grid &nbsp;|&nbsp; Latest draw: May 7, 2026 (906 invitations — Skilled Worker streams)</div>
+</div>
+
+<div class="main">
+<div class="form-col">
+
+<div class="pnav">
+  <a href="bcpnp-calculator.html">🍁 BC PNP</a>
+  <a href="alberta-pnp-calculator.html">🏔 Alberta AAIP</a>
+  <a href="saskatchewan-pnp-calculator.html">🌾 Saskatchewan SINP</a>
+  <a href="manitoba-pnp-calculator.html" class="active">🦬 Manitoba MPNP</a>
+</div>
+
+<!-- LANGUAGE -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🗣️</span><span class="sec-title">Language Proficiency (CLB)</span><span class="sec-max">Max 25 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">First official language (English or French) <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">Points are based on individual CLB band scores across all 4 skills (Reading, Writing, Listening, Speaking). Your overall CLB is the lowest band score.<br><strong>IELTS GT:</strong> 8.5+ = CLB 10 | 8.0 = CLB 9 | 7.5 = CLB 8 | 7.0 = CLB 7 | 6.5 = CLB 6 | 6.0 = CLB 5 | 5.0 = CLB 4</div>
+    <table class="clb-table">
+      <thead><tr><th>CLB Level</th><th>IELTS equiv.</th><th style="text-align:right">Points</th></tr></thead>
+      <tbody id="tbl-lang1">
+        <tr data-g="lang1" data-v="25" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 10+</span></td><td class="clb-eq">8.5–9.0</td><td class="clb-p">+25 pts</td></tr>
+        <tr data-g="lang1" data-v="22" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 9</span></td><td class="clb-eq">8.0</td><td class="clb-p">+22 pts</td></tr>
+        <tr data-g="lang1" data-v="18" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 8</span></td><td class="clb-eq">7.5</td><td class="clb-p">+18 pts</td></tr>
+        <tr data-g="lang1" data-v="15" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 7</span></td><td class="clb-eq">7.0</td><td class="clb-p">+15 pts</td></tr>
+        <tr data-g="lang1" data-v="11" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 6</span></td><td class="clb-eq">6.5</td><td class="clb-p">+11 pts</td></tr>
+        <tr data-g="lang1" data-v="7"  onclick="pickRow(this)"><td><span class="clb-lvl">CLB 5</span></td><td class="clb-eq">6.0</td><td class="clb-p">+7 pts</td></tr>
+        <tr data-g="lang1" data-v="3"  onclick="pickRow(this)"><td><span class="clb-lvl">CLB 4</span></td><td class="clb-eq">5.0</td><td class="clb-p">+3 pts</td></tr>
+        <tr data-g="lang1" data-v="0"  onclick="pickRow(this)"><td><span class="clb-lvl">CLB 3 or below</span></td><td class="clb-eq">Below 5.0</td><td class="clb-p">+0 pts</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- AGE -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🎂</span><span class="sec-title">Age</span><span class="sec-max">Max 15 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Your age at time of EOI submission <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">MPNP awards maximum points for ages 21–35. Points decline after 35. Applicants 50+ receive no age points.</div>
+    <div class="opts" id="grp-age">
+      <div class="o" data-g="age" data-v="15" onclick="pick(this)">21–35 years <span class="pts">+15</span></div>
+      <div class="o" data-g="age" data-v="12" onclick="pick(this)">18–20 years <span class="pts">+12</span></div>
+      <div class="o" data-g="age" data-v="10" onclick="pick(this)">36–40 years <span class="pts">+10</span></div>
+      <div class="o" data-g="age" data-v="7"  onclick="pick(this)">41–45 years <span class="pts">+7</span></div>
+      <div class="o" data-g="age" data-v="3"  onclick="pick(this)">46–49 years <span class="pts">+3</span></div>
+      <div class="o" data-g="age" data-v="0"  onclick="pick(this)">50+ years <span class="pts">+0</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- WORK EXPERIENCE -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">💼</span><span class="sec-title">Work Experience</span><span class="sec-max">Max 25 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Total skilled work experience (NOC TEER 0–3) <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">Count full-time equivalent skilled work in your occupation. Both Canadian and international experience count toward total work experience.</div>
+    <div class="opts" id="grp-work">
+      <div class="o" data-g="work" data-v="25" onclick="pick(this)">5+ years <span class="pts">+25</span></div>
+      <div class="o" data-g="work" data-v="20" onclick="pick(this)">4 years <span class="pts">+20</span></div>
+      <div class="o" data-g="work" data-v="16" onclick="pick(this)">3 years <span class="pts">+16</span></div>
+      <div class="o" data-g="work" data-v="12" onclick="pick(this)">2 years <span class="pts">+12</span></div>
+      <div class="o" data-g="work" data-v="8"  onclick="pick(this)">1 year <span class="pts">+8</span></div>
+      <div class="o" data-g="work" data-v="4"  onclick="pick(this)">&lt;1 year <span class="pts">+4</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🎓</span><span class="sec-title">Education</span><span class="sec-max">Max 25 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Highest completed credential <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">Foreign credentials should have an ECA from a recognized body. Choose your highest <em>completed</em> level.</div>
+    <div class="opts" id="grp-edu">
+      <div class="o" data-g="edu" data-v="25" onclick="pick(this)">Master's or Doctorate <span class="pts">+25</span></div>
+      <div class="o" data-g="edu" data-v="22" onclick="pick(this)">Bachelor's Degree (4+ years) <span class="pts">+22</span></div>
+      <div class="o" data-g="edu" data-v="18" onclick="pick(this)">Bachelor's Degree (3 years) <span class="pts">+18</span></div>
+      <div class="o" data-g="edu" data-v="14" onclick="pick(this)">2-year Diploma / Trades Cert. <span class="pts">+14</span></div>
+      <div class="o" data-g="edu" data-v="10" onclick="pick(this)">1-year Certificate <span class="pts">+10</span></div>
+      <div class="o" data-g="edu" data-v="5"  onclick="pick(this)">High School <span class="pts">+5</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADAPTABILITY / MB CONNECTION -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🏘️</span><span class="sec-title">Adaptability — Connection to Manitoba</span><span class="sec-max">Max 10 pts bonus</span></div>
+  <div class="qblock">
+    <div class="qlabel">Manitoba connections — select all that apply</div>
+    <div class="qhint">MPNP rewards candidates who demonstrate strong intent and connection to Manitoba specifically. Connections outside Manitoba can <em>reduce</em> your score in the full official grid. Select positive Manitoba connections you have.</div>
+    <div class="cb" data-k="mbJob" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body">
+        <div class="cb-text">Valid Manitoba job offer from a Manitoba employer</div>
+        <div class="cb-sub">Full-time, eligible occupation, from a registered Manitoba business</div>
+      </div>
+      <div class="cb-pts">+10 pts</div>
+    </div>
+    <div class="cb" data-k="mbFamily" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body">
+        <div class="cb-text">Close family member in Manitoba (citizen/PR)</div>
+        <div class="cb-sub">Spouse, parent, adult child, sibling living in Manitoba</div>
+      </div>
+      <div class="cb-pts">+8 pts</div>
+    </div>
+    <div class="cb" data-k="mbStudy" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body">
+        <div class="cb-text">Studied at a Manitoba post-secondary institution</div>
+        <div class="cb-sub">Completed a degree, diploma, or certificate in Manitoba</div>
+      </div>
+      <div class="cb-pts">+5 pts</div>
+    </div>
+    <div class="cb" data-k="mbWork" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body">
+        <div class="cb-text">Past work experience in Manitoba</div>
+        <div class="cb-sub">Skilled work experience in your occupation, completed in Manitoba</div>
+      </div>
+      <div class="cb-pts">+5 pts</div>
+    </div>
+    <div class="cb" data-k="mbVisit" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body">
+        <div class="cb-text">Previously visited or lived in Manitoba</div>
+        <div class="cb-sub">Prior residency or significant visit to Manitoba</div>
+      </div>
+      <div class="cb-pts">+3 pts</div>
+    </div>
+  </div>
+</div>
+
+<div style="font-size:11px;color:var(--slate);line-height:1.6;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;">
+  ⚠️ <strong style="color:var(--amber)">Disclaimer — Estimation Only.</strong>
+  Based on the official MPNP Skilled Worker Overseas self-assessment grid. The full official MPNP EOI ranks out of 1,000 points (not 100) — this simplified calculator uses the Skilled Worker Overseas 5-factor self-assessment (max 100). Minimum 60 pts required to qualify. Manitoba prioritizes healthcare (NOC broad category 3) in 2026 draws. Latest draw: May 7, 2026 (906 invitations). &nbsp;<a href="https://immigratemanitoba.com/immigrate/apply/eoi/" target="_blank" style="color:#2E7D32;font-weight:600;">Official MPNP EOI ↗</a>
+</div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="score-card">
+    <div class="sc-lbl">Your MPNP Score</div>
+    <div class="sc-num" id="totalScore">0</div>
+    <div class="sc-of">out of 100 points</div>
+    <div class="sc-bar-bg"><div class="sc-bar" id="scoreBar"></div></div>
+    <div class="sc-verdict sv-empty" id="verdict">Select your answers →</div>
+  </div>
+  <div class="bkcard">
+    <div class="bkcard-head">Score Breakdown</div>
+    <div class="bkrow"><span class="bkrow-name">🗣️ Language</span><span class="bkrow-val" id="bk1">— / 25</span></div>
+    <div class="bkrow"><span class="bkrow-name">🎂 Age</span><span class="bkrow-val" id="bk2">— / 15</span></div>
+    <div class="bkrow"><span class="bkrow-name">💼 Work Experience</span><span class="bkrow-val" id="bk3">— / 25</span></div>
+    <div class="bkrow"><span class="bkrow-name">🎓 Education</span><span class="bkrow-val" id="bk4">— / 25</span></div>
+    <div class="bkrow"><span class="bkrow-name">🏘️ Adaptability / MB Ties</span><span class="bkrow-val" id="bk5">0 / 10+</span></div>
+    <div class="bktotal"><span class="bktotal-lbl">Total Score</span><span class="bktotal-val" id="bkTot">0 / 100</span></div>
+  </div>
+  <div class="draws">
+    <div class="draws-head">2026 MPNP Draws (as of Jun 12, 2026)</div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Skilled Worker in Manitoba</span><span class="draw-range">Min. 60 pts</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#2E7D32;width:60%"></div></div>
+      <div class="draw-sub">May 7, 2026 — 906 total invitations issued</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Healthcare (NOC cat. 3)</span><span class="draw-range">Priority 2026</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:var(--gold);width:70%"></div></div>
+      <div class="draw-sub">Dominated April 23 draw — highest priority sector</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Skilled Worker Overseas</span><span class="draw-range">Min. 60 pts</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#1565C0;width:60%"></div></div>
+      <div class="draw-sub">Must show strong Manitoba connection / job offer</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">International Education Stream</span><span class="draw-range">Graduate tie to MB</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#92400e;width:55%"></div></div>
+      <div class="draw-sub">MB post-secondary grad + Manitoba job or connection</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Draw frequency</span><span class="draw-range">~Bi-monthly 2026</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#5D4037;width:45%"></div></div>
+      <div class="draw-sub">3 draws in 2026 so far (Jan, Mar, Apr/May)</div>
+    </div>
+  </div>
+    <div class="ctabox">
+    <p>Need an RCIC review of your Manitoba MPNP pathway?</p>
+    <iframe src="https://admin.goeasyai.ca/widget/form/6a2c642b7470d" style="width:100%;height:600px;border:none;border-radius:3px" id="inline-6a2c642b7470d" data-form-name="BCG Immigration Book a consultation" data-layout-iframe-id="inline-6a2c642b7470d" data-form-id="6a2c642b7470d" data-height="600" title="BCG Immigration Book a consultation"></iframe>
+    <p style="margin-top:8px;font-size:11px;color:var(--navy);font-weight:600;">BCG Immigration Consultancy Ltd.</p>
+  </div><div class="disc">
+    <strong>⚠️ Estimation Only — Not Legal Advice</strong>
+    Simplified Skilled Worker Overseas self-assessment grid. Full MPNP EOI ranks out of 1,000 pts. Consult  for a full professional assessment.
+  </div>
+</div>
+</div>
+
+<footer>
+  BCG Immigration Consultancy Ltd. &nbsp;|&nbsp;|&nbsp; Surrey, BC Canada<br>
+  <a href="https://www.bcgimmigration.com" target="_blank">www.bcgimmigration.com</a> &nbsp;|&nbsp;
+  <a href="https://immigratemanitoba.com/immigrate/apply/eoi/" target="_blank">Official MPNP</a> &nbsp;|&nbsp;
+  <a href="https://my-url.in/booking-link" target="_blank">Book a Consultation</a>
+</footer>
+
+<script>
+var S={lang1:null,age:null,work:null,edu:null,mbJob:false,mbFamily:false,mbStudy:false,mbWork:false,mbVisit:false};
+function pick(el){var g=el.getAttribute('data-g'),v=parseFloat(el.getAttribute('data-v'));document.querySelectorAll('[data-g="'+g+'"]').forEach(function(e){e.classList.remove('on')});el.classList.add('on');if(g==='age')S.age=v;else if(g==='work')S.work=v;else if(g==='edu')S.edu=v;calc()}
+function pickRow(el){var g=el.getAttribute('data-g'),v=parseFloat(el.getAttribute('data-v'));document.querySelectorAll('[data-g="'+g+'"]').forEach(function(e){e.classList.remove('on')});el.classList.add('on');if(g==='lang1')S.lang1=v;calc()}
+function tog(el){var k=el.getAttribute('data-k');S[k]=!S[k];el.classList.toggle('on',S[k]);el.querySelector('.cb-box').textContent=S[k]?'✓':'';calc()}
+function calc(){
+  var lang=S.lang1!==null?S.lang1:0;
+  var age=S.age!==null?S.age:0;
+  var work=S.work!==null?S.work:0;
+  var edu=S.edu!==null?S.edu:0;
+  var adapt=(S.mbJob?10:0)+(S.mbFamily?8:0)+(S.mbStudy?5:0)+(S.mbWork?5:0)+(S.mbVisit?3:0);
+  var base=lang+age+work+edu;
+  var total=Math.min(base+adapt,100);
+  document.getElementById('totalScore').textContent=total;
+  document.getElementById('scoreBar').style.width=Math.min((total/100)*100,100)+'%';
+  document.getElementById('bkTot').textContent=total+' / 100';
+  document.getElementById('bk1').textContent=(S.lang1!==null?lang:'—')+' / 25';
+  document.getElementById('bk2').textContent=(S.age!==null?age:'—')+' / 15';
+  document.getElementById('bk3').textContent=(S.work!==null?work:'—')+' / 25';
+  document.getElementById('bk4').textContent=(S.edu!==null?edu:'—')+' / 25';
+  document.getElementById('bk5').textContent=adapt+' / 10+';
+  var anyFilled=S.lang1!==null||S.age!==null||S.work!==null||S.edu!==null;
+  var vbox=document.getElementById('verdict');
+  vbox.className='sc-verdict';
+  if(!anyFilled){vbox.classList.add('sv-empty');vbox.textContent='Select your answers →';}
+  else if(total>=80){vbox.classList.add('sv-green');vbox.textContent='🟢 Highly Competitive!';}
+  else if(total>=70){vbox.classList.add('sv-mb');vbox.textContent='🟢 Strong Profile';}
+  else if(total>=60){vbox.classList.add('sv-amber');vbox.textContent='🟡 Meets Minimum (60+)';}
+  else if(total>0){vbox.classList.add('sv-red');vbox.textContent='🔴 Below 60 — Not Eligible Yet';}
+  else{vbox.classList.add('sv-empty');vbox.textContent='Select your answers →';}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alberta AAIP Points Calculator 2026 | BCG Immigration</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0D1F35;--navy2:#162d4f;--gold:#C8993A;--gold2:#f0c96a;--goldbg:#FDF6E8;--teal:#0E7C74;--tealbg:#E2F4F2;--slate:#506070;--mist:#F0F4F8;--line:#DDE5EE;--white:#FFFFFF;--red:#991b1b;--redbg:#FEF2F2;--amber:#92400e;--amberbg:#FFFBEB;--ab:#1565C0;--abbg:#E3F2FD}
+body{font-family:'Inter',sans-serif;background:var(--mist);color:var(--navy);font-size:14px;line-height:1.5}
+.header{background:var(--navy);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.hbrand{display:flex;align-items:center;gap:10px}
+.hlogo{width:36px;height:36px;background:var(--gold);border-radius:8px;font-weight:800;font-size:13px;color:var(--navy);display:flex;align-items:center;justify-content:center}
+.hname{font-size:16px;font-weight:700;color:#fff}.hname span{color:var(--gold)}
+.hrcic{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.15);padding:3px 10px;border-radius:20px}
+.hero{background:linear-gradient(160deg,#0a1428 0%,#1a3a6e 100%);padding:28px 24px;text-align:center;border-bottom:3px solid #1565C0}
+.hero h1{font-size:clamp(20px,4vw,30px);font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.02em}
+.hero h1 span{color:#64B5F6}
+.hero p{color:rgba(255,255,255,.6);font-size:13px;max-width:560px;margin:0 auto 16px}
+.hero-tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.htag{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1)}
+.htag.blue{background:rgba(21,101,192,.3);color:#90CAF9;border-color:rgba(21,101,192,.4)}
+.updated{font-size:11px;color:rgba(255,255,255,.4);margin-top:10px}
+.main{max-width:980px;margin:0 auto;padding:24px 16px 40px;display:grid;grid-template-columns:1fr 290px;gap:20px;align-items:start}
+@media(max-width:720px){.main{grid-template-columns:1fr}.sidebar{order:-1}}
+.sec{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 12px rgba(13,27,42,.07)}
+.sec-head{background:var(--navy);padding:12px 18px;display:flex;align-items:center;gap:10px}
+.sec-icon{font-size:17px}.sec-title{font-size:13px;font-weight:700;color:#fff;flex:1}
+.sec-max{font-size:11px;font-weight:700;color:#90CAF9;background:rgba(21,101,192,.3);border:1px solid rgba(21,101,192,.4);padding:2px 9px;border-radius:12px}
+.qblock{padding:14px 18px 12px;border-bottom:1px solid var(--line)}.qblock:last-child{border-bottom:none}
+.qlabel{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.qhint{font-size:11px;color:var(--slate);margin-bottom:10px;line-height:1.5}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.o{padding:8px 14px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;color:var(--navy);background:var(--white);display:flex;align-items:center;gap:7px;transition:all .15s;user-select:none}
+.o:hover{border-color:#1565C0;background:var(--abbg)}
+.o.on{border-color:#1565C0;background:var(--abbg);box-shadow:0 0 0 1.5px #1565C0}
+.o .pts{font-size:11px;font-weight:800;color:var(--teal);background:var(--tealbg);padding:1px 7px;border-radius:10px;flex-shrink:0}
+.o.on .pts{background:#1565C0;color:#fff}
+.cb{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;margin-bottom:6px;transition:all .15s;user-select:none}
+.cb:last-child{margin-bottom:0}.cb:hover{border-color:#1565C0;background:var(--abbg)}.cb.on{border-color:#1565C0;background:var(--abbg)}
+.cb-box{width:20px;height:20px;flex-shrink:0;border-radius:5px;border:2px solid var(--line);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;margin-top:1px;transition:all .15s}
+.cb.on .cb-box{background:#1565C0;border-color:#1565C0;color:#fff}
+.cb-body{flex:1}.cb-text{font-size:12px;font-weight:600;color:var(--navy)}.cb-sub{font-size:11px;color:var(--slate);margin-top:1px}
+.cb-pts{font-size:12px;font-weight:800;color:var(--slate);background:var(--mist);padding:2px 8px;border-radius:10px;flex-shrink:0;margin-top:1px}
+.cb.on .cb-pts{background:#1565C0;color:#fff}
+.clb-table{width:100%;border-collapse:collapse;font-size:12px}
+.clb-table th{background:#f1f5f9;color:var(--slate);font-weight:700;text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);font-size:11px}
+.clb-table td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+.clb-table tr:last-child td{border-bottom:none}
+.clb-table tr{cursor:pointer;transition:background .12s}
+.clb-table tr:hover td{background:var(--abbg)}
+.clb-table tr.on td{background:var(--abbg)}
+.clb-table tr.on td:first-child{border-left:3px solid #1565C0}
+.clb-lvl{font-weight:800;color:var(--navy);font-size:13px}.clb-eq{color:var(--slate);font-size:11px}
+.clb-p{font-weight:800;color:var(--teal);text-align:right}
+.clb-table tr.on .clb-p{color:#1565C0}
+.score-card{background:var(--navy);border-radius:14px;padding:22px 18px;text-align:center;margin-bottom:14px;box-shadow:0 6px 28px rgba(13,27,42,.25)}
+.sc-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);margin-bottom:4px}
+.sc-num{font-size:76px;font-weight:800;color:#64B5F6;line-height:1;letter-spacing:-.04em;transition:all .3s}
+.sc-of{font-size:12px;color:rgba(255,255,255,.3);margin-bottom:14px}
+.sc-bar-bg{background:rgba(255,255,255,.1);border-radius:4px;height:8px;overflow:hidden;margin-bottom:14px}
+.sc-bar{height:100%;background:linear-gradient(90deg,#1565C0,#64B5F6);border-radius:4px;width:0%;transition:width .45s}
+.sc-verdict{display:inline-block;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px}
+.sv-empty{background:rgba(255,255,255,.07);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1)}
+.sv-red{background:rgba(153,27,27,.35);color:#fca5a5;border:1px solid rgba(153,27,27,.5)}
+.sv-amber{background:rgba(200,153,58,.25);color:#fcd34d;border:1px solid rgba(200,153,58,.4)}
+.sv-blue{background:rgba(21,101,192,.3);color:#90CAF9;border:1px solid rgba(21,101,192,.5)}
+.sv-green{background:rgba(22,101,52,.35);color:#4ade80;border:1px solid rgba(22,101,52,.5)}
+.bkcard{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 2px 10px rgba(13,27,42,.06)}
+.bkcard-head{background:#f1f5f9;padding:9px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);border-bottom:1px solid var(--line)}
+.bkrow{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px dashed var(--line);font-size:12px}
+.bkrow:last-child{border-bottom:none}
+.bkrow-name{color:var(--slate)}.bkrow-val{font-weight:800;color:var(--navy);font-size:13px}
+.bktotal{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--navy)}
+.bktotal-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5)}
+.bktotal-val{font-size:20px;font-weight:800;color:#64B5F6}
+.draws{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 2px 10px rgba(13,27,42,.06)}
+.draws-head{background:#f1f5f9;padding:9px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);border-bottom:1px solid var(--line)}
+.draw-row{padding:9px 14px;border-bottom:1px solid var(--line)}.draw-row:last-child{border-bottom:none}
+.draw-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.draw-name{font-size:12px;font-weight:700;color:var(--navy)}
+.draw-range{font-size:11px;font-weight:700;color:#1565C0;background:var(--abbg);padding:1px 7px;border-radius:10px}
+.draw-bar-bg{background:var(--mist);border-radius:3px;height:4px;overflow:hidden}
+.draw-bar-fill{height:100%;border-radius:3px}
+.draw-sub{font-size:11px;color:var(--slate);margin-top:3px}
+.ctabox{background:linear-gradient(135deg,var(--gold) 0%,#8a5c10 100%);border-radius:12px;padding:16px;text-align:center;margin-bottom:14px}
+.ctabox p{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:11px;line-height:1.5}
+.ctabtn{display:block;text-decoration:none;padding:9px 14px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:6px;transition:all .15s}
+.ctabtn:last-child{margin-bottom:0}
+.ctabtn.dark{background:var(--navy);color:#fff}.ctabtn.dark:hover{background:#1a3050}
+.ctabtn.lite{background:rgba(13,27,42,.12);color:var(--navy);border:1px solid rgba(13,27,42,.2)}.ctabtn.lite:hover{background:rgba(13,27,42,.22)}
+.disc{font-size:11px;color:var(--slate);line-height:1.6;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.disc strong{display:block;color:var(--amber);font-size:12px;margin-bottom:3px}
+.pnav{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.pnav a{text-decoration:none;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1px solid var(--line);color:var(--slate);background:var(--white);transition:all .15s}
+.pnav a:hover{border-color:var(--navy);color:var(--navy)}
+.pnav a.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+footer{background:var(--navy);text-align:center;padding:18px;font-size:11px;color:rgba(255,255,255,.4)}
+footer a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<!-- TOP DISCLAIMER BANNER -->
+<div style="background:#FFF8E1;border-bottom:3px solid #F59E0B;padding:12px 24px;display:flex;align-items:flex-start;gap:12px;">
+  <div style="font-size:22px;flex-shrink:0;line-height:1.2;">⚠️</div>
+  <div style="font-size:12px;color:#78350F;line-height:1.7;">
+    <strong style="font-size:13px;color:#92400E;display:block;margin-bottom:2px;">Important Disclaimer — Estimation Only · Not Legal Advice</strong>
+    This calculator provides a <strong>general score estimate only</strong>. AI-powered tools can make errors — point grids, thresholds, and program rules change without notice. 
+    <strong>Do not make any immigration decisions based on this tool alone.</strong> 
+    Always consult a <strong>Regulated Canadian Immigration Consultant (RCIC)</strong> or licensed immigration lawyer before taking any action. 
+    This is <strong>not legal advice</strong> and does not create a consultant-client relationship.
+  </div>
+</div>
+<!-- END DISCLAIMER BANNER -->
+<!-- IRCC 2026 UPDATE STRIP -->
+<div style="background:#EFF6FF;border-bottom:1px solid #BFDBFE;padding:9px 24px;display:flex;align-items:flex-start;gap:10px;">
+  <div style="font-size:14px;flex-shrink:0;">🇨🇦</div>
+  <div style="font-size:11px;color:#1E3A8A;line-height:1.6;">
+    <strong style="color:#1D4ED8;">2026 IRCC / PNP Update (current as of June 12, 2026):</strong>
+    Canada set <strong>91,500 total PNP nominations</strong> for 2026 (+66% vs 2025). 2026 AAIP allocation: <strong>6,403 nominations</strong> across 8 streams. Per SOR/2026-63 (Mar 30, 2026), Alberta now has sole authority over intent-to-reside &amp; economic establishment. $135 Worker EOI fee since Apr 7, 2026. Enhanced PNP processing ~7 months.
+  </div>
+</div>
+<!-- END IRCC UPDATE STRIP -->
+<div class="header">
+  <div class="hbrand"><div class="hlogo">BCG</div><div class="hname">BCG <span>Immigration</span> Consultancy</div></div>
+  
+</div>
+<div class="hero">
+  <h1>Alberta AAIP <span>Points Calculator 2026</span></h1>
+  <p>Estimate your Worker EOI score for the Alberta Advantage Immigration Program (AAIP) — 100-point grid. Score updates live as you click.</p>
+  <div class="hero-tags">
+    <span class="htag blue">⚡ Live Score</span>
+    <span class="htag">Max 100 Points</span>
+    <span class="htag">Worker EOI Grid · Aug 2025</span>
+    <span class="htag">Last draw: Jun 2, 2026</span>
+  </div>
+  <div class="updated">Updated: June 12, 2026 &nbsp;|&nbsp; Based on official AAIP Worker EOI Points Grid (August 7, 2025 version) &nbsp;|&nbsp; Latest draw: June 2, 2026 (AOS min. EOI 54)</div>
+</div>
+
+<div class="main">
+<div class="form-col">
+
+<div class="pnav">
+  <a href="bcpnp-calculator.html">🍁 BC PNP</a>
+  <a href="alberta-pnp-calculator.html" class="active">🏔 Alberta AAIP</a>
+  <a href="saskatchewan-pnp-calculator.html">🌾 Saskatchewan SINP</a>
+  <a href="manitoba-pnp-calculator.html">🦬 Manitoba MPNP</a>
+</div>
+
+<!-- EDUCATION -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🎓</span><span class="sec-title">Education</span><span class="sec-max">Max 12 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Highest completed credential <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">Foreign credentials require an ECA from an IRCC-designated body (WES, IQAS). Canadian credentials do not require ECA.</div>
+    <div class="opts" id="grp-edu">
+      <div class="o" data-g="edu" data-v="12" onclick="pick(this)">Doctorate Degree <span class="pts">+12</span></div>
+      <div class="o" data-g="edu" data-v="10" onclick="pick(this)">Master's Degree <span class="pts">+10</span></div>
+      <div class="o" data-g="edu" data-v="8"  onclick="pick(this)">Bachelor's Degree <span class="pts">+8</span></div>
+      <div class="o" data-g="edu" data-v="6"  onclick="pick(this)">Trades Certificate / Diploma <span class="pts">+6</span></div>
+      <div class="o" data-g="edu" data-v="4"  onclick="pick(this)">Diploma / Certificate <span class="pts">+4</span></div>
+      <div class="o" data-g="edu" data-v="0"  onclick="pick(this)">Secondary School or lower <span class="pts">+0</span></div>
+    </div>
+  </div>
+  <div class="qblock">
+    <div class="qlabel">Where was your highest credential completed?</div>
+    <div class="qhint">Bonus points for Canadian education — Alberta study earns the most. These replace the base education bonus (pick the best one).</div>
+    <div class="opts" id="grp-eduLoc">
+      <div class="o" data-g="eduLoc" data-v="10" onclick="pick(this)">Completed in Alberta <span class="pts">+10</span></div>
+      <div class="o" data-g="eduLoc" data-v="6"  onclick="pick(this)">Completed in another Canadian province <span class="pts">+6</span></div>
+      <div class="o on" data-g="eduLoc" data-v="0"  onclick="pick(this)">Completed outside Canada <span class="pts">+0</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- LANGUAGE -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🗣️</span><span class="sec-title">Language Proficiency (CLB / NCLC)</span><span class="sec-max">Max 20 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">English CLB level (IELTS GT, CELPIP, or PTE Core) <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">Minimum CLB 4 required across all 4 skills to submit an EOI. Your CLB is your lowest band.<br><strong>IELTS GT:</strong> 8.5+ = CLB 10 | 8.0 = CLB 9 | 7.5 = CLB 8 | 7.0 = CLB 7 | 6.5 = CLB 6 | 6.0 = CLB 5 | 5.0 = CLB 4<br><strong>CELPIP:</strong> 10 = CLB 10 | 9 = CLB 9 | 8 = CLB 8 | 7 = CLB 7 | 6 = CLB 6 | 5 = CLB 5</div>
+    <table class="clb-table">
+      <thead><tr><th>CLB Level</th><th>IELTS equiv.</th><th>CELPIP equiv.</th><th style="text-align:right">Points</th></tr></thead>
+      <tbody id="tbl-lang1">
+        <tr data-g="lang1" data-v="20" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 9+</span></td><td class="clb-eq">8.5–9.0</td><td class="clb-eq">9–10</td><td class="clb-p">+20 pts</td></tr>
+        <tr data-g="lang1" data-v="16" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 8</span></td><td class="clb-eq">7.5</td><td class="clb-eq">8</td><td class="clb-p">+16 pts</td></tr>
+        <tr data-g="lang1" data-v="12" onclick="pickRow(this)"><td><span class="clb-lvl">CLB 7</span></td><td class="clb-eq">7.0</td><td class="clb-eq">7</td><td class="clb-p">+12 pts</td></tr>
+        <tr data-g="lang1" data-v="8"  onclick="pickRow(this)"><td><span class="clb-lvl">CLB 6</span></td><td class="clb-eq">6.5</td><td class="clb-eq">6</td><td class="clb-p">+8 pts</td></tr>
+        <tr data-g="lang1" data-v="4"  onclick="pickRow(this)"><td><span class="clb-lvl">CLB 5</span></td><td class="clb-eq">6.0</td><td class="clb-eq">5</td><td class="clb-p">+4 pts</td></tr>
+        <tr data-g="lang1" data-v="2"  onclick="pickRow(this)"><td><span class="clb-lvl">CLB 4</span></td><td class="clb-eq">5.0</td><td class="clb-eq">4</td><td class="clb-p">+2 pts</td></tr>
+        <tr data-g="lang1" data-v="0"  onclick="pickRow(this)"><td><span class="clb-lvl">CLB 3 or below</span></td><td class="clb-eq">Below 5.0</td><td class="clb-eq">3 or below</td><td class="clb-p">+0 pts (ineligible)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="qblock">
+    <div class="qlabel">French NCLC level (TEF Canada or TCF Canada)</div>
+    <div class="qhint">If you have both English CLB 4+ AND French NCLC 4+, you earn an extra +3 bilingual bonus on top of your English score.</div>
+    <div class="opts" id="grp-french">
+      <div class="o on" data-g="french" data-v="0" onclick="pick(this)">Not tested / NCLC 3 or below <span class="pts">+0</span></div>
+      <div class="o" data-g="french" data-v="1" onclick="pick(this)">NCLC 4 (qualifies for bilingual bonus) <span class="pts">+3 bonus</span></div>
+      <div class="o" data-g="french" data-v="2" onclick="pick(this)">NCLC 5 <span class="pts">+3 bonus</span></div>
+      <div class="o" data-g="french" data-v="3" onclick="pick(this)">NCLC 6+ <span class="pts">+3 bonus</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- WORK EXPERIENCE -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">💼</span><span class="sec-title">Work Experience</span><span class="sec-max">Max 20 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Months worked in Alberta <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">Must be work experience in Alberta in an eligible occupation. This is the primary work experience factor for the AOS.</div>
+    <div class="opts" id="grp-wkAlberta">
+      <div class="o" data-g="wkAlberta" data-v="20" onclick="pick(this)">24+ months in Alberta <span class="pts">+20</span></div>
+      <div class="o" data-g="wkAlberta" data-v="16" onclick="pick(this)">18–23 months in Alberta <span class="pts">+16</span></div>
+      <div class="o" data-g="wkAlberta" data-v="12" onclick="pick(this)">12–17 months in Alberta <span class="pts">+12</span></div>
+      <div class="o" data-g="wkAlberta" data-v="8"  onclick="pick(this)">6–11 months in Alberta <span class="pts">+8</span></div>
+      <div class="o" data-g="wkAlberta" data-v="4"  onclick="pick(this)">1–5 months in Alberta <span class="pts">+4</span></div>
+      <div class="o" data-g="wkAlberta" data-v="0"  onclick="pick(this)">No Alberta experience <span class="pts">+0</span></div>
+    </div>
+  </div>
+  <div class="qblock">
+    <div class="qlabel">Months worked in Canada (outside Alberta)</div>
+    <div class="qhint">Additional Canadian work experience outside Alberta earns extra points, up to the 20-pt cap combined.</div>
+    <div class="opts" id="grp-wkCanada">
+      <div class="o on" data-g="wkCanada" data-v="0" onclick="pick(this)">None <span class="pts">+0</span></div>
+      <div class="o" data-g="wkCanada" data-v="3"  onclick="pick(this)">1–11 months outside AB <span class="pts">+3</span></div>
+      <div class="o" data-g="wkCanada" data-v="5"  onclick="pick(this)">12–23 months outside AB <span class="pts">+5</span></div>
+      <div class="o" data-g="wkCanada" data-v="7"  onclick="pick(this)">24+ months outside AB <span class="pts">+7</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- AGE -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🎂</span><span class="sec-title">Age</span><span class="sec-max">Max 12 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Your age at time of EOI submission <span style="color:var(--gold)">*</span></div>
+    <div class="qhint">AAIP awards maximum points for ages 22–35. Points decline after 36 and reach zero at 50+.</div>
+    <div class="opts" id="grp-age">
+      <div class="o" data-g="age" data-v="12" onclick="pick(this)">22–35 years <span class="pts">+12</span></div>
+      <div class="o" data-g="age" data-v="10" onclick="pick(this)">18–21 years <span class="pts">+10</span></div>
+      <div class="o" data-g="age" data-v="8"  onclick="pick(this)">36–40 years <span class="pts">+8</span></div>
+      <div class="o" data-g="age" data-v="5"  onclick="pick(this)">41–45 years <span class="pts">+5</span></div>
+      <div class="o" data-g="age" data-v="2"  onclick="pick(this)">46–49 years <span class="pts">+2</span></div>
+      <div class="o" data-g="age" data-v="0"  onclick="pick(this)">50+ years <span class="pts">+0</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FAMILY -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">👨‍👩‍👧</span><span class="sec-title">Family Connection in Alberta</span><span class="sec-max">Max 8 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Do you have an immediate family member living in Alberta?</div>
+    <div class="qhint">As of January 30, 2025: only your <strong>parent, child, or sibling</strong> (age 18+) who is a Canadian citizen or PR qualifies. Extended family (grandparents, cousins, in-laws) no longer qualify for new EOIs.</div>
+    <div class="cb" data-k="family" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body">
+        <div class="cb-text">Parent, child, or sibling in Alberta (Canadian citizen or PR, age 18+)</div>
+        <div class="cb-sub">Grandparents and extended family do not qualify for EOIs submitted after Jan 30, 2025</div>
+      </div>
+      <div class="cb-pts">+8 pts</div>
+    </div>
+  </div>
+</div>
+
+<!-- ECONOMIC: JOB OFFER -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">📄</span><span class="sec-title">Alberta Job Offer</span><span class="sec-max">Max 15 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Do you have a valid permanent full-time Alberta job offer?</div>
+    <div class="qhint">The offer must be full-time, permanent (indeterminate), and from an eligible Alberta employer. Points vary by stream type.</div>
+    <div class="opts" id="grp-jobOffer">
+      <div class="o on" data-g="jobOffer" data-v="0" onclick="pick(this)">No job offer <span class="pts">+0</span></div>
+      <div class="o" data-g="jobOffer" data-v="10" onclick="pick(this)">Standard job offer in Alberta <span class="pts">+10</span></div>
+      <div class="o" data-g="jobOffer" data-v="15" onclick="pick(this)">Job offer in Rural Renewal / Tourism & Hospitality / endorsed sector <span class="pts">+15</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ECONOMIC: LOCATION -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">📍</span><span class="sec-title">Job Location in Alberta</span><span class="sec-max">Max 6 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Where is your Alberta job located?</div>
+    <div class="qhint">AAIP awards bonus points for jobs outside the major Calgary and Edmonton metro areas, incentivizing rural settlement.</div>
+    <div class="opts" id="grp-location" style="flex-direction:column;">
+      <div class="o" data-g="location" data-v="0" onclick="pick(this)">
+        <div><div style="font-weight:700">Calgary or Edmonton CMA <span class="pts">+0</span></div><div style="font-size:11px;color:var(--slate)">Calgary or Edmonton Census Metropolitan Area</div></div>
+      </div>
+      <div class="o" data-g="location" data-v="5" onclick="pick(this)">
+        <div><div style="font-weight:700">Other Alberta community (non-rural) <span class="pts">+5</span></div><div style="font-size:11px;color:var(--slate)">Any Alberta community outside Calgary/Edmonton CMAs and not on Rural Renewal list</div></div>
+      </div>
+      <div class="o" data-g="location" data-v="6" onclick="pick(this)">
+        <div><div style="font-weight:700">Rural Renewal Stream designated community <span class="pts">+6</span></div><div style="font-size:11px;color:var(--slate)">Must have endorsement letter from a designated Rural Renewal community</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REGULATED OCCUPATION -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-icon">🏅</span><span class="sec-title">Regulated Occupation</span><span class="sec-max">Max 10 pts</span></div>
+  <div class="qblock">
+    <div class="qlabel">Do you have a valid Alberta professional licence or trade certificate?</div>
+    <div class="qhint">Only applies if your occupation is <strong>regulated in Alberta</strong> AND you hold a valid Alberta qualification certificate or professional licence permitting you to practise. You cannot claim these points if certification is voluntary.</div>
+    <div class="cb" data-k="regulated" onclick="tog(this)">
+      <div class="cb-box"></div>
+      <div class="cb-body">
+        <div class="cb-text">Job offer in a regulated occupation + hold valid Alberta licence/certificate</div>
+        <div class="cb-sub">e.g. P.Eng (APEGA), RN (CARNA), journeyperson certificate, physician licence</div>
+      </div>
+      <div class="cb-pts">+10 pts</div>
+    </div>
+  </div>
+</div>
+
+<div style="font-size:11px;color:var(--slate);line-height:1.6;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;">
+  ⚠️ <strong style="color:var(--amber)">Disclaimer — Estimation Only.</strong> Based on the official AAIP Worker EOI Points Grid (August 7, 2025 version). Actual scores are determined by the Government of Alberta. EOI score is <em>not the only selection factor</em> — sector/occupation priorities also influence draws. A <strong>$135 Worker EOI fee</strong> applies as of April 7, 2026. Minimum CLB 4 required to submit. &nbsp;<a href="https://www.alberta.ca/aaip-worker-streams" target="_blank" style="color:#1565C0;font-weight:600;">Official AAIP Website ↗</a>
+</div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="score-card">
+    <div class="sc-lbl">Your AAIP EOI Score</div>
+    <div class="sc-num" id="totalScore">0</div>
+    <div class="sc-of">out of 100 points</div>
+    <div class="sc-bar-bg"><div class="sc-bar" id="scoreBar"></div></div>
+    <div class="sc-verdict sv-empty" id="verdict">Select your answers →</div>
+  </div>
+  <div class="bkcard">
+    <div class="bkcard-head">Score Breakdown</div>
+    <div class="bkrow"><span class="bkrow-name">🎓 Education</span><span class="bkrow-val" id="bk1">— / 12</span></div>
+    <div class="bkrow"><span class="bkrow-name">🗣️ Language</span><span class="bkrow-val" id="bk2">— / 20</span></div>
+    <div class="bkrow"><span class="bkrow-name">💼 Work Experience</span><span class="bkrow-val" id="bk3">— / 20</span></div>
+    <div class="bkrow"><span class="bkrow-name">🎂 Age</span><span class="bkrow-val" id="bk4">— / 12</span></div>
+    <div class="bkrow"><span class="bkrow-name">👨‍👩‍👧 Family in AB</span><span class="bkrow-val" id="bk5">— / 8</span></div>
+    <div class="bkrow"><span class="bkrow-name">📄 Job Offer</span><span class="bkrow-val" id="bk6">— / 15</span></div>
+    <div class="bkrow"><span class="bkrow-name">📍 Location</span><span class="bkrow-val" id="bk7">— / 6</span></div>
+    <div class="bkrow"><span class="bkrow-name">🏅 Regulated Occ.</span><span class="bkrow-val" id="bk8">— / 10</span></div>
+    <div class="bktotal"><span class="bktotal-lbl">Total Score</span><span class="bktotal-val" id="bkTot">0 / 100</span></div>
+  </div>
+  <div class="draws">
+    <div class="draws-head">2026 Draw Cutoffs (as of Jun 12, 2026)</div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Alberta Opportunity Stream</span><span class="draw-range">51–60</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#1565C0;width:58%"></div></div>
+      <div class="draw-sub">Largest stream — 832 invitations, May 6 draw (min. 54)</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Dedicated Healthcare</span><span class="draw-range">55–65</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:var(--gold);width:62%"></div></div>
+      <div class="draw-sub">61 invitations, May 13 draw (min. 57)</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Accelerated Tech</span><span class="draw-range">53–60</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#7c3aed;width:58%"></div></div>
+      <div class="draw-sub">Min. 55 in May 29 draw</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Rural Renewal Stream</span><span class="draw-range">44–55</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#166534;width:50%"></div></div>
+      <div class="draw-sub">Min. 46, rural communities only</div>
+    </div>
+    <div class="draw-row">
+      <div class="draw-top"><span class="draw-name">Agriculture / Manufacturing</span><span class="draw-range">46–55</span></div>
+      <div class="draw-bar-bg"><div class="draw-bar-fill" style="background:#92400e;width:52%"></div></div>
+      <div class="draw-sub">Min. 48 (Agriculture, May 22 draw)</div>
+    </div>
+  </div>
+    <div class="ctabox">
+    <p>Need an RCIC review of your Alberta AAIP pathway?</p>
+    <iframe src="https://admin.goeasyai.ca/widget/form/6a2c642b7470d" style="width:100%;height:600px;border:none;border-radius:3px" id="inline-6a2c642b7470d" data-form-name="BCG Immigration Book a consultation" data-layout-iframe-id="inline-6a2c642b7470d" data-form-id="6a2c642b7470d" data-height="600" title="BCG Immigration Book a consultation"></iframe>
+    <p style="margin-top:8px;font-size:11px;color:var(--navy);font-weight:600;">BCG Immigration Consultancy Ltd.</p>
+  </div><div class="disc">
+    <strong>⚠️ Estimation Only — Not Legal Advice</strong>
+    Based on official AAIP Worker EOI Points Grid v. August 7, 2025. Scores are estimates — final selection by Government of Alberta. EOI score is not the only factor. Consult .
+  </div>
+</div>
+</div>
+
+<footer>
+  BCG Immigration Consultancy Ltd. &nbsp;|&nbsp;|&nbsp; Surrey, BC Canada<br>
+  <a href="https://www.bcgimmigration.com" target="_blank">www.bcgimmigration.com</a> &nbsp;|&nbsp;
+  <a href="https://www.alberta.ca/aaip-worker-streams" target="_blank">Official AAIP</a> &nbsp;|&nbsp;
+  <a href="https://my-url.in/booking-link" target="_blank">Book a Consultation</a>
+</footer>
+
+<script>
+var S={edu:null,eduLoc:0,lang1:null,french:0,wkAlberta:null,wkCanada:0,age:null,family:false,jobOffer:0,location:null,regulated:false};
+function pick(el){var g=el.getAttribute('data-g'),v=parseFloat(el.getAttribute('data-v'));document.querySelectorAll('[data-g="'+g+'"]').forEach(function(e){e.classList.remove('on')});el.classList.add('on');if(g==='edu')S.edu=v;else if(g==='eduLoc')S.eduLoc=v;else if(g==='lang1')S.lang1=v;else if(g==='french')S.french=v;else if(g==='wkAlberta')S.wkAlberta=v;else if(g==='wkCanada')S.wkCanada=v;else if(g==='age')S.age=v;else if(g==='jobOffer')S.jobOffer=v;else if(g==='location')S.location=v;calc()}
+function pickRow(el){var g=el.getAttribute('data-g'),v=parseFloat(el.getAttribute('data-v'));document.querySelectorAll('[data-g="'+g+'"]').forEach(function(e){e.classList.remove('on')});el.classList.add('on');if(g==='lang1')S.lang1=v;calc()}
+function tog(el){var k=el.getAttribute('data-k');S[k]=!S[k];el.classList.toggle('on',S[k]);el.querySelector('.cb-box').textContent=S[k]?'✓':'';;calc()}
+function calc(){
+  var edu=S.edu!==null?S.edu:0;
+  var eduBonus=S.eduLoc;
+  var eduTotal=Math.min(edu+eduBonus,12);
+  var lang=S.lang1!==null?S.lang1:0;
+  var bilingualBonus=(S.french>0&&S.lang1>=2)?3:0;
+  var langTotal=Math.min(lang+bilingualBonus,20);
+  var wk=S.wkAlberta!==null?S.wkAlberta:0;
+  var wkExtra=S.wkCanada;
+  var wkTotal=Math.min(wk+wkExtra,20);
+  var age=S.age!==null?S.age:0;
+  var fam=S.family?8:0;
+  var job=S.jobOffer;
+  var loc=S.location!==null?S.location:0;
+  var reg=S.regulated?10:0;
+  var total=eduTotal+langTotal+wkTotal+age+fam+job+loc+reg;
+  document.getElementById('totalScore').textContent=total;
+  document.getElementById('scoreBar').style.width=Math.min((total/100)*100,100)+'%';
+  document.getElementById('bkTot').textContent=total+' / 100';
+  document.getElementById('bk1').textContent=(S.edu!==null?eduTotal:'—')+' / 12';
+  document.getElementById('bk2').textContent=(S.lang1!==null?langTotal:'—')+' / 20';
+  document.getElementById('bk3').textContent=(S.wkAlberta!==null?wkTotal:'—')+' / 20';
+  document.getElementById('bk4').textContent=(S.age!==null?age:'—')+' / 12';
+  document.getElementById('bk5').textContent=fam+' / 8';
+  document.getElementById('bk6').textContent=job+' / 15';
+  document.getElementById('bk7').textContent=(S.location!==null?loc:'—')+' / 6';
+  document.getElementById('bk8').textContent=reg+' / 10';
+  var anyFilled=S.edu!==null||S.lang1!==null||S.wkAlberta!==null||S.age!==null;
+  var vbox=document.getElementById('verdict');
+  vbox.className='sc-verdict';
+  if(!anyFilled){vbox.classList.add('sv-empty');vbox.textContent='Select your answers →';}
+  else if(total>=70){vbox.classList.add('sv-green');vbox.textContent='🟢 Highly Competitive!';}
+  else if(total>=60){vbox.classList.add('sv-blue');vbox.textContent='🔵 Strong Profile';}
+  else if(total>=50){vbox.classList.add('sv-amber');vbox.textContent='🟡 Near Cutoff Range';}
+  else if(total>0){vbox.classList.add('sv-red');vbox.textContent='🔴 Build Your Profile';}
+  else{vbox.classList.add('sv-empty');vbox.textContent='Select your answers →';}
+}
+</script>
+</body>
+</html>

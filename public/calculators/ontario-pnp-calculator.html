@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ontario OINP Calculator 2026 | BCG Immigration</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0D1F35;--gold:#C8993A;--gold2:#f0c96a;--goldbg:#FDF6E8;--teal:#0E7C74;--tealbg:#E2F4F2;--slate:#506070;--mist:#F0F4F8;--line:#DDE5EE;--white:#FFFFFF;--amber:#92400e;--on:#7B1FA2;--onbg:#F3E5F5}
+body{font-family:'Inter',sans-serif;background:var(--mist);color:var(--navy);font-size:14px;line-height:1.5}
+.header{background:var(--navy);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.hbrand{display:flex;align-items:center;gap:10px}
+.hlogo{width:36px;height:36px;background:var(--gold);border-radius:8px;font-weight:800;font-size:13px;color:var(--navy);display:flex;align-items:center;justify-content:center}
+.hname{font-size:16px;font-weight:700;color:#fff}.hname span{color:var(--gold)}
+.hero{background:linear-gradient(160deg,#1a0a2e 0%,#4a1a6e 100%);padding:28px 24px;text-align:center;border-bottom:3px solid #9C27B0}
+.hero h1{font-size:clamp(20px,4vw,30px);font-weight:800;color:#fff;margin-bottom:8px}
+.hero h1 span{color:#CE93D8}
+.hero p{color:rgba(255,255,255,.65);font-size:13px;max-width:600px;margin:0 auto 14px;line-height:1.6}
+.hero-tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.htag{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1)}
+.htag.red{background:rgba(244,67,54,.2);color:#EF9A9A;border-color:rgba(244,67,54,.3)}
+.htag.amber{background:rgba(255,152,0,.2);color:#FFCC80;border-color:rgba(255,152,0,.3)}
+.updated{font-size:11px;color:rgba(255,255,255,.4);margin-top:10px}
+.wrap{max-width:900px;margin:28px auto;padding:0 16px 40px}
+.alert{border-radius:12px;padding:20px 22px;margin-bottom:18px;line-height:1.7}
+.alert-red{background:#FEF2F2;border:2px solid #EF5350}
+.alert-red h2{color:#B71C1C;font-size:16px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.alert-red p,.alert-red li{color:#7f1d1d;font-size:13px}
+.alert-red ul{padding-left:20px;margin-top:6px}
+.alert-amber{background:#FFFBEB;border:2px solid #F59E0B}
+.alert-amber h2{color:#92400E;font-size:15px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.alert-amber p,.alert-amber li{color:#78350f;font-size:12px;line-height:1.7}
+.alert-amber ul{padding-left:20px;margin-top:6px}
+.alert-green{background:#F0FDF4;border:2px solid #22C55E}
+.alert-green h2{color:#14532D;font-size:15px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.alert-green p,.alert-green li{color:#166534;font-size:12px;line-height:1.7}
+.alert-green ul{padding-left:20px;margin-top:6px}
+.timeline{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:18px}
+.tl-head{background:var(--navy);padding:12px 18px;font-size:13px;font-weight:700;color:#fff}
+.tl-row{display:grid;grid-template-columns:140px 1fr;gap:0;border-bottom:1px solid var(--line)}
+.tl-row:last-child{border-bottom:none}
+.tl-date{background:#f8f9fa;padding:10px 14px;font-size:11px;font-weight:700;color:var(--slate);border-right:1px solid var(--line)}
+.tl-text{padding:10px 14px;font-size:12px;color:var(--navy);line-height:1.5}
+.tl-text b{color:#7B1FA2}
+.alt-card{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:14px}
+.alt-head{background:var(--navy);padding:12px 18px;font-size:13px;font-weight:700;color:#fff}
+.alt-row{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.alt-row:last-child{border-bottom:none}
+.alt-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.alt-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.alt-desc{font-size:11px;color:var(--slate);line-height:1.5}
+.alt-desc a{color:var(--teal);font-weight:600;text-decoration:none}
+.pnav{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.pnav a{text-decoration:none;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1px solid var(--line);color:var(--slate);background:var(--white);transition:all .15s}
+.pnav a:hover{border-color:var(--navy);color:var(--navy)}
+.pnav a.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.cta{background:linear-gradient(135deg,var(--gold) 0%,#8a5c10 100%);border-radius:12px;padding:20px;text-align:center;margin-top:20px}
+.cta p{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px;line-height:1.5}
+.cta-btn{display:block;text-decoration:none;padding:10px 16px;border-radius:8px;font-size:13px;font-weight:700;margin-bottom:8px;transition:all .15s}
+.cta-btn:last-child{margin-bottom:0}
+.cta-btn.dark{background:var(--navy);color:#fff}
+.cta-btn.dark:hover{background:#1a3050}
+footer{background:var(--navy);text-align:center;padding:18px;font-size:11px;color:rgba(255,255,255,.4);margin-top:20px}
+footer a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="hbrand"><div class="hlogo">BCG</div><div class="hname">BCG <span>Immigration</span> Consultancy</div></div>
+</div>
+<!-- DISCLAIMER -->
+<div style="background:#FFF8E1;border-bottom:3px solid #F59E0B;padding:12px 24px;display:flex;align-items:flex-start;gap:12px;">
+  <div style="font-size:22px;flex-shrink:0;">⚠️</div>
+  <div style="font-size:12px;color:#78350F;line-height:1.7;">
+    <strong style="font-size:13px;color:#92400E;display:block;margin-bottom:2px;">Important Disclaimer — Estimation Only · Not Legal Advice</strong>
+    This page provides a <strong>general information summary only</strong>. It is not a points calculator. Always consult a <strong>Regulated Canadian Immigration Consultant (RCIC)</strong> before taking any action. This is <strong>not legal advice</strong>.
+  </div>
+</div>
+<!-- IRCC UPDATE -->
+<div style="background:#EFF6FF;border-bottom:1px solid #BFDBFE;padding:9px 24px;display:flex;align-items:flex-start;gap:10px;">
+  <div style="font-size:14px;flex-shrink:0;">🇨🇦</div>
+  <div style="font-size:11px;color:#1E3A8A;line-height:1.6;"><strong style="color:#1D4ED8;">2026 IRCC / OINP Update (current as of June 12, 2026):</strong> Canada set <strong>91,500 total PNP nominations</strong> for 2026 (+66% vs 2025). Ontario allocation: <strong>14,119 nominations</strong> (largest in Canada). All 9 OINP streams were <strong>permanently revoked May 30, 2026</strong>. Replacement streams proposed but NOT yet launched. No new OINP intake is open as of June 12, 2026.</div>
+</div>
+<div class="hero">
+  <h1>Ontario OINP <span>Status Page 2026</span></h1>
+  <p>All 9 Ontario Immigrant Nominee Program (OINP) streams were <strong style="color:#EF9A9A;">permanently closed on May 30, 2026</strong>. No replacement streams are currently active. This page explains what happened, your options, and what to watch for.</p>
+  <div class="hero-tags">
+    <span class="htag red">🔴 All Streams Closed May 30, 2026</span>
+    <span class="htag amber">⏳ Replacement Not Yet Launched</span>
+    <span class="htag">Allocation: 14,119 spots</span>
+  </div>
+  <div class="updated">Updated: June 12, 2026 &nbsp;|&nbsp; Source: Ontario Ministry of Labour, Immigration, Training and Skills Development &nbsp;|&nbsp; ontario.ca/oinp</div>
+</div>
+
+<div class="wrap">
+<div class="pnav">
+  <a href="bcpnp-calculator.html">🍁 BC PNP</a>
+  <a href="alberta-pnp-calculator.html">🏔 Alberta AAIP</a>
+  <a href="saskatchewan-pnp-calculator.html">🌾 Saskatchewan SINP</a>
+  <a href="manitoba-pnp-calculator.html">🦬 Manitoba MPNP</a>
+  <a href="ontario-pnp-calculator.html" class="active">🏙 Ontario OINP</a>
+  <a href="novascotia-pnp-calculator.html">⚓ Nova Scotia</a>
+  <a href="newbrunswick-pnp-calculator.html">🌲 New Brunswick</a>
+  <a href="yukon-pnp-calculator.html">🏔 Yukon YNP</a>
+  <a href="atlantic-aip-calculator.html">🌊 Atlantic AIP</a>
+</div>
+
+<div class="alert alert-red">
+  <h2>🚫 OINP Fully Closed — No Active Streams (June 2026)</h2>
+  <p>On <strong>May 30, 2026</strong>, Ontario revoked all 9 OINP streams under Ontario Regulation 47/26. The streams permanently closed were:</p>
+  <ul>
+    <li>Human Capital Priorities Stream</li>
+    <li>French-Speaking Skilled Worker Stream</li>
+    <li>Skilled Trades Stream</li>
+    <li>Employer Job Offer — Foreign Worker Stream</li>
+    <li>Employer Job Offer — International Student Stream</li>
+    <li>In-Demand Skills Stream</li>
+    <li>Masters Graduate Stream</li>
+    <li>PhD Graduate Stream</li>
+    <li>Regional Immigration Pilot</li>
+  </ul>
+  <p style="margin-top:8px;"><strong>Only applications submitted before May 30, 2026 are still being processed.</strong> No new intake is open. The mandatory OINP Employer Portal launches July 2, 2026, but replacement stream eligibility rules have NOT been published.</p>
+</div>
+
+<div class="timeline">
+  <div class="tl-head">📅 OINP 2026 Timeline</div>
+  <div class="tl-row"><div class="tl-date">Dec 2025</div><div class="tl-text">Ontario consults stakeholders on 2-phase OINP redesign. Proposes merging streams and introducing <b>Employer Portal</b> system.</div></div>
+  <div class="tl-row"><div class="tl-date">Jan 30, 2026</div><div class="tl-text">Public consultation closes. Ontario signals shift to employer-driven, targeted draw model.</div></div>
+  <div class="tl-row"><div class="tl-date">Mar 16, 2026</div><div class="tl-text">Regulatory changes suggest Ontario will launch targeted streams for <b>Healthcare, TEER 0–3, and TEER 4–5</b> tracks.</div></div>
+  <div class="tl-row"><div class="tl-date">May 30, 2026</div><div class="tl-text"><b>All 9 OINP streams revoked</b> under O. Reg. 47/26. No grace period. Existing EOI profiles may not carry over.</div></div>
+  <div class="tl-row"><div class="tl-date">Jul 2, 2026</div><div class="tl-text">Mandatory OINP <b>Employer Portal</b> launches. Employers must register before sponsoring any foreign worker under future OINP streams.</div></div>
+  <div class="tl-row"><div class="tl-date">TBD 2026</div><div class="tl-text">Proposed replacement streams: <b>Employer Job Offer TEER 0–3</b>, <b>Employer Job Offer TEER 4–5</b>, <b>Priority Healthcare</b>, <b>Entrepreneur / Exceptional Talent</b>. No launch date confirmed.</div></div>
+</div>
+
+<div class="alert alert-amber">
+  <h2>⏳ Proposed New OINP Streams (Not Yet Active)</h2>
+  <p>Based on the December 2025 consultation, four replacement streams are proposed. <strong>No eligibility rules, scoring grids, or launch dates have been published as of June 12, 2026.</strong></p>
+  <ul>
+    <li><strong>Employer Job Offer (TEER 0–3):</strong> Skilled professionals and managers with valid Ontario employer job offer. Employer must be registered on OINP Employer Portal.</li>
+    <li><strong>Employer Job Offer (TEER 4–5):</strong> Replaces In-Demand Skills stream. Same portal registration requirement for employer. Critical change: employer portal registration is now mandatory.</li>
+    <li><strong>Priority Healthcare:</strong> Regulated healthcare professionals with valid Ontario registration (NOC 31301, 31300 range). Dedicated stream targeting nursing shortage.</li>
+    <li><strong>Entrepreneur / Exceptional Talent:</strong> Qualitative pathway — not points-based. Globally recognized achievements, business investment, or exceptional skills.</li>
+  </ul>
+</div>
+
+<div class="alert alert-green">
+  <h2>✅ What To Do Right Now (June 2026)</h2>
+  <ul>
+    <li><strong>Maintain your valid status in Canada</strong> — expired permits cannot be fixed retroactively by future OINP streams.</li>
+    <li><strong>Activate Express Entry category-based alternatives</strong> — Healthcare, STEM, French, Trades draws continue federally.</li>
+    <li><strong>If your employer is in Ontario</strong>, tell them to register on the OINP Employer Portal (July 2, 2026 launch) so you are ready the moment replacement streams open.</li>
+    <li><strong>Monitor ontario.ca/oinp</strong> for stream launch announcements — no advance notice is guaranteed.</li>
+    <li><strong>Consider other provincial pathways</strong> — BC PNP, Alberta AAIP, Saskatchewan SINP, Manitoba MPNP, and Atlantic AIP all remain active.</li>
+  </ul>
+</div>
+
+<div class="alt-card">
+  <div class="alt-head">🔀 Active Alternatives for Ontario-Based Candidates</div>
+  <div class="alt-row">
+    <div class="alt-icon">🇨🇦</div>
+    <div><div class="alt-title">Federal Express Entry — Category-Based Draws</div><div class="alt-desc">Healthcare, STEM, French-language, and Trades categories continue drawing candidates directly. No provincial involvement required. <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry.html" target="_blank">canada.ca/express-entry ↗</a></div></div>
+  </div>
+  <div class="alt-row">
+    <div class="alt-icon">🌊</div>
+    <div><div class="alt-title">Atlantic Immigration Program (AIP)</div><div class="alt-desc">Employer-driven. Valid for Nova Scotia, New Brunswick, PEI, and Newfoundland. Requires a designated employer job offer. No CRS score minimum. <a href="atlantic-aip-calculator.html">View AIP guide →</a></div></div>
+  </div>
+  <div class="alt-row">
+    <div class="alt-icon">🍁</div>
+    <div><div class="alt-title">BC PNP / Alberta AAIP / Manitoba MPNP / Saskatchewan SINP</div><div class="alt-desc">All four western PNPs remain active with regular draws. Explore your score using our calculators. <a href="bcpnp-calculator.html">BC PNP →</a> &nbsp;|&nbsp; <a href="alberta-pnp-calculator.html">Alberta AAIP →</a> &nbsp;|&nbsp; <a href="manitoba-pnp-calculator.html">Manitoba MPNP →</a></div></div>
+  </div>
+</div>
+
+<div class="cta">
+  <p>Need guidance on your Ontario PR options while OINP is closed? BCG Immigration Consultancy can assess your best federal and provincial pathways.</p>
+  <iframe src="https://admin.goeasyai.ca/widget/form/6a2c642b7470d" style="width:100%;height:600px;border:none;border-radius:3px" id="inline-6a2c642b7470d" data-form-name="BCG Immigration Book a consultation" data-layout-iframe-id="inline-6a2c642b7470d" data-form-id="6a2c642b7470d" data-height="600" title="BCG Immigration Book a consultation"></iframe>
+  <p style="margin-top:8px;font-size:11px;">BCG Immigration Consultancy Ltd.</p>
+</div>
+</div>
+
+<footer>BCG Immigration Consultancy Ltd. &nbsp;|&nbsp; Surrey, BC Canada<br>
+<a href="https://www.bcgimmigration.com" target="_blank">www.bcgimmigration.com</a> &nbsp;|&nbsp; <a href="https://ontario.ca/page/ontario-immigrant-nominee-program" target="_blank">Official OINP</a> &nbsp;|&nbsp; <a href="https://my-url.in/booking-link" target="_blank">Book a Consultation</a></footer>
+</body>
+</html>
