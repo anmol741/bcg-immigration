@@ -61,14 +61,14 @@ export default function ContactMap() {
             {
               icon: "📞",
               label: "Primary",
-              value: "604-203-1200",
-              href: "tel:6042031200",
+              value: "+1 (604) 203-1200",
+              href: "tel:+16042031200",
             },
             {
               icon: "📱",
               label: "Secondary",
-              value: "778-896-9552",
-              href: "tel:7788969552",
+              value: "+1 (604) 203-1200",
+              href: "tel:+16042031200",
             },
             {
               icon: "✉️",

@@ -64,8 +64,78 @@ footer a{color:var(--gold);text-decoration:none}
 </style>
 </head>
 <body>
-<div class="header"><div class="hbrand"><div class="hlogo">BCG</div><div class="hname">BCG <span>Immigration</span> Consultancy</div></div></div>
-<div style="background:#FFF8E1;border-bottom:3px solid #F59E0B;padding:12px 24px;display:flex;align-items:flex-start;gap:12px;"><div style="font-size:22px;flex-shrink:0;">⚠️</div><div style="font-size:12px;color:#78350F;line-height:1.7;"><strong style="font-size:13px;color:#92400E;display:block;margin-bottom:2px;">Important Disclaimer — Not a Points Calculator · Not Legal Advice</strong>The Yukon Nominee Program is <strong>employer-driven</strong> — it does not use a public-facing points grid. This page is an <strong>eligibility checklist</strong>, not a score calculator. Always consult an RCIC before taking action.</div></div>
+<!-- BCG SITE NAVBAR -->
+<style>
+.bcg-topbar{background:#0a0f1e;padding:8px 40px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#ccc;font-family:'Inter',sans-serif}
+.bcg-topbar a{color:#ccc;text-decoration:none;transition:color .2s}
+.bcg-topbar a:hover{color:#c9a84c}
+.bcg-topbar-links{display:flex;gap:24px}
+.bcg-nav{background:#0d1526;padding:12px 40px;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif}
+.bcg-nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.bcg-nav-logo{background:#c9a84c;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#0d1526;font-size:14px;flex-shrink:0}
+.bcg-nav-title{color:#fff;font-weight:700;font-size:18px}
+.bcg-nav-sub{color:#c9a84c;font-size:10px;letter-spacing:2px;text-transform:uppercase}
+.bcg-nav-links{display:flex;align-items:center;gap:28px}
+.bcg-nav-links a{color:#ccc;text-decoration:none;font-size:14px;transition:color .2s}
+.bcg-nav-links a:hover{color:#c9a84c}
+.bcg-nav-links .bcg-active{color:#c9a84c;font-weight:600}
+.bcg-nav-cta{background:#c9a84c!important;color:#0d1526!important;padding:10px 22px!important;border-radius:25px!important;font-weight:700!important;font-size:14px}
+.bcg-nav-cta:hover{background:#dbb958!important;color:#0d1526!important}
+.bcg-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
+.bcg-burger span{display:block;width:24px;height:2px;background:#ccc;border-radius:2px;transition:all .3s}
+.bcg-mobile{display:none;background:#0d1526;border-top:1px solid rgba(201,168,76,.2);padding:12px 24px 20px;flex-direction:column}
+.bcg-mobile a{color:#ccc;text-decoration:none;font-size:15px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.07);display:block;font-family:'Inter',sans-serif}
+.bcg-mobile .bcg-active{color:#c9a84c;font-weight:600}
+.bcg-mobile .bcg-mob-cta{background:#c9a84c;color:#0d1526!important;padding:12px 20px;border-radius:25px;text-align:center;margin-top:10px;font-weight:700;border-bottom:none!important}
+@media(max-width:768px){
+  .bcg-topbar{padding:8px 20px}
+  .bcg-topbar-email{display:none}
+  .bcg-nav{padding:12px 20px}
+  .bcg-nav-links{display:none}
+  .bcg-burger{display:flex}
+  .bcg-mobile.open{display:flex}
+}
+</style>
+<div class="bcg-topbar">
+  <div class="bcg-topbar-links">
+    <a href="tel:+16042031200">&#128222; +1 (604) 203-1200</a>
+    <a href="mailto:cj.bcgimmigration@gmail.com" class="bcg-topbar-email">&#9993; cj.bcgimmigration@gmail.com</a>
+  </div>
+  <div>&#128336; Mon&#8211;Sat 9AM&#8211;6PM</div>
+</div>
+<nav class="bcg-nav">
+  <a href="/" class="bcg-nav-brand">
+    <div class="bcg-nav-logo">BCG</div>
+    <div>
+      <div class="bcg-nav-title">BCG Immigration</div>
+      <div class="bcg-nav-sub">Consultancy Ltd.</div>
+    </div>
+  </a>
+  <div class="bcg-nav-links">
+    <a href="/">Home</a>
+    <a href="/about">About Us</a>
+    <a href="/services">Services</a>
+    <a href="/blog">Blog</a>
+    <a href="/calculators" class="bcg-active">PNP Calculators</a>
+    <a href="/contact">Contact Us</a>
+    <a href="/contact" class="bcg-nav-cta">Free Assessment</a>
+  </div>
+  <button class="bcg-burger" onclick="document.getElementById('bcg-mob').classList.toggle('open')" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="bcg-mobile" id="bcg-mob">
+  <a href="/">Home</a>
+  <a href="/about">About Us</a>
+  <a href="/services">Services</a>
+  <a href="/blog">Blog</a>
+  <a href="/calculators" class="bcg-active">PNP Calculators</a>
+  <a href="/contact">Contact Us</a>
+  <a href="/contact" class="bcg-mob-cta">Free Assessment</a>
+</div>
+<!-- END BCG SITE NAVBAR -->
+
+<div id="disclaimer-banner" style="background:#FFF8E1;border-bottom:3px solid #F59E0B;padding:12px 24px;display:flex;align-items:flex-start;gap:12px;position:relative;"><button onclick="document.getElementById('disclaimer-banner').style.display='none'" style="position:absolute;top:8px;right:12px;background:none;border:none;font-size:20px;color:#92400E;cursor:pointer;font-weight:700;line-height:1;padding:2px 6px;" aria-label="Close">&#215;</button><div style="font-size:22px;flex-shrink:0;">⚠️</div><div style="font-size:12px;color:#78350F;line-height:1.7;"><strong style="font-size:13px;color:#92400E;display:block;margin-bottom:2px;">Important Disclaimer — Not a Points Calculator · Not Legal Advice</strong>The Yukon Nominee Program is <strong>employer-driven</strong> — it does not use a public-facing points grid. This page is an <strong>eligibility checklist</strong>, not a score calculator. Always consult an RCIC before taking action.</div></div>
 <div style="background:#EFF6FF;border-bottom:1px solid #BFDBFE;padding:9px 24px;display:flex;align-items:flex-start;gap:10px;"><div style="font-size:14px;flex-shrink:0;">🇨🇦</div><div style="font-size:11px;color:#1E3A8A;line-height:1.6;"><strong style="color:#1D4ED8;">2026 YNP Update (June 12, 2026):</strong> Yukon allocation: ~<strong>500 nominations</strong>. YNP uses EOI system with <strong>2026 Priority-Based invitations</strong> — only employers aligned with 2026 Yukon priorities will be invited to apply. Yukon processes applications within <strong>8–10 weeks</strong>. No provincial fee.</div></div>
 <div class="hero">
   <h1>Yukon YNP <span>Eligibility Checker 2026</span></h1>
@@ -81,15 +151,15 @@ footer a{color:var(--gold);text-decoration:none}
 
 <div class="wrap">
 <div class="pnav">
-  <a href="bcpnp-calculator.html">🍁 BC</a>
-  <a href="alberta-pnp-calculator.html">🏔 Alberta</a>
-  <a href="saskatchewan-pnp-calculator.html">🌾 SK</a>
-  <a href="manitoba-pnp-calculator.html">🦬 MB</a>
-  <a href="ontario-pnp-calculator.html">🏙 ON</a>
-  <a href="novascotia-pnp-calculator.html">⚓ NS</a>
-  <a href="newbrunswick-pnp-calculator.html">🌲 NB</a>
-  <a href="yukon-pnp-calculator.html" class="active">🏔 Yukon</a>
-  <a href="atlantic-aip-calculator.html">🌊 AIP</a>
+  <a href="bcpnp-calculator.html">🍁 BC PNP</a>
+  <a href="alberta-pnp-calculator.html">🏴 Alberta AAIP</a>
+  <a href="saskatchewan-pnp-calculator.html">🌾 Saskatchewan SINP</a>
+  <a href="manitoba-pnp-calculator.html">🦮 Manitoba MPNP</a>
+  <a href="ontario-pnp-calculator.html">🏙 Ontario OINP</a>
+  <a href="novascotia-pnp-calculator.html">⚓ Nova Scotia NSNP</a>
+  <a href="newbrunswick-pnp-calculator.html">🌲 New Brunswick NBPNP</a>
+  <a href="yukon-pnp-calculator.html" class="active">❄ Yukon</a>
+  <a href="atlantic-aip-calculator.html">🌊 Atlantic AIP</a>
 </div>
 
 <!-- JOB OFFER -->

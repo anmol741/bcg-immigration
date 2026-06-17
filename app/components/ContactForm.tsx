@@ -41,8 +41,8 @@ const contactDetails = [
       </svg>
     ),
     label: "Primary Phone",
-    value: "604-203-1200",
-    href: "tel:6042031200",
+    value: "+1 (604) 203-1200",
+    href: "tel:+16042031200",
   },
   
   {
