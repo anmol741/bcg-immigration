@@ -9,20 +9,23 @@ interface BlogPost {
   id: string
   slug: string
   title: string
-  date: string
+  published_at: string
   category: string
   excerpt: string
   content: string
-  thumbnail?: string
+  featured_image?: string
   created_at?: string
 }
 
 const CATEGORIES = [
   "Express Entry",
-  "Study Visa",
-  "Work Permit",
-  "BC PNP",
+  "Provincial Nominee Program",
+  "Work Permits",
+  "Study Permits",
   "Family Sponsorship",
+  "Permanent Residency",
+  "TR to PR",
+  "Immigration News",
   "General",
 ]
 
@@ -103,10 +106,13 @@ export default function AdminDashboard() {
     const payload = {
       title: form.title,
       category: form.category,
-      date: form.date,
       excerpt: form.excerpt,
       content: form.content,
-      thumbnail: form.thumbnail || null,
+      featured_image: form.thumbnail || null,
+      author: "CJ Kalra",
+      status: "published",
+      date: form.date,
+      published_at: form.date,
     }
 
     try {
@@ -153,10 +159,10 @@ export default function AdminDashboard() {
     setForm({
       title: post.title,
       category: post.category,
-      date: post.date,
+      date: post.published_at,
       excerpt: post.excerpt,
       content: post.content,
-      thumbnail: post.thumbnail ?? "",
+      thumbnail: post.featured_image ?? "",
     })
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
@@ -315,7 +321,7 @@ export default function AdminDashboard() {
                 value={form.title}
                 onChange={handleChange}
                 required
-                placeholder="e.g. Express Entry Draw 2025: What You Need to Know"
+                placeholder="e.g. TR to PR Pathway: What You Need to Know in 2026"
                 className="w-full bg-[#0a1628] border border-[#c9a84c]/20 rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#c9a84c]/60 transition-colors"
               />
             </div>
@@ -451,7 +457,7 @@ export default function AdminDashboard() {
                     <div className="flex-1 min-w-0">
                       <p className="text-white font-medium text-sm truncate">{post.title}</p>
                       <p className="text-gray-500 text-xs mt-0.5">
-                        {post.date} &middot; {post.category}
+                        {post.published_at} &middot; {post.category}
                       </p>
                     </div>
                     <div className="flex items-center gap-3 shrink-0">
